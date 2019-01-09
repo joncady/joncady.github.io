@@ -18,7 +18,7 @@
         crossorigin="anonymous"></script>
     <script src="js/sayhello.js"></script>
     <script src="js/script.js"></script>
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="./favicon.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <title>Project Portfolio - Jonathan Cady</title>
 </head>
@@ -60,15 +60,22 @@
             </div>
         </div>
     </header>
-    <button id="reset" class="btn">reset hellos</button>
-    <button id="hello-button" class="btn" type="button" data-toggle="collapse" data-target="#about-hello" aria-expanded="false"
-        aria-controls="about-hello">about hellos</button>
     <div id="about-hello" class="collapse mt-3">
         <p class="card card-body card-size">
             I designed the "hello" module to say hello in a variety of languages.
             I am interested in languages and I try to find ways to
             pair my love for coding and language!
         </p>
+    </div>
+    <div class="dropdown show">
+        <a class="btn btn-dark-outline dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <button class="dropdown-item" id="reset">reset</button>
+            <button id="hello-button" class="dropdown-item" data-toggle="collapse" data-target="#about-hello"
+                aria-expanded="false" aria-controls="about-hello">about hellos</button>
+        </div>
     </div>
     <main>
         <div class="content">
@@ -107,7 +114,7 @@
                 <h2>Skills</h2>
                 <hr>
                 <div id="logo-space">
-                    <a href="https://reactjs.org/"><img src="./css/skill_logos/1200px-React-icon.svg.png" alt="React"></a>
+                    <a href="https://reactjs.org/"><img src="./css/skill_logos/react.png" alt="React"></a>
                     <a href="https://firebase.google.com"><img src="./css/skill_logos/firebase.png" alt="Firebase"></a>
                     <a href="https://en.wikipedia.org/wiki/SQL"><img src="./css/skill_logos/sql.png"></a>
                     <a href="https://nodejs.org"><img src="./css/skill_logos/node.png" alt="Node"></a>
@@ -124,7 +131,7 @@
                     <div id="web-dev">
                         <h3>Web Development</h3>
                         <div class="big-box">
-                            <a class="rounded project-card" href="https://students.washington.edu/joncady/projects/grocery_list_project/">
+                            <a class="rounded project-card" href="projects/grocery_list_project">
                                 <div class="boxes rounded" id="project-one">
                                     <p>Grocery List Project (Javascript, PHP, SQL)</p>
                                 </div>
@@ -138,7 +145,7 @@
                                 <div class="project-info">I <em>collaborated</em> with a team to create a web app that
                                     utilizes the Yelp API to present information on businesses.</div>
                             </a>
-                            <a class="rounded project-card" href="https://students.washington.edu/joncady/projects/news/">
+                            <a class="rounded project-card" href="projects/news/">
                                 <div class="boxes rounded" id="project-three">
                                     <p>News at a Glance (JavaScript, News API)</p>
                                 </div>
@@ -152,7 +159,7 @@
                                 <div class="project-info">I <em>designed</em> a Chrome extension that displays the
                                     professor's RateMyProfessor score next to their class.</div>
                             </a>
-                            <a class="rounded project-card" href="https://students.washington.edu/joncady/projects/dubhacks/landing.html">
+                            <a class="rounded project-card" href="projects/dubhacks/landing.html">
                                 <div class="boxes rounded" id="project-two">
                                     <p>FeelingFeed (JavaScript, Bootstrap, PHP)</p>
                                 </div>
@@ -238,7 +245,7 @@
                 <hr>
                 <div>
                     <ul class="list-unstyled">
-                        <li class="media">
+                        <li class="media mb-3">
                             <img src="./css/bs.png" alt="Beautiful Soup">
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">Web Scraping</h5>
@@ -250,7 +257,7 @@
                                 JavaScript on the server side using Cheerio and Express.
                             </div>
                         </li>
-                        <li class="media my-4">
+                        <li class="media mb-3">
                             <img src="./css/api.png" alt="API">
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">Personal APIs</h5>
@@ -262,8 +269,23 @@
                                 public REST API!
                             </div>
                         </li>
+                        <li class="media mb-3">
+                            <img src="./css/pi.jpeg" alt="React">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Internet of Things</h5>
+                                I've recently been fascinated with Internet of Things (IoT) technology! Small devices
+                                such as Raspberry Pis, or Arduinos can do really cool things. My favorite trick I've
+                                done so far is setting up a server on my Raspberry Pi and having the Pi speak by using
+                                text-to-speech (from a HTTP request). Paired with Node, an Arduino can also become a
+                                smart
+                                device! Using Node modules that have been written to interact with an Arduino, you can
+                                set
+                                up your own wifi-enabled devices. I hope to showcase some of projects with IoT here as
+                                well!
+                            </div>
+                        </li>
                         <li class="media">
-                            <img src="./css/skill_logos/1200px-React-icon.svg.png" alt="React">
+                            <img src="./css/skill_logos/react.png" alt="React">
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">React Development - My Future!</h5>
                                 React is one of my new-found passions! I recently learned the basics in my courses and
