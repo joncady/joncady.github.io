@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Tooltip } from 'reactstrap';
 import Navigation from './sections/Navigation';
 import Header from './sections/Header';
 import AboutMe from './sections/AboutMe';
@@ -9,19 +10,32 @@ import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
 export default class App extends Component {
-	
-	// componentDidMount() {
-	// 	$(window).resize(resetAll);
-    //     $(window).scroll(function () {
-    //         if ($(this).scrollTop() > 50) {
-    //             $('#back-to-top').tooltip();
-    //             $('#back-to-top').fadeIn();
-    //         } else {
-    //             $('#back-to-top').fadeOut();
-    //             $('#back-to-top').tooltip('hide');
-    //         }
-    //     })    
-	// }
+
+	constructor() {
+		this.state = {
+			tooltipOpen: false
+		};
+	}
+
+	toggle = () => {
+		this.setState({
+			tooltipOpen: !this.state.tooltipOpen
+		});
+	}
+
+	componentDidMount() {
+		window.addEventListener("scroll", (ev) => {
+			if (window.scrollY > 50) {
+
+				// $('#back-to-top').tooltip();
+				// $('#back-to-top').fadeIn();
+
+			} else {
+				// $('#back-to-top').fadeOut();
+				// $('#back-to-top').tooltip('hide');
+			}
+		});
+	}
 
 	render() {
 		return (
@@ -38,12 +52,12 @@ export default class App extends Component {
 					</div>
 				</main>
 				<Footer></Footer>
-				<a id="back-to-top" href="/#" className="btn btn-dark btn-lg back-to-top" role="button" title="Back to the top!"
+				<Tooltip id="back-to-top" href="/#" className="btn btn-dark btn-lg back-to-top" role="button" title="Back to the top!"
 					data-toggle="tooltip" data-placement="left">
 					<i className="fas fa-arrow-up"></i>
-				</a>
+				</Tooltip>
 			</div>
 		);
 	}
-	
+
 }

@@ -412,7 +412,7 @@ div.contact-container:hover {
     }
 }
 
-h2, #profile {
+h2, #profile, .fadein {
     -webkit-animation: fadein 2s forwards;
     /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 2s forwards;
