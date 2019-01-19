@@ -12,13 +12,13 @@ export default class Projects extends Component {
                     <div id="web-dev">
                         <h3>Web Development</h3>
                         <div className="big-box">
-                            <a className="rounded project-card" href="https://students.washington.edu/joncady/projects/grocery_list_project">
+                            {/* <a className="rounded project-card" href="https://students.washington.edu/joncady/projects/grocery_list_project">
                                 <div className="boxes rounded" id="project-one">
                                     <p>Grocery List Project (Javascript, PHP, SQL)</p>
                                 </div>
                                 <div className="project-info">I <em>developed</em> a grocery list app using a personal SQL
                                     server and PHP connection to interface with it.</div>
-                            </a>
+                            </a> */}
                             <a className="rounded project-card" href="https://jit98.shinyapps.io/BE-shrug/">
                                 <div className="boxes rounded" id="project-two">
                                     <p>Yelp Business App (R, Shiny, Yelp API)</p>
