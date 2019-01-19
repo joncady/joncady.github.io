@@ -60,7 +60,7 @@ export default class App extends Component {
 				<Footer></Footer>
 				{this.state.showIcon &&
 					<div>
-						<a id="back-to-top" href="#" className="back-to-top btn btn-dark btn-lg" role="button">
+						<a id="back-to-top" href="/#" className="back-to-top btn btn-dark btn-lg" role="button">
 							<i className="fas fa-arrow-up"></i>
 						</a>
 						<Tooltip id="back-to-top" placement="right" isOpen={this.state.tooltipOpen} target="back-to-top" toggle={this.toggle}>

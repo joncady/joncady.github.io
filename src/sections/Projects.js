@@ -38,7 +38,7 @@ export default class Projects extends Component {
                                     <p>Rate My Professor MyPlanExtension (CSS, JavaScript, PHP)</p>
                                 </div>
                                 <div className="project-info">I <em>designed</em> a Chrome extension that displays the
-                                    professor's RateMyProfessor score next to their className.</div>
+                                    professor's RateMyProfessor score next to their class name.</div>
                             </a>
                             <a className="rounded project-card" href="https://students.washington.edu/joncady/projects/dubhacks/landing.html">
                                 <div className="boxes rounded" id="project-two">
@@ -52,22 +52,37 @@ export default class Projects extends Component {
                                     <p>SpotiViz (React, Node)</p>
                                 </div>
                                 <div className="project-info">I <em>constructed</em> a React app with a classNamemate
-                                    that visualizes an album timeline using the Spotify API</div>
+                                    that visualizes an album timeline using the Spotify API.</div>
                             </a>
                             <a className="rounded project-card" href="https://joncady.github.io/help.me/">
                                 <div className="boxes rounded" id="project-one">
                                     <p>help.me (React, Firebase)</p>
                                 </div>
                                 <div className="project-info">I <em>collorated</em> with a team during a hackathon to
-                                    create an emotional support chat bot that has user authentication</div>
+                                    create an emotional support chat bot that has user authentication.</div>
                             </a>
                             <a className="rounded project-card" href="https://students.washington.edu/joncady/cv/">
                                 <div className="boxes rounded" id="project-two">
                                     <p>Basic CV Example (JavaScript, Node, Express)</p>
                                 </div>
-                                <div className="project-info">I <em>connected</em> my simple front-end, which sends a
-                                    photo,
-                                    and my Express back-end, which forwards it to a Microsoft Vision API
+                                <div className="project-info">I <em>connected</em> my simple front-end, which sends a 
+                                    photo, and my Express back-end, which forwards it to a Microsoft Vision API.
+                                </div>
+                            </a>
+                            <a className="rounded project-card" href="https://students.washington.edu/joncady/projects/feadventures/">
+                                <div className="boxes rounded" id="project-three">
+                                    <p>Fire Emblem Adventures (JavaScript, HTML, CSS)</p>
+                                </div>
+                                <div className="project-info">I <em>designed</em> a 2D game using only vanilla JavaScript, HTML, and CSS.
+                                    I created classes to encapsulate behavior for players, enemies, and obstacles.
+                                </div>
+                            </a>
+                            <a className="rounded project-card" href="http://satellitesmash.com">
+                                <div className="boxes rounded" id="project-one">
+                                    <p>Satellite Smash Brand Website (React, Firebase)</p>
+                                </div>
+                                <div className="project-info">I <em>developed</em> a React app that includes a player database, as well as
+                                    a news feed. I used client rounting to emulate a multi-page site.  
                                 </div>
                             </a>
                         </div>
