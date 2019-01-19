@@ -12,8 +12,10 @@ import Footer from './sections/Footer';
 export default class App extends Component {
 
 	constructor() {
+		super();
 		this.state = {
-			tooltipOpen: false
+			tooltipOpen: false,
+			showIcon: false
 		};
 	}
 
@@ -26,13 +28,17 @@ export default class App extends Component {
 	componentDidMount() {
 		window.addEventListener("scroll", (ev) => {
 			if (window.scrollY > 50) {
-
-				// $('#back-to-top').tooltip();
-				// $('#back-to-top').fadeIn();
-
+				if (!this.state.showIcon) {
+					this.setState({
+						showIcon: true
+					});
+				}
 			} else {
-				// $('#back-to-top').fadeOut();
-				// $('#back-to-top').tooltip('hide');
+				if (this.state.showIcon) {
+					this.setState({
+						showIcon: false
+					});
+				}
 			}
 		});
 	}
@@ -52,10 +58,16 @@ export default class App extends Component {
 					</div>
 				</main>
 				<Footer></Footer>
-				<Tooltip id="back-to-top" href="/#" className="btn btn-dark btn-lg back-to-top" role="button" title="Back to the top!"
-					data-toggle="tooltip" data-placement="left">
-					<i className="fas fa-arrow-up"></i>
-				</Tooltip>
+				{this.state.showIcon &&
+					<div>
+						<a id="back-to-top" href="#" className="back-to-top btn btn-dark btn-lg" role="button">
+							<i className="fas fa-arrow-up"></i>
+						</a>
+						<Tooltip id="back-to-top" placement="right" isOpen={this.state.tooltipOpen} target="back-to-top" toggle={this.toggle}>
+							Back to the top!
+						</Tooltip>
+					</div>
+				}
 			</div>
 		);
 	}

@@ -12,7 +12,7 @@ export default class Projects extends Component {
                     <div id="web-dev">
                         <h3>Web Development</h3>
                         <div className="big-box">
-                            <a className="rounded project-card" href="projects/grocery_list_project">
+                            <a className="rounded project-card" href="https://students.washington.edu/joncady/projects/grocery_list_project">
                                 <div className="boxes rounded" id="project-one">
                                     <p>Grocery List Project (Javascript, PHP, SQL)</p>
                                 </div>
@@ -26,7 +26,7 @@ export default class Projects extends Component {
                                 <div className="project-info">I <em>collaborated</em> with a team to create a web app that
                                     utilizes the Yelp API to present information on businesses.</div>
                             </a>
-                            <a className="rounded project-card" href="projects/news/">
+                            <a className="rounded project-card" href="https://students.washington.edu/joncady/projects/news/">
                                 <div className="boxes rounded" id="project-three">
                                     <p>News at a Glance (JavaScript, News API)</p>
                                 </div>
@@ -40,7 +40,7 @@ export default class Projects extends Component {
                                 <div className="project-info">I <em>designed</em> a Chrome extension that displays the
                                     professor's RateMyProfessor score next to their className.</div>
                             </a>
-                            <a className="rounded project-card" href="projects/dubhacks/landing.html">
+                            <a className="rounded project-card" href="https://students.washington.edu/joncady/projects/dubhacks/landing.html">
                                 <div className="boxes rounded" id="project-two">
                                     <p>FeelingFeed (JavaScript, Bootstrap, PHP)</p>
                                 </div>

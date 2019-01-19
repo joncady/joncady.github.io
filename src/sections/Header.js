@@ -25,7 +25,7 @@ export default class Header extends Component {
         this.setState({
             timer: welcome,
             index: 0,
-            helloTimer: setInterval(() => this.createHellos(), 2200)
+            // helloTimer: setInterval(() => this.createHellos(), 2200)
         })
     }
 
