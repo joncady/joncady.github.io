@@ -1,10 +1,10 @@
 {
-  "main.css": "/static/css/main.dca33b68.chunk.css",
-  "main.js": "/static/js/main.3db14c28.chunk.js",
-  "main.js.map": "/static/js/main.3db14c28.chunk.js.map",
+  "main.css": "/static/css/main.6571bf84.chunk.css",
+  "main.js": "/static/js/main.9ab3f35c.chunk.js",
+  "main.js.map": "/static/js/main.9ab3f35c.chunk.js.map",
   "static/css/1.95893e77.chunk.css": "/static/css/1.95893e77.chunk.css",
-  "static/js/1.cd06e670.chunk.js": "/static/js/1.cd06e670.chunk.js",
-  "static/js/1.cd06e670.chunk.js.map": "/static/js/1.cd06e670.chunk.js.map",
+  "static/js/1.0c829fe8.chunk.js": "/static/js/1.0c829fe8.chunk.js",
+  "static/js/1.0c829fe8.chunk.js.map": "/static/js/1.0c829fe8.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
   "static/media/react.png": "/static/media/react.580ffd26.png",
@@ -19,9 +19,9 @@
   "static/media/api.png": "/static/media/api.2f282e92.png",
   "static/media/pi.jpeg": "/static/media/pi.e2b8c714.jpeg",
   "static/media/seattle4.jpg": "/static/media/seattle4.21d962bc.jpg",
-  "static/css/main.dca33b68.chunk.css.map": "/static/css/main.dca33b68.chunk.css.map",
   "static/css/1.95893e77.chunk.css.map": "/static/css/1.95893e77.chunk.css.map",
+  "static/css/main.6571bf84.chunk.css.map": "/static/css/main.6571bf84.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.8fdee5e78777f50f07a4d5eb6c2fd08e.js": "/precache-manifest.8fdee5e78777f50f07a4d5eb6c2fd08e.js",
+  "precache-manifest.76a5914de46d95ff1e3561310864fd77.js": "/precache-manifest.76a5914de46d95ff1e3561310864fd77.js",
   "service-worker.js": "/service-worker.js"
 }
