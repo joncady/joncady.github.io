@@ -24,12 +24,12 @@ export default class Navigation extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-                <a className="navbar-brand" href="#header">Jonathan Cady</a>
+                <a className="navbar-brand" href="/#">Jonathan Cady</a>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#header" onClick={this.closeNav}>Home<span className="sr-only" >(current)</span></a>
+                            <a className="nav-link" href="/#" onClick={this.closeNav}>Home<span className="sr-only" >(current)</span></a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#about-me" onClick={this.closeNav}>About Me</a>

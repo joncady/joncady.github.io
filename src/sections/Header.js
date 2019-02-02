@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import hellos from '../SayHello';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, Collapse } from 'reactstrap';
 import { Parallax } from 'react-parallax';
 
 export default class Header extends Component {
@@ -52,91 +50,16 @@ export default class Header extends Component {
         }
     }
 
-    /*
-     * This function randomly spawns text that appears throughout the div
-     */
-    createHellos = () => {
-        if (this.state.helloEls.length === 20) {
-            clearInterval(this.state.helloTimer);
-        }
-        let width = document.querySelector('header').offsetWidth;
-        let height = document.querySelector('header').offsetHeight;
-        this.addHello(width, height);
-    }
-
-    /*
-     * Randomly generates hellos to populate the hello module
-     */
-    addHello(width, height) {
-        let randomWord = hellos[Math.floor(Math.random() * hellos.length)];
-        let randomX = this.produceRandom(width);
-        let randomY = this.produceRandom(height);
-        while (this.conditions(randomX, randomY, width, height)) {
-            randomX = this.produceRandom(width);
-            randomY = this.produceRandom(height);
-        }
-        let hello = <div key={"hello" + this.state.helloEls + 1} style={{ position: 'absolute', left: `${randomX}px`, top: `${randomY}px` }} className="word fadein">{randomWord}</div>;
-        this.setState({
-            helloEls: this.state.helloEls.concat(hello)
-        });
-        // $('.word').animate({ opacity: 0.4}, 1000);
-    }
-
-    conditions(xVal, yVal, width, height) {
-        // checks if word would be generated too close to upper and lower boundaries
-        if (yVal > (height - 10)) {
-            return true;
-            // checks if word would be generated too close to side
-        } else if (xVal < 10 || xVal > (width - 30)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /*
-     * Resets all 'hellos' in the module
-     */
-    resetAll = () => {
-        this.setState({
-            helloEls: [],
-            helloTimer: setInterval(this.createHellos, 1000),
-            dropdownOpen: false
-        })
-    }
-
-    produceRandom(value) {
-        return Math.floor(Math.random() * value);
-    }
-
     render() {
         return (
-            <React.Fragment>
-                <Parallax blur={{ min: -12, max: 20 }}
-                    bgImage={require('../assets/seattle4.jpg')}
-                    bgImageAlt="background"
-                    strength={200}>
-                    <div id="parallax-header">
-                        {/* <h2 style={{color: 'white'}}>Hi. {this.state.word}</h2> */}
-                    </div>
-                </Parallax>
-                <ButtonDropdown color="primary" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle caret>
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <button className="dropdown-item" id="reset" onClick={this.resetAll}>reset</button>
-                        <button id="hello-button" className="dropdown-item" onClick={() => this.setState({ dropdownOpen: false, collapse: !this.state.collapse })} data-toggle="collapse" data-target="#about-hello"
-                            aria-expanded="false" aria-controls="about-hello">about hellos</button>
-                    </DropdownMenu>
-                </ButtonDropdown>
-                <Collapse isOpen={this.state.collapse}>
-                    <p className="card card-body card-size">
-                        I designed the "hello" module to say hello in a variety of languages.
-                        I am interested in languages and I try to find ways to
-                        pair my love for coding and language!
-                    </p>
-                </Collapse>
-            </React.Fragment>
+            <Parallax blur={{ min: -12, max: 20 }}
+                bgImage={require('../assets/seattle4.jpg')}
+                bgImageAlt="background"
+                strength={200}>
+                <div id="parallax-header">
+                    {/* <h1 className="text-uppercase" style={{color: 'white'}}>Hi. {this.state.word}</h1> */}
+                </div>
+            </Parallax>
         );
     }
 
