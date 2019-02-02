@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import hellos from '../SayHello';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, Collapse } from 'reactstrap';
+import { Parallax } from 'react-parallax';
 
 export default class Header extends Component {
 
@@ -24,15 +25,14 @@ export default class Header extends Component {
         }, 100)
         this.setState({
             timer: welcome,
-            index: 0,
-            // helloTimer: setInterval(() => this.createHellos(), 2200)
+            index: 0
         })
     }
 
     toggleArea = () => {
         this.setState({ collapse: !this.state.collapse });
     }
-    
+
 
     toggle = () => {
         this.setState(prevState => ({
@@ -112,14 +112,14 @@ export default class Header extends Component {
     render() {
         return (
             <React.Fragment>
-                <header>
-                    <div id="header" aria-label="says hello in many different languages">
-                        {this.state.helloEls}
-                        <div id="top">
-                            <h1 id="me">Hi. {this.state.word}</h1>
-                        </div>
+                <Parallax blur={{ min: -12, max: 20 }}
+                    bgImage={require('../assets/seattle4.jpg')}
+                    bgImageAlt="background"
+                    strength={200}>
+                    <div id="parallax-header">
+                        {/* <h2 style={{color: 'white'}}>Hi. {this.state.word}</h2> */}
                     </div>
-                </header>
+                </Parallax>
                 <ButtonDropdown color="primary" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                     <DropdownToggle caret>
                     </DropdownToggle>

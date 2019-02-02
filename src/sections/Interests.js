@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Bounce from 'react-reveal/Bounce';
 
 export default class Interests extends Component {
 
@@ -11,7 +12,9 @@ export default class Interests extends Component {
                 <div>
                     <ul className="list-unstyled">
                         <li className="media mb-3">
-                            <img src={require("../assets/bs.png")} alt="Beautiful Soup"></img>
+                            <Bounce>
+                                <img src={require("../assets/bs.png")} alt="Beautiful Soup"></img>
+                            </Bounce>
                             <div className="media-body">
                                 <h5 className="mt-0 mb-1">Web Scraping</h5>
                                 I have a passion for using technologies to scrape (or data mine) various websites! I
@@ -23,7 +26,9 @@ export default class Interests extends Component {
                         </div>
                         </li>
                         <li className="media mb-3">
-                            <img src={require("../assets/api.png")} alt="API"></img>
+                            <Bounce>
+                                <img src={require("../assets/api.png")} alt="API"></img>
+                            </Bounce>
                             <div className="media-body">
                                 <h5 className="mt-0 mb-1">Personal APIs</h5>
                                 When unable to find an API to do the job, I create my own! This is in the form of
@@ -35,7 +40,9 @@ export default class Interests extends Component {
                         </div>
                         </li>
                         <li className="media mb-3">
-                            <img src={require("../assets/pi.jpeg")} alt="React"></img>
+                            <Bounce>
+                                <img src={require("../assets/pi.jpeg")} alt="React"></img>
+                            </Bounce>
                             <div className="media-body">
                                 <h5 className="mt-0 mb-1">Internet of Things</h5>
                                 I've recently been fascinated with Internet of Things (IoT) technology! Small devices
@@ -50,7 +57,9 @@ export default class Interests extends Component {
                         </div>
                         </li>
                         <li className="media">
-                            <img src={require("../assets/skill_logos/react.png")} alt="React"></img>
+                            <Bounce>
+                                <img src={require("../assets/skill_logos/react.png")} alt="React"></img>
+                            </Bounce>
                             <div className="media-body">
                                 <h5 className="mt-0 mb-1">React Development - My Future!</h5>
                                 React is one of my new-found passions! I recently learned the basics in my courses and

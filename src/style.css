@@ -41,7 +41,7 @@ h3 {
 
 header, footer {
     color: white;
-    background: #4b2e83;
+    background-color: #4b2e83;
 }
 
 h2 {
@@ -318,7 +318,17 @@ div.contact-container:hover {
     margin-top: 2em;
 }
 
+#parallax-header {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media (min-width: 600px) {
+    #parallax-header {
+        height: 300px;
+    }
     #email {
         display: none;
     }
@@ -368,6 +378,9 @@ div.contact-container:hover {
 }
 
 @media (min-width: 900px) {
+    #parallax-header {
+        height: 500px;
+    }
     #written {
         padding: 1.2em;
     }
