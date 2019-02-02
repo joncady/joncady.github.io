@@ -22,19 +22,19 @@ export default class Projects extends Component {
                 title: "Yelp Business App (R, Shiny, Yelp API)",
                 link: "https://jit98.shinyapps.io/BE-shrug/",
                 content: "I collaborated with a team to create a web app that utilizes the Yelp API to present information on businesses.",
-                src: "yelp.png"
+                src: "yelp.PNG"
             },
             {
                 title: "News at a Glance (JavaScript, News API)",
                 link: "https://students.washington.edu/joncady/projects/news/",
                 content: "I call the News API in this project to create a quick look at the top news stories of the day.",
-                src: "news.png"
+                src: "news.PNG"
             },
             {
                 title: "Rate My Professor MyPlanExtension (CSS, JavaScript, PHP)",
                 link: "https://github.com/joncady/rmpUW",
                 content: "I designed a Chrome extension that displays the professor's RateMyProfessor score next to their class name. (Probably deprecated, is not currently working",
-                src: "rmp.png"
+                src: "rmp.PNG"
             },
             {
                 title: "FeelingFeed (JavaScript, Bootstrap, PHP)",
@@ -46,31 +46,31 @@ export default class Projects extends Component {
                 title: "SpotiViz (React, Node)",
                 link: "https://info340b-a18.github.io/react-project-music-viz/",
                 content: "I constructed a React app with a classNamemate that visualizes an album timeline using the Spotify API.",
-                src: "spotify.png"
+                src: "spotify.PNG"
             },
             {
                 title: "help.me (React, Firebase)",
                 link: "https://joncady.github.io/help.me/",
                 content: "I collorated with a team during a hackathon to create an emotional support chat bot that has user authentication.",
-                src: "help.png"
+                src: "help.PNG"
             },
             {
                 title: "Fire Emblem Adventures (JavaScript, HTML, CSS)",
                 link: "https://students.washington.edu/joncady/projects/feadventures/",
                 content: "I designed a 2D game using only vanilla JavaScript, HTML, and CSS. I created classes to encapsulate behavior for players, enemies, and obstacles.",
-                src: "fe.png"
+                src: "fe.PNG"
             },
             {
                 title: "Satellite Smash Brand Website (React, Firebase)",
                 link: "http://satellitesmash.com",
                 content: "I developed a React app that includes a player database, as well as a news feed. I used client rounting to emulate a multi-page site.",
-                src: "ss.png"
+                src: "ss.PNG"
             },
             {
                 title: "DuetWithMe (React, Node, Speech-to-Text)",
                 link: "https://devpost.com/software/duetwithme-fu9y5p",
                 content: "I collaborated with a team during a hackathon to create a interactive web app that can respond to voice commands and plays with you!",
-                src: "duet.png"
+                src: "duet.PNG"
             }
         ];
         return projects.map((project, i) => {
