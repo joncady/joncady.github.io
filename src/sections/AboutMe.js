@@ -16,8 +16,8 @@ export default class AboutMe extends Component {
                             I am a <span>third year student</span> studying Informatics at the University of Washington
                             Seattle!
                             What is Informatics exactly? Well, Informatics designs technology for the good of people.
-                            Follow this <a href="https://ischool.uw.edu/programs/informatics/what-is-informatics">link</a>
-                            to learn more.
+                            Follow this <a href="https://ischool.uw.edu/programs/informatics/what-is-informatics">link</a> to
+                            learn more.
                         </p>
                         <p>
                             I am primarily a <span>front-end web developer</span> with experience using JavaScript
