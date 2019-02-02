@@ -7,6 +7,14 @@ span {
     text-decoration: underline;
 }
 
+.row {
+    justify-content: center;
+}
+
+.row a:hover {
+    cursor: pointer;
+}
+
 .back-to-top {
     cursor: pointer;
     position: fixed;
@@ -78,10 +86,6 @@ h4 {
     height: auto;
 }
 
-.big-box a {
-    text-align: center;
-}
-
 button {
     font-family: 'Krub', sans-serif;
 }
@@ -98,6 +102,10 @@ section {
 
 a.rounded {
     margin-top: .5rem;
+}
+
+.rounded:hover {
+    cursor: pointer;
 }
 
 h1 {
@@ -167,13 +175,6 @@ main {
     margin: 2em;
 }
 
-.big-box {
-    color: white;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 #project-one {
     background-color: #e8e3d3;
 }
@@ -199,23 +200,16 @@ main {
     height: 10em;
     width: 10em;
     display: flex;
+    background-color: #4b2e83;
     align-items: center;
     text-align: center;
+    color: white;
+    padding: 1rem;
+    margin: 0.5rem;
 }
 
-.big-box a:hover {
-    border-color: black;
-}
-
-.big-box a {
-    color: black;
-    background-color: #4b2e83;
-    text-decoration: none;
-}
-
-.big-box p {
-    margin: 0;
-    padding: 1em;
+.boxes:hover {
+    transform: scale(1.05);
 }
 
 header {
@@ -268,7 +262,7 @@ address {
 
 .contact-container {
     height: 2.5rem;
-    background-color: #D2B48C;
+    background-color: #343a40;
     width: 2.5rem;
     border-radius: 50%;
     display: flex;
@@ -307,11 +301,11 @@ footer a:hover, #about-me a:hover {
 }
 
 #written:hover {
-    box-shadow: inset 0px 0px 0px 3px black;
+    transform: scale(1.05);
 }
 
-div.contact-container:hover {
-    border: 3px solid black;
+div.contact-container:hover {    
+    transform: scale(1.05);
 }
 
 #software-dev {
@@ -339,7 +333,7 @@ div.contact-container:hover {
         color: white;
         border-radius: 30px;
         display: inline-block;
-        background-color: #D2B48C;
+        background-color: #343a40;
         padding: .7em 1em .7em 1em;
     }
     #more {

@@ -22,7 +22,7 @@ export default class AboutMe extends Component {
                         <p>
                             I am primarily a <span>front-end web developer</span> with experience using JavaScript
                             frameworks like React, Express, Node, etc. I
-                            have a background in Java and Python and would like to learn more and hopefully create my
+                            have background in Java and Python and would like to learn more and hopefully create my
                             own software.
                         </p>
                         <p>
