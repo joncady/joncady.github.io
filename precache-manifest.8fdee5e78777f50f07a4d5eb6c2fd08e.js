@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/static/media/sql.21812f6d.png"
   },
   {
-    "revision": "eb07f08b79e92dd842c1",
-    "url": "/static/css/main.f4e25edd.chunk.css"
+    "revision": "3db14c281cabe7d53c9e",
+    "url": "/static/css/main.dca33b68.chunk.css"
   },
   {
     "revision": "e2b8c71475a83195933b64c7981a461e",
     "url": "/static/media/pi.e2b8c714.jpeg"
   },
   {
-    "revision": "3ba6452825bba3a4637c",
-    "url": "/static/js/1.3ba64528.chunk.js"
+    "revision": "cd06e67071e86aeacab6",
+    "url": "/static/js/1.cd06e670.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
@@ -24,6 +24,10 @@ self.__precacheManifest = [
     "url": "/static/media/react.580ffd26.png"
   },
   {
+    "revision": "21d962bc311c48f3da7db5a94f75511a",
+    "url": "/static/media/seattle4.21d962bc.jpg"
+  },
+  {
     "revision": "718eec11056d7542e98ed1ea9b5d1f3d",
     "url": "/static/media/otherPic.718eec11.jpg"
   },
@@ -32,8 +36,8 @@ self.__precacheManifest = [
     "url": "/static/media/firebase.e642c755.png"
   },
   {
-    "revision": "eb07f08b79e92dd842c1",
-    "url": "/static/js/main.eb07f08b.chunk.js"
+    "revision": "3db14c281cabe7d53c9e",
+    "url": "/static/js/main.3db14c28.chunk.js"
   },
   {
     "revision": "f8dab57d048fabd69ea16c67e1615b86",
@@ -60,11 +64,11 @@ self.__precacheManifest = [
     "url": "/static/media/api.2f282e92.png"
   },
   {
-    "revision": "3ba6452825bba3a4637c",
-    "url": "/static/css/1.6bddfd84.chunk.css"
+    "revision": "cd06e67071e86aeacab6",
+    "url": "/static/css/1.95893e77.chunk.css"
   },
   {
-    "revision": "7cc6e81a3d85aecd0112e54b0ed1838b",
+    "revision": "375c2e0965ce2386901ceec95d60e412",
     "url": "/index.html"
   }
 ];
