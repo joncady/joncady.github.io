@@ -1,4 +1,19 @@
 import React, { Component } from 'react';
+import Plx from 'react-plx';
+
+const parallaxData = [
+    {
+        start: 0,
+        end: 500,
+        properties: [
+            {
+                startValue: .7,
+                endValue: 1,
+                property: 'scale',
+            },
+        ],
+    },
+];
 
 export default class AboutMe extends Component {
 
@@ -29,8 +44,10 @@ export default class AboutMe extends Component {
                             Linguistics is my minor and I enjoy talking about language and how it relates to coding.
                         </p>
                     </div>
-                    <div className="picture-container">
-                        <img id="profile" src={require("../assets/otherPic.jpg")} alt="Jonathan Cady profile"></img>
+                    <div className="other-pic">
+                        <Plx parallaxData={parallaxData}>
+                            <img id="resize-pic" src={require("../assets/profile.jpg")} alt="Jonathan Cady profile"></img>
+                        </Plx>
                     </div>
                 </div>
             </section>

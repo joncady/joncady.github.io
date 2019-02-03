@@ -55,7 +55,14 @@ export default class Header extends Component {
             <Parallax blur={{ min: -12, max: 20 }}
                 bgImage={require('../assets/seattle4.jpg')}
                 bgImageAlt="background"
-                strength={200}>
+                strength={200}
+                renderLayer={percentage => {
+                    return (
+                        <div className="picture-container">
+                            <img id="profile" style={{transform: `scale(${1.5 - percentage})`, filter: `blur(${percentage - .5}px)`}} src={require("../assets/otherPic.jpg")} alt="Jonathan Cady profile"></img>
+                        </div>
+                    )
+                }} >
                 <div id="parallax-header">
                     {/* <h1 className="text-uppercase" style={{color: 'white'}}>Hi. {this.state.word}</h1> */}
                 </div>

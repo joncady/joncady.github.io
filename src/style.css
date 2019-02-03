@@ -148,13 +148,23 @@ h1 {
 }
 
 .picture-container {
-    flex: 1;
+    top: "50%";
+    left: "50%";
+    transform: "translate(-50%,-50%)";
+    position: absolute;
     text-align: center;
     display: flex;
     align-items: center;
+    height: 100%;
+}
+
+.other-pic {
+    width: 30%;
+    text-align: center;
 }
 
 #profile {
+    margin-top: 3rem;
     opacity: 0;
     width: 50%;
     margin-left: auto;
@@ -175,6 +185,11 @@ main {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+}
+
+#resize-pic {
+    border-radius: 50%;
+    width: 100%;
 }
 
 #intro {
@@ -333,7 +348,7 @@ div.contact-container:hover {
 }
 
 #parallax-header {
-    height: 200px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -392,6 +407,9 @@ div.contact-container:hover {
 }
 
 @media (min-width: 900px) {
+    #resize-pic {
+        width: 70%;
+    }
     #parallax-header {
         height: 500px;
     }
@@ -421,7 +439,7 @@ div.contact-container:hover {
         margin-right: auto;
     }
     #profile {
-        width: 60%;
+        width: 20%;
     }
     address {
         width: 50%;
