@@ -3,8 +3,8 @@ import Plx from 'react-plx';
 
 const parallaxData = [
     {
-        start: 0,
-        end: 500,
+        start: 'self',
+        duration: 200,
         properties: [
             {
                 startValue: .7,

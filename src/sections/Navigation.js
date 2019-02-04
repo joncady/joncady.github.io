@@ -38,6 +38,9 @@ export default class Navigation extends Component {
                             <a className="nav-link" href="#skills" onClick={this.closeNav}>Skills</a>
                         </li>
                         <li className="nav-item">
+                            <a className="nav-link" href="#experience" onClick={this.closeNav}>Experience</a>
+                        </li>
+                        <li className="nav-item">
                             <a className="nav-link" href="#my-projects" onClick={this.closeNav}>My Projects</a>
                         </li>
                         <li className="nav-item">

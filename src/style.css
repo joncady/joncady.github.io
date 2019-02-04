@@ -51,7 +51,7 @@ span {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 4em;
+    margin-top: 2em;
 }
 
 #logo-space img {
@@ -66,6 +66,7 @@ body {
 
 h3 {
     text-align: center;
+    padding-top: 1rem;
 }
 
 header, footer {
@@ -113,7 +114,7 @@ button {
 
 section {
     padding: 1em;
-    padding-top: 2em;
+    padding-top: 1em;
     padding-bottom: 1em;
 }
 
@@ -226,6 +227,23 @@ main {
     background-color: #d9d9d9;
 }
 
+.org-logo {
+    width: 150px;
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+#experience {
+    overflow: hidden;
+}
+
+.experience-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
 #contact {
     text-align: center;
 }
@@ -233,7 +251,7 @@ main {
 .boxes {
     font-weight: bold;
     height: 10em;
-    width: 14em;
+    width: 10em;
     display: flex;
     /* background-color: #4b2e83; */
     background-position: center;
@@ -355,6 +373,9 @@ div.contact-container:hover {
 }
 
 @media (min-width: 600px) {
+    .boxes {
+        width: 14em;
+    }
     #parallax-header {
         height: 300px;
     }
@@ -407,6 +428,16 @@ div.contact-container:hover {
 }
 
 @media (min-width: 900px) {
+    .role-desc {
+        width: 60%;
+        margin: auto;
+    }
+    .experience-area {
+        flex-direction: row;
+        justify-content: center;
+        width: 80%;
+        margin: 1rem auto;
+    }
     #resize-pic {
         width: 70%;
     }

@@ -8,6 +8,7 @@ import Projects from './sections/Projects';
 import Interests from './sections/Interests';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
+import Experience from './sections/Experience';
 
 export default class App extends Component {
 
@@ -52,6 +53,7 @@ export default class App extends Component {
 					<div className="content">
 						<AboutMe></AboutMe>
 						<Skills></Skills>
+						<Experience></Experience>
 						<Projects></Projects>
 						<Interests></Interests>
 						<Contact></Contact>
