@@ -25,7 +25,7 @@ span {
     transform: translate(-50%, -50%);
     color: white;
     font-weight: bold;
-    pointer-events: auto;
+    pointer-events: none;
 }
 
 .row {
@@ -265,8 +265,8 @@ main {
 
 .boxes:hover {
     transform: scale(1.05);
-    filter: blur(1px);
-    -webkit-filter: blur(1px);
+    /* filter: blur(1px);
+    -webkit-filter: blur(1px); */
 }
 
 header {
