@@ -75,7 +75,7 @@ export default class Projects extends Component {
             {
                 title: "Draw with Me (React, Socket IO, Node)",
                 link: "https://joncady.me/draw-with-me",
-                content: "I designed a interactive drawing app that allows friends to draw live over the internet and save their pictures!",
+                content: "I designed an interactive drawing app that allows friends to draw live over the internet and save their pictures!",
                 src: "draw.PNG"
             }
         ];
