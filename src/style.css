@@ -17,7 +17,6 @@ span {
 }
 
 .overlay {
-    visibility: hidden;
     position: absolute;
     text-align: center;
     top: 50%;

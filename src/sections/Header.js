@@ -6,25 +6,9 @@ export default class Header extends Component {
     constructor() {
         super();
         this.state = {
-            timer: null,
-            helloTimer: null,
-            index: null,
-            word: "",
-            helloEls: [],
             dropdownOpen: false,
             collapse: false
         }
-    }
-
-    componentDidMount() {
-        let word = " I'm Jonathan Cady";
-        let welcome = setInterval(() => {
-            this.addLetters(word);
-        }, 100)
-        this.setState({
-            timer: welcome,
-            index: 0
-        })
     }
 
     toggleArea = () => {
@@ -38,17 +22,6 @@ export default class Header extends Component {
         }));
     }
 
-    addLetters = (word) => {
-        let index = this.state.index;
-        if (index < word.length) {
-            this.setState({
-                word: this.state.word + word.charAt(index),
-                index: index + 1
-            })
-        } else {
-            clearTimeout(this.state.timer);
-        }
-    }
 
     render() {
         return (
@@ -63,9 +36,7 @@ export default class Header extends Component {
                         </div>
                     )
                 }} >
-                <div id="parallax-header">
-                    {/* <h1 className="text-uppercase" style={{color: 'white'}}>Hi. {this.state.word}</h1> */}
-                </div>
+                <div id="parallax-header"></div>
             </Parallax>
         );
     }

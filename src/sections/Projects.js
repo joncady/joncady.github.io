@@ -33,7 +33,7 @@ export default class Projects extends Component {
             {
                 title: "Rate My Professor MyPlanExtension (CSS, JavaScript, PHP)",
                 link: "https://github.com/joncady/rmpUW",
-                content: "I designed a Chrome extension that displays the professor's RateMyProfessor score next to their class name. (Probably deprecated, is not currently working",
+                content: "I designed a Chrome extension that displays the professor's RateMyProfessor score next to their class name. (Probably deprecated, is not currently working)",
                 src: "rmp.PNG"
             },
             {
@@ -45,7 +45,7 @@ export default class Projects extends Component {
             {
                 title: "SpotiViz (React, Node)",
                 link: "https://info340b-a18.github.io/react-project-music-viz/",
-                content: "I constructed a React app with a classNamemate that visualizes an album timeline using the Spotify API.",
+                content: "I constructed a React app with classmates that visualizes an album timeline using the Spotify API.",
                 src: "spotify.PNG"
             },
             {
@@ -71,13 +71,18 @@ export default class Projects extends Component {
                 link: "https://devpost.com/software/duetwithme-fu9y5p",
                 content: "I collaborated with a team during a hackathon to create a interactive web app that can respond to voice commands and plays with you!",
                 src: "duet.PNG"
+            },
+            {
+                title: "Draw with Me (React, Socket IO, Node)",
+                link: "https://joncady.me/draw-with-me",
+                content: "I designed a interactive drawing app that allows friends to draw live over the internet and save their pictures!",
+                src: "draw.PNG"
             }
         ];
         return projects.map((project, i) => {
             return (
                 <div className="contain" key={i}>
                     <div className="boxes rounded" style={{ backgroundImage: `url(./images/${project.src})` }} onClick={() => this.setModalState(project.content, project.link, project.src)} />
-                    <p className="overlay">{project.title}</p>
                 </div>
             );
         });
@@ -104,13 +109,18 @@ export default class Projects extends Component {
                 title: "Highlight Generator (Python)",
                 link: "https://github.com/joncady/highlight_generator",
                 content: "I utilize moviepy to create a program that combines video clips and adds music."
+            },
+            {
+                title: "Computer Vision Simon Says (Python, Open CV)",
+                link: "",
+                content: "I utilize Open CV to play an online Simon Says game using computer vision.",
+                src: "simon.png"
             }
         ];
         return projects.map((project, i) => {
             return (
                 <div className="contain" key={i}>
                     <div className="boxes rounded" style={{ backgroundImage: `url(./images/${project.src})` }} onClick={() => this.setModalState(project.content, project.link, project.src)} />
-                    <p className="overlay">{project.title}</p>
                 </div>
             );
         });
@@ -129,7 +139,6 @@ export default class Projects extends Component {
             return (
                 <div className="contain" key={i}>
                     <div className="boxes rounded" style={{ backgroundImage: `url(./images/${project.src})` }} onClick={() => this.setModalState(project.content, project.link, project.src)} />
-                    <p className="overlay">{project.title}</p>
                 </div>
             );
         });
