@@ -5,7 +5,7 @@ const Interests = () => {
     return (
         <section id="interests">
             <hr></hr>
-            <h2>My Interests</h2>
+            <h2>Interests</h2>
             <hr></hr>
             <div>
                 <ul className="list-unstyled">

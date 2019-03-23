@@ -64,7 +64,7 @@ export default class Projects extends Component {
                 title: "Fire Emblem Adventures (JavaScript, HTML, CSS)",
                 link: "https://students.washington.edu/joncady/projects/feadventures/",
                 content: "I designed a 2D game using only vanilla JavaScript, HTML, and CSS. I created classes to encapsulate behavior for players, enemies, and obstacles.",
-                tech: ["js", "html5", "ccs3"],
+                tech: ["js", "html5", "css3"],
                 src: "fe.PNG"
             },
             {
@@ -149,6 +149,7 @@ export default class Projects extends Component {
                 title: "Monitood: Monitor your Food (React Native)",
                 link: "https://github.com/joncady/monitoodApp",
                 content: "I designed the front-end of a React Native app that stores user information in a Python back-end.",
+                tech: ["react"],
                 src: "monitood.png"
             }
         ];
@@ -175,9 +176,9 @@ export default class Projects extends Component {
         return (
             <section id="my-projects">
                 <hr></hr>
-                <h2>My Projects</h2>
+                <h2>Projects</h2>
                 <hr></hr>
-                <div id="projects" className="mt-5">
+                <div id="projects">
                     <div id="web-dev">
                         <h3>Web Development</h3>
                         <Row>

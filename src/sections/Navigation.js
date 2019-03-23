@@ -17,7 +17,6 @@ export default class Navigation extends Component {
     }
 
     closeNav = () => {
-        console.log("here")
         this.setState({ isOpen: false });
     }
 
@@ -41,10 +40,10 @@ export default class Navigation extends Component {
                             <a className="nav-link" href="#experience" onClick={this.closeNav}>Experience</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#my-projects" onClick={this.closeNav}>My Projects</a>
+                            <a className="nav-link" href="#my-projects" onClick={this.closeNav}>Projects</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#interests" onClick={this.closeNav}>My Interests</a>
+                            <a className="nav-link" href="#interests" onClick={this.closeNav}>Interests</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#contact" onClick={this.closeNav}>Contact</a>
@@ -56,4 +55,3 @@ export default class Navigation extends Component {
     }
 
 }
-
