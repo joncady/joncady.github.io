@@ -27,8 +27,9 @@ export default class Experience extends Component {
                 title: "Student Developer",
                 organization: "UW-IT Student Programs",
                 date: ["Feb. 2019", "Current"],
-                description: `I will soon be starting as a student developer in my university's IT department! We work on the course registration
-                system and ensure technology is accesible to students.`,
+                description: `I work as a student developer in my university's IT department! We work on the course registration
+                system and ensure technology is accesible to students. Specifically, I am working on application and service level APIs in Java using
+                the Spring framwork.`,
                 link: "https://www.washington.edu/uwit/",
                 logo: "uwit.png"
             },
@@ -46,7 +47,7 @@ export default class Experience extends Component {
                         {
                             start: 'self',
                             duration: 400,
-                            startOffset: -75,
+                            startOffset: -65,
                             easing: 'easeInOut',
                             properties: [
                                 {
@@ -70,7 +71,7 @@ export default class Experience extends Component {
                                     <img className="org-logo" alt={role.logo} src={require(`../assets/${role.logo}`)}></img>
                                 </a>}
                                 <div className="text-center">
-                                    <p>{role.organization}</p>
+                                    <p className="font-weight-bold">{role.organization}</p>
                                     <p>{role.date[0] + " - " + role.date[1]}</p>
                                     <p className="role-desc">{role.description}</p>
                                 </div>

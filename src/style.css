@@ -77,7 +77,6 @@ h2 {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    opacity: 0;
 }
 
 h4 {
@@ -165,7 +164,6 @@ h1 {
 
 #profile {
     margin-top: 3rem;
-    opacity: 0;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -210,20 +208,8 @@ main {
     margin: 2em;
 }
 
-#project-one {
-    background-color: #e8e3d3;
-}
-
-#project-two {
-    background-color: #85754d;
-}
-
 .project-card {
     border: 5px solid transparent;
-}
-
-#project-three {
-    background-color: #d9d9d9;
 }
 
 .org-logo {
@@ -486,7 +472,12 @@ div.contact-container:hover {
     }
 }
 
-h2, #profile, .fadein {
+.tech-icon {
+    margin: 0.5rem;
+    color: #343a40;
+}
+
+.fadein {
     -webkit-animation: fadein 2s forwards;
     /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 2s forwards;

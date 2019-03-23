@@ -3,8 +3,8 @@ import { Parallax } from 'react-parallax';
 
 export default class Header extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             dropdownOpen: false,
             collapse: false
