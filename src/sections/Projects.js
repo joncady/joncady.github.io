@@ -93,7 +93,7 @@ export default class Projects extends Component {
                 content: `I worked with a team to win first place at T-Mobile's NB-IoT Hackathon! We created a E-Commerce Solution that helped
                 with food waste.`,
                 tech: ["angular", "node-js", "python"],
-                src: "shipshop.PNG"
+                src: "shipshop.png"
             }
         ];
         return projects.map((project, i) => {
