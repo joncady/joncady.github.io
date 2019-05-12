@@ -40,9 +40,6 @@ export default class AboutMe extends Component {
                             have background in Java and Python and would like to learn more and hopefully create my
                             own software.
                         </p>
-                        <p>
-                            Linguistics is my minor and I enjoy talking about language and how it relates to coding.
-                        </p>
                     </div>
                     <div className="other-pic">
                         <Plx parallaxData={parallaxData}>

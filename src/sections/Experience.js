@@ -33,6 +33,15 @@ export default class Experience extends Component {
                 link: "https://www.washington.edu/uwit/",
                 logo: "uwit.png"
             },
+            {
+                title: "Software Engineering Intern",
+                organization: "Ticketmaster",
+                date: ["Jun. 2019", "Sept. 2019"],
+                description: `I will soon start as a Software Engineering intern at Ticketmaster in Seattle! I will be working on a full stack
+                project using Java and React. More details to come!`,
+                link: "https://www.ticketmaster.com/",
+                logo: "ticketmaster.png"
+            }
         ];
 
         return (

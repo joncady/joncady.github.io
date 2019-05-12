@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Parallax } from 'react-parallax';
+import background from '../assets/seattle4.jpg';
+import profile from '../assets/otherPic.jpg';
 
 export default class Header extends Component {
 
@@ -11,28 +13,16 @@ export default class Header extends Component {
         }
     }
 
-    toggleArea = () => {
-        this.setState({ collapse: !this.state.collapse });
-    }
-
-
-    toggle = () => {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
-    }
-
-
     render() {
         return (
             <Parallax blur={{ min: -12, max: 20 }}
-                bgImage={require('../assets/seattle4.jpg')}
+                bgImage={background}
                 bgImageAlt="background"
-                strength={200}
+                strength={150}
                 renderLayer={percentage => {
                     return (
                         <div className="picture-container">
-                            <img id="profile" style={{transform: `scale(${1.5 - percentage})`, filter: `blur(${percentage - .5}px)`}} src={require("../assets/otherPic.jpg")} alt="Jonathan Cady profile"></img>
+                            <img id="profile" style={{transform: `scale(${1.5 - percentage})`}} src={profile} alt="Jonathan Cady profile"></img>
                         </div>
                     )
                 }} >
