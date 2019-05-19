@@ -35,7 +35,7 @@ export default class Projects extends Component {
             {
                 title: "Rate My Professor MyPlanExtension (CSS, JavaScript, PHP)",
                 link: "https://github.com/joncady/rmpUW",
-                content: "I designed a Chrome extension that displays the professor's RateMyProfessor score next to their class name. (Probably deprecated, is not currently working)",
+                content: "I designed a Chrome extension that displays the professor's RateMyProfessor score next to their course. Actively used by students at my school!",
                 tech: ["php", "js"],
                 src: "rmp.PNG"
             },
