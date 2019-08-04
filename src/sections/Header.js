@@ -7,11 +7,6 @@ const parallaxData = [
         duration: 300,
         properties: [
             {
-                startValue: '30',
-                endValue: '40',
-                property: 'backgroundPositionY',
-            },
-            {
                 startValue: 0,
                 endValue: 5,
                 property: 'blur'

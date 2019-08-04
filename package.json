@@ -5,6 +5,7 @@
   "homepage": "http://joncady.github.io",
   "dependencies": {
     "bootstrap": "^4.2.1",
+    "npm": "^6.10.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-parallax": "^2.1.0",

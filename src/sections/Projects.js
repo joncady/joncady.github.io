@@ -100,7 +100,7 @@ export default class Projects extends Component {
                 content: `For my intern hackathon at Ticketmaster, I developed a interactive map of events in your area! I worked with the
                 awesome other interns to build this app.`,
                 tech: ["react"],
-                src: "tm.png"
+                src: "tm.PNG"
             },
         ];
         return projects.map((project, i) => {
