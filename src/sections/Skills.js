@@ -8,6 +8,7 @@ import SQLLogo from '../assets/skill_logos/sql.png';
 import NodeLogo from '../assets/skill_logos/node.png';
 import PythonLogo from '../assets/skill_logos/python.png';
 import JavaLogo from '../assets/skill_logos/java.png';
+import ReduxLogo from '../assets/skill_logos/redux.png';
 
 export default class Skills extends Component {
 
@@ -20,6 +21,9 @@ export default class Skills extends Component {
                 <div id="logo-space">
                     <Bounce>
                         <a href="https://reactjs.org/"><img src={ReactLogo} alt="React" /></a>
+                    </Bounce>
+                    <Bounce>
+                        <a href="https://redux.js.org/"><img src={ReduxLogo} alt="Reux"></img></a>
                     </Bounce>
                     <Bounce>
                         <a href="https://firebase.google.com"><img src={FirebaseLogo} alt="Firebase" /></a>

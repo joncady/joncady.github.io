@@ -34,7 +34,8 @@ const Interests = () => {
                             using Express. For various projects, I have developed simple REST APIs that assist for
                             my front-end, either as a content generator or for authorization.
                             Simple Express servers can be deployed to hosting services, like Heroku, and used as a
-                            public REST API!
+                            public REST API! I have also gained in-depth with API frameworks through my experience at enterprise organziations,
+                            such as UW-IT and Ticketmaster.
                         </div>
                     </li>
                     <li className="media mb-3">
@@ -46,11 +47,9 @@ const Interests = () => {
                             I've recently been fascinated with Internet of Things (IoT) technology! Small devices
                             such as Raspberry Pis, or Arduinos can do really cool things. My favorite trick I've
                             done so far is setting up a server on my Raspberry Pi and having the Pi speak by using
-                            text-to-speech (from a HTTP request). Paired with Node, an Arduino can also become a
-                            smart
-                            device! Using Node modules that have been written to interact with an Arduino, you can
-                            set
-                            up your own wifi-enabled devices. I hope to showcase some of projects with IoT here as
+                            text-to-speech (from an HTTP request). Paired with Node, an Arduino can also become a
+                            smart device! Using Node modules that have been written to interact with an Arduino, you can
+                            set up your own wifi-enabled devices. I hope to showcase some of projects with IoT here as
                             well!
                         </div>
                     </li>

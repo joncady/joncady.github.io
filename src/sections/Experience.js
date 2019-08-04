@@ -37,8 +37,8 @@ export default class Experience extends Component {
                 title: "Software Engineering Intern",
                 organization: "Ticketmaster",
                 date: ["Jun. 2019", "Sept. 2019"],
-                description: `I will soon start as a Software Engineering intern at Ticketmaster in Seattle! I will be working on a full stack
-                project using Java and React. More details to come!`,
+                description: `I am currently working as a Software Engineering intern at Ticketmaster in Seattle! I work on full stack
+                project using Java and React.`,
                 link: "https://www.ticketmaster.com/",
                 logo: "ticketmaster.png"
             }
