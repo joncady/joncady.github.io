@@ -15,12 +15,12 @@ export default class Contact extends Component {
                             <i className="fab fa-github fa-lg"></i>
                         </div>
                     </a>
-                    <a href="mailto:joncady@uw.edu">
+                    <a href="mailto:hello@joncady.me">
                         <div id="email" className="contact-container">
                             <i className="fas fa-envelope fa-lg"></i>
                         </div>
                         <div id="written">
-                            <span><strong>joncady@uw.edu</strong></span>
+                            <span><strong>hello@joncady.me</strong></span>
                         </div>
                     </a>
                     <a href="https://www.linkedin.com/in/jonathanrcady/">
