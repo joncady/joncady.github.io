@@ -102,6 +102,12 @@ export default class Projects extends Component {
                 tech: ["react"],
                 src: "tm.PNG"
             },
+            {
+                link: "https://docs.google.com/presentation/d/1bpSRR3cq6qomSm5p7QTX45gt_1ppyESKYYIGhIC-v-c/edit?usp=sharing",
+                content: `Team FreShip won the IBM Food Waste Virtual Hackathon! Take a look at these slides to see our solution.`,
+                tech: ["python", "angular"],
+                src: "freship.png"
+            }
         ];
         return projects.map((project, i) => {
             return (

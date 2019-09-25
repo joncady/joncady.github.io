@@ -7,6 +7,7 @@ import RLogo from '../assets/skill_logos/r.png';
 import SQLLogo from '../assets/skill_logos/sql.png';
 import NodeLogo from '../assets/skill_logos/node.png';
 import PythonLogo from '../assets/skill_logos/python.png';
+import SpringLogo from '../assets/skill_logos/spring.png';
 import JavaLogo from '../assets/skill_logos/java.png';
 import ReduxLogo from '../assets/skill_logos/redux.png';
 
@@ -36,6 +37,9 @@ export default class Skills extends Component {
                     </Bounce>
                     <Bounce>
                         <a href="https://www.java.com"><img src={JavaLogo} alt="Java" /></a>
+                    </Bounce>
+                    <Bounce>
+                        <a href="https://spring.io/"><img src={SpringLogo} alt="Spring"></img></a>
                     </Bounce>
                     <Bounce>
                         <a href="https://www.python.org/"><img src={PythonLogo} alt="Python" /></a>

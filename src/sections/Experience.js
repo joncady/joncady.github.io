@@ -26,7 +26,7 @@ export default class Experience extends Component {
             {
                 title: "Student Developer",
                 organization: "UW-IT Student Programs",
-                date: ["Feb. 2019", "Current"],
+                date: ["Feb. 2019", "June 2019"],
                 description: `I work as a student developer in my university's IT department! We work on the course registration
                 system and ensure technology is accesible to students. Specifically, I am working on application and service level APIs in Java using
                 the Spring framwork.`,
@@ -36,11 +36,19 @@ export default class Experience extends Component {
             {
                 title: "Software Engineering Intern",
                 organization: "Ticketmaster",
-                date: ["Jun. 2019", "Sept. 2019"],
+                date: ["Jun. 2019", "Dec. 2019"],
                 description: `I am currently working as a Software Engineering intern at Ticketmaster in Seattle! I work on full stack
                 project using Java and React.`,
                 link: "https://www.ticketmaster.com/",
                 logo: "ticketmaster.png"
+            },
+            {
+                title: "Teaching Assistant: Client-Side Development",
+                organization: "Information School @ UW Seattle",
+                date: ["Sept. 2019", "Dec. 2019"],
+                description: `I teach frontend development to students! They learn HTML, CSS, and JS (including ReactJS) during this quarter long class.`,
+                link: "https://ischool.uw.edu/",
+                logo: "ischool.png"
             }
         ];
 
