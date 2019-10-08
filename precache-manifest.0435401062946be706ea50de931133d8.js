@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/spring.b51e517e.png"
   },
   {
-    "revision": "6e5d7214e4be4b9ef6c6",
+    "revision": "71eb0332dda6b6ea48d2",
     "url": "/static/css/main.3af58302.chunk.css"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/static/media/python.d8cda759.png"
   },
   {
-    "revision": "6e5d7214e4be4b9ef6c6",
-    "url": "/static/js/main.6e5d7214.chunk.js"
+    "revision": "71eb0332dda6b6ea48d2",
+    "url": "/static/js/main.71eb0332.chunk.js"
   },
   {
     "revision": "59c467536111a981d904a050d335c2be",
@@ -84,7 +84,7 @@ self.__precacheManifest = [
     "url": "/static/css/1.20d67003.chunk.css"
   },
   {
-    "revision": "b8a357122ee33338ad16685b27243839",
+    "revision": "3e467589ad4d9251f8d64b37b9fdca71",
     "url": "/index.html"
   }
 ];
