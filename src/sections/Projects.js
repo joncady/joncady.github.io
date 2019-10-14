@@ -107,6 +107,13 @@ export default class Projects extends Component {
                 content: `Team FreShip won the IBM Food Waste Virtual Hackathon! Take a look at these slides to see our solution.`,
                 tech: ["python", "angular"],
                 src: "freship.png"
+            },
+            {
+                link: "https://devpost.com/software/snacksaver",
+                content: `I attended Dubhacks and created a platform to help encourage students to choose healthy, cheaper food options
+                called Snack Saver! For the hackathon, we created a proof of concept based on the designs and it turned out great.`,
+                tech: ["react", "node-js"],
+                src: "snacksaver.PNG"
             }
         ];
         return projects.map((project, i) => {
