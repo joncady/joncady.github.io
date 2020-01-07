@@ -17,8 +17,8 @@ export default class Experience extends Component {
             {
                 title: "Front End Lead",
                 organization: "uDev",
-                date: ["Jan. 2019", "Current"],
-                description: `I teach students at UW web development! As the front end lead, I am in charge of prepping instructional materials
+                date: ["Jan. 2019", "July 2019"],
+                description: `I taught students at UW web development! As the front end lead, I was in charge of prepping instructional materials
                 and providing support to club members.`,
                 link: "https://edge.udev.tech/",
                 logo: ""
@@ -37,7 +37,7 @@ export default class Experience extends Component {
                 title: "Software Engineering Intern and Part-time",
                 organization: "Ticketmaster",
                 date: ["Jun. 2019", "Dec. 2019"],
-                description: `I am currently working as a Software Engineering intern at Ticketmaster in Seattle! I work on full stack
+                description: `I worked as a Software Engineering intern at Ticketmaster in Seattle! I worked on full stack
                 projects using Java and React.`,
                 link: "https://www.ticketmaster.com/",
                 logo: "ticketmaster.png"
@@ -45,7 +45,7 @@ export default class Experience extends Component {
             {
                 title: "Teaching Assistant: Client-Side Development",
                 organization: "Information School @ UW Seattle",
-                date: ["Sept. 2019", "Dec. 2019"],
+                date: ["Sept. 2019", "Current"],
                 description: `I teach frontend development to students! They learn HTML, CSS, and JS (including ReactJS) during this quarter long class.`,
                 link: "https://ischool.uw.edu/",
                 logo: "ischool.png"
