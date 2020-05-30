@@ -10,6 +10,7 @@ import PythonLogo from '../assets/skill_logos/python.png';
 import SpringLogo from '../assets/skill_logos/spring.png';
 import JavaLogo from '../assets/skill_logos/java.png';
 import ReduxLogo from '../assets/skill_logos/redux.png';
+import SwiftLogo from '../assets/skill_logos/swift.png';
 
 export default class Skills extends Component {
 
@@ -49,6 +50,9 @@ export default class Skills extends Component {
                     </Bounce>
                     <Bounce>
                         <a href="https://www.djangoproject.com/"><img src={DjangoLogo} alt="Django"></img></a>
+                    </Bounce>
+                    <Bounce>
+                        <a href="https://developer.apple.com/swift/"><img src={SwiftLogo} alt="Swift"></img></a>
                     </Bounce>
                 </div>
             </section>

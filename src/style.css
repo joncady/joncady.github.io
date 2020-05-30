@@ -361,6 +361,10 @@ div.contact-container:hover {
 }
 
 @media (min-width: 600px) {
+    .filter-container {
+        width: 70%;
+    }
+
     .picture-container {
         height: 350px;
         background-position-y: 20%
@@ -421,6 +425,11 @@ div.contact-container:hover {
 }
 
 @media (min-width: 900px) {
+
+    .filter-container {
+        width: 40%;
+    }
+
     .picture-container {
         background-position-y: 30%
     }

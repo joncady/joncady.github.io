@@ -45,10 +45,18 @@ export default class Experience extends Component {
             {
                 title: "Teaching Assistant: Client-Side Development",
                 organization: "Information School @ UW Seattle",
-                date: ["Sept. 2019", "Current"],
+                date: ["Sept. 2019", "Jun. 2020"],
                 description: `I teach frontend development to students! They learn HTML, CSS, and JS (including ReactJS) during this quarter long class.`,
                 link: "https://ischool.uw.edu/",
                 logo: "ischool.png"
+            },
+            {
+                title: "Software Development Engineer",
+                organization: "Amazon",
+                date: ["Aug. 2020", "Current"],
+                description: `I will soon begin as an SDE at Amazon Seattle.`,
+                link: "https://ischool.uw.edu/",
+                logo: "amazon.png"
             }
         ];
 
