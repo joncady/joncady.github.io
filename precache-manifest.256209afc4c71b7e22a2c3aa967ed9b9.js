@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "b51e517ea708ddc909f3e865e47b62da",
-    "url": "/static/media/spring.b51e517e.png"
+    "revision": "742cbbc4a60b03977f58",
+    "url": "/static/css/main.5290db0a.chunk.css"
   },
   {
-    "revision": "03dda66cc01003a661a8",
-    "url": "/static/css/main.3af58302.chunk.css"
+    "revision": "742cbbc4a60b03977f58",
+    "url": "/static/js/main.742cbbc4.chunk.js"
   },
   {
-    "revision": "d643cecef662ebf208db4b3179cce4f9",
-    "url": "/static/media/ticketmaster.d643cece.png"
+    "revision": "ce42e8000b84ad9846cd",
+    "url": "/static/css/1.cb7a7077.chunk.css"
   },
   {
-    "revision": "72f3110ce3a244f52ce7",
-    "url": "/static/js/1.72f3110c.chunk.js"
+    "revision": "ce42e8000b84ad9846cd",
+    "url": "/static/js/1.ce42e800.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
@@ -44,12 +44,16 @@ self.__precacheManifest = [
     "url": "/static/media/python.d8cda759.png"
   },
   {
-    "revision": "03dda66cc01003a661a8",
-    "url": "/static/js/main.03dda66c.chunk.js"
+    "revision": "b51e517ea708ddc909f3e865e47b62da",
+    "url": "/static/media/spring.b51e517e.png"
   },
   {
     "revision": "59c467536111a981d904a050d335c2be",
     "url": "/static/media/redux.59c46753.png"
+  },
+  {
+    "revision": "7582e6bab781ca859c57207631914037",
+    "url": "/static/media/swift.7582e6ba.png"
   },
   {
     "revision": "c6045e38d322a92f194b32473cef6b10",
@@ -62,6 +66,10 @@ self.__precacheManifest = [
   {
     "revision": "cc89dec36242db19169e531141788aad",
     "url": "/static/media/seattle4.cc89dec3.jpg"
+  },
+  {
+    "revision": "eef9ea4b009208aa7c15f70ffcc0cab5",
+    "url": "/static/media/amazon.eef9ea4b.png"
   },
   {
     "revision": "81074d8f4ff3bccf357870205ce4f120",
@@ -80,11 +88,11 @@ self.__precacheManifest = [
     "url": "/static/media/otherPic.2adadcbf.jpg"
   },
   {
-    "revision": "72f3110ce3a244f52ce7",
-    "url": "/static/css/1.20d67003.chunk.css"
+    "revision": "d643cecef662ebf208db4b3179cce4f9",
+    "url": "/static/media/ticketmaster.d643cece.png"
   },
   {
-    "revision": "b8b0c13f4cf10f1e1340946327a9455e",
+    "revision": "62a1a020fe2a5fe4e70c2f42e986a8af",
     "url": "/index.html"
   }
 ];
