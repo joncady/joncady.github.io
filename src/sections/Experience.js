@@ -15,20 +15,11 @@ export default class Experience extends Component {
                 logo: "ht.png"
             },
             {
-                title: "Front End Lead",
-                organization: "uDev",
-                date: ["Jan. 2019", "July 2019"],
-                description: `I taught students at UW web development! As the front end lead, I was in charge of prepping instructional materials
-                and providing support to club members.`,
-                link: "https://edge.udev.tech/",
-                logo: ""
-            },
-            {
                 title: "Student Developer",
                 organization: "UW-IT Student Programs",
                 date: ["Feb. 2019", "June 2019"],
-                description: `I work as a student developer in my university's IT department! We work on the course registration
-                system and ensure technology is accesible to students. Specifically, I am working on application and service level APIs in Java using
+                description: `I worked as a student developer in my university's IT department! We work on the course registration
+                system and ensure technology is accesible to students. Specifically, I worked on application and service level APIs in Java using
                 the Spring framwork.`,
                 link: "https://www.washington.edu/uwit/",
                 logo: "uwit.png"
@@ -55,7 +46,7 @@ export default class Experience extends Component {
                 organization: "Amazon",
                 date: ["Aug. 2020", "Current"],
                 description: `I will soon begin as an SDE at Amazon Seattle.`,
-                link: "https://ischool.uw.edu/",
+                link: "https://www.amazon.com/",
                 logo: "amazon.png"
             }
         ];
