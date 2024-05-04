@@ -164,3 +164,97 @@ export const mobileDevProjects: Project[] = [
         src: "solace.png"
     }
 ];
+
+export interface Trip {
+    countryName: string;
+    pictures: string[];
+    date: string;
+}
+
+export interface Place {
+    latitude: number;
+    longitude: number;
+    name: string;
+    year: string;
+    img: string;
+}
+
+export const PLACES: Place[] = [
+    {
+        latitude: 37.5519,
+        longitude: 126.9918,
+        name: "Seoul",
+        year: "2022",
+        img: "https://cdn-icons-png.flaticon.com/512/2252/2252075.png"
+    },
+    {
+        latitude: 35.21,
+        longitude: 129.0689,
+        name: "Busan",
+        year: "2022",
+        img: "https://cdn-icons-png.flaticon.com/512/2252/2252075.png"
+    },
+    {
+        latitude: 33.5902,
+        longitude: 130.4017,
+        name: "Fukuoka",
+        year: "2022",
+        img: "https://cdn-icons-png.flaticon.com/512/2252/2252075.png"
+    },
+    {
+        latitude: 34.3853,
+        longitude: 132.4553,
+        name: "Hiroshima",
+        year: "2022",
+        img: "https://png.pngtree.com/png-vector/20220713/ourmid/pngtree-vector-illustration-of-miyajima-monument-of-japan-asian-buddhist-oriental-vector-png-image_32698646.png"
+    },
+    {
+        latitude: 34.6937,
+        longitude: 135.5023,
+        name: "Osaka",
+        year: "2022",
+        img: "https://cdn-icons-png.flaticon.com/256/13152/13152135.png"
+    },
+    {
+        latitude: 43.0618,
+        longitude: 141.3545,
+        name: "Sapporo",
+        year: "2022",
+        img: "https://cdn-icons-png.flaticon.com/512/2252/2252075.png"
+    },
+    {
+        latitude: 35.6764,
+        longitude: 139.65,
+        name: "Tokyo",
+        year: "2022",
+        img: "https://cdn-icons-png.flaticon.com/512/2252/2252075.png"
+    },
+    {
+        latitude: 1.3521,
+        longitude: 103.8198,
+        name: "Singapore",
+        year: "2024",
+        img: "https://img.pikbest.com/origin/09/27/23/08xpIkbEsTFgc.png!sw800"
+    },
+    {
+        latitude: 23.6978,
+        longitude: 120.9605,
+        name: "Taipei",
+        year: "2024",
+        img: "https://images.vexels.com/media/users/3/240168/isolated/preview/d17a578c03915b108a4c162b62c13fd3-boba-tea-illustration.png"
+    },
+    {
+        latitude: 41.8781,
+        longitude: -87.6298,
+        name: "Chicago",
+        year: "2024",
+        img: "https://cdn-icons-png.flaticon.com/512/404/404777.png"
+    },
+    {
+        latitude: 36.1627,
+        longitude: -86.7816,
+        name: "Nashville",
+        year: "2024",
+        img: "https://cdn-icons-png.flaticon.com/512/2252/2252075.png"
+    }
+];

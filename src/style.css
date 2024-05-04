@@ -235,7 +235,6 @@ main {
 .boxes {
     font-weight: bold;
     height: 10em;
-    width: 10em;
     display: flex;
     /* background-color: #4b2e83; */
     background-position: center;
@@ -362,9 +361,6 @@ div.contact-container:hover {
         background-position-y: 20%
     }
 
-    .boxes {
-        width: 14em;
-    }
     #parallax-header {
         height: 300px;
     }

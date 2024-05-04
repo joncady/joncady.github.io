@@ -37,8 +37,7 @@ const Projects = () => {
             )
             .map((project, i) => {
                 return (
-                    <Col key={`item${i}`}>
-                        {" "}
+                    <Col key={`item${i}`} xs={6} md={3}>
                         <div
                             className="boxes rounded"
                             style={{
@@ -129,7 +128,6 @@ const Projects = () => {
                     </Container>
                     <Container fluid>
                         <Row>
-                            {" "}
                             {renderProjects(webDevProjects, webCurrentFilter)}
                         </Row>
                     </Container>
@@ -196,19 +194,10 @@ const Projects = () => {
                                 );
                             })}
                         <p style={{ marginTop: "0.5rem" }}>{content}</p>
-                        <a
-                            href={link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <Button
-                                style={{
-                                    backgroundColor: "#343a40"
-                                }}
-                            >
-                                View Project
-                            </Button>
-                        </a>
+                        {/* @ts-expect-error */}
+                        <Button href={link} target="_blank" color="#343a40">
+                            View Project
+                        </Button>
                     </div>
                 </Modal>
             </div>

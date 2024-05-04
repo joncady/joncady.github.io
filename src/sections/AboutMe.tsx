@@ -24,16 +24,16 @@ const AboutMe = () => {
             <div id="about">
                 <div id="intro" className="lead">
                     <p>
-                        I am a <span>full-stack software engineer</span> working
-                        at Amazon in the Seattle area. I have an undergraduate
-                        degree in Informatics from University of Washington.
+                        Born and raised in Washington state, I am a{" "}
+                        <span>full-stack software engineer</span> working at
+                        Amazon in the Seattle area. I have an undergraduate
+                        degree in Informatics from the University of Washington.
                         What is Informatics exactly? Well, Informatics designs
-                        technology for the good of people. Follow this{" "}
+                        technology for the good of people (learn more{" "}
                         <a href="https://ischool.uw.edu/programs/informatics/what-is-informatics">
-                            link
-                        </a>{" "}
-                        to learn more. I tell people that I design systems with
-                        the user in mind, which I embody in my development.
+                            here
+                        </a>
+                        ).
                     </p>
                 </div>
                 <div className="other-pic">

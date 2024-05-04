@@ -4,11 +4,11 @@ import Header from "./sections/Header";
 import AboutMe from "./sections/AboutMe";
 import Skills from "./sections/Skills";
 import Projects from "./sections/Projects";
-import Interests from "./sections/Interests";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import Experience from "./sections/Experience";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import Travel from "./sections/Travel";
 
 const App = () => {
     const [tooltipOpen, setToolTipOpen] = useState(false);
@@ -36,19 +36,21 @@ const App = () => {
 
     return (
         <div>
-            <Navigation></Navigation>
-            <Header></Header>
+            <Navigation />
+            <Header />
             <main>
                 <div className="content">
-                    <AboutMe></AboutMe>
-                    <Skills></Skills>
-                    <Experience></Experience>
-                    <Projects></Projects>
-                    <Interests></Interests>
-                    <Contact></Contact>
+                    <AboutMe />
+                    <h2>Professional Experience</h2>
+                    <Experience />
+                    <Projects />
+                    <Skills />
+                    <h2>Hobbies</h2>
+                    <Travel />
+                    <Contact />
                 </div>
             </main>
-            <Footer></Footer>
+            <Footer />
             {showIcon && (
                 <div>
                     <OverlayTrigger
