@@ -8,7 +8,7 @@ interface Skill {
 
 const skills: Skill[] = [
     {
-        link: "https://reactjs.org/",
+        link: "https://react.dev/",
         altText: "React",
         imageSrc: "/assets/skill_logos/react.png"
     },
