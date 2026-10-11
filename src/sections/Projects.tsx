@@ -77,7 +77,11 @@ const Projects = () => {
                                     project.title
                                 )
                             }
-                        />
+                        >
+                            <span className="project-label">
+                                {project.title}
+                            </span>
+                        </div>
                     </Col>
                 );
             });
@@ -134,6 +138,7 @@ const Projects = () => {
                             }}
                         >
                             <Form.Label
+                                htmlFor="web-project-filter"
                                 style={{
                                     marginBottom: "0",
                                     marginRight: "0.5em"
@@ -142,6 +147,7 @@ const Projects = () => {
                                 Filter:
                             </Form.Label>
                             <Form.Select
+                                id="web-project-filter"
                                 value={webCurrentFilter}
                                 onChange={({ target }) =>
                                     selectOnChange(target.value ?? "", "webDev")
@@ -168,6 +174,7 @@ const Projects = () => {
                             }}
                         >
                             <Form.Label
+                                htmlFor="mobile-project-filter"
                                 style={{
                                     marginBottom: "0",
                                     marginRight: "0.5em"
@@ -176,6 +183,7 @@ const Projects = () => {
                                 Filter:
                             </Form.Label>
                             <Form.Select
+                                id="mobile-project-filter"
                                 value={mobileCurrentFilter}
                                 onChange={({ target }) =>
                                     selectOnChange(
@@ -195,14 +203,22 @@ const Projects = () => {
                 </div>
             </div>
             <div>
-                <Modal show={modal} onHide={close}>
+                <Modal
+                    show={modal}
+                    onHide={close}
+                    aria-labelledby="project-modal-title"
+                >
+                    <Modal.Header
+                        closeButton
+                        closeLabel="Close project details"
+                    />
                     <div
                         style={{
                             padding: "2rem",
                             textAlign: "center"
                         }}
                     >
-                        <h2>{title}</h2>
+                        <h2 id="project-modal-title">{title}</h2>
                         <div id="rounded">
                             <img
                                 id="modal-pic"

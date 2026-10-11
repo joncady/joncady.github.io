@@ -1,111 +1,85 @@
 import React from "react";
-import Plx, { PlxItem } from "react-plx";
 
 const Experience = () => {
-    const experience = [
+    const earlierRoles = [
         {
-            title: "Student Developer",
-            organization: "Husky Tech",
-            date: ["Jan. 2019", "June 2020"],
-            description: `I was a student developer on the Husky Tech team! We promote networking and career advancement to students at UW.
-                I work on developing our website and launching new features.`,
-            link: "https://huskytech.org/#/",
-            logo: "ht.png"
-        },
-        {
-            title: "Student Developer",
-            organization: "UW-IT Student Programs",
-            date: ["Feb. 2019", "June 2019"],
-            description: `I worked as a student developer in my university's IT department! We work on the course registration
-                system and ensure technology is accesible to students. Specifically, I worked on application and service level APIs in Java using
-                the Spring framwork.`,
-            link: "https://www.washington.edu/uwit/",
-            logo: "uwit.png"
+            title: "Teaching Assistant · Client-Side Development",
+            organization: "UW Information School",
+            dates: "Sept. 2019 – June 2020",
+            description:
+                "Taught HTML, CSS, JavaScript, and React in the client-side development course.",
+            link: "https://ischool.uw.edu/"
         },
         {
             title: "Software Engineering Intern and Part-time",
             organization: "Ticketmaster",
-            date: ["Jun. 2019", "Dec. 2019"],
-            description: `I worked as a Software Engineering intern at Ticketmaster in Seattle! I worked on full stack
-                projects using Java and React.`,
-            link: "https://www.ticketmaster.com/",
-            logo: "ticketmaster.png"
+            dates: "June – Dec. 2019",
+            description:
+                "Built full-stack features with Java and React alongside the Seattle engineering team.",
+            link: "https://www.ticketmaster.com/"
         },
         {
-            title: "Teaching Assistant: Client-Side Development",
-            organization: "Information School @ UW Seattle",
-            date: ["Sept. 2019", "Jun. 2020"],
-            description: `I taught frontend development to students! They learned HTML, CSS, and JS (including ReactJS) during this quarter long class.`,
-            link: "https://ischool.uw.edu/",
-            logo: "ischool.png"
+            title: "Student Developer",
+            organization: "Husky Tech",
+            dates: "Jan. 2019 – June 2020",
+            description:
+                "Developed website features supporting student networking and career advancement at UW.",
+            link: "https://huskytech.org/#/"
         },
         {
-            title: "Software Development Engineer II",
-            organization: "Amazon",
-            date: ["Aug. 2020", "Current"],
-            description: `I began my career at Amazon as an engineer on an experimentation team in the Alexa organization. I worked on high-velocity growth experiments, primarily to drive increased customer 
-                engagment across all Alexa surfaces. On my current team, I manage infrastructure that supports Alexa marketing iniatives and internal data pipelines. Over the past 3.5 years, I've learned to
-                build serverless and asyncronous software solutions using proprietary Java frameworks and the AWS CDK. Additionally, I've developed multiple features using React Native for both the Amazon 
-                Shopping and Alexa apps. I also designed an Alexa skill in Typescript from the ground up to support short-term experiments.`,
-            link: "https://www.amazon.com/",
-            logo: "amazon.png"
+            title: "Student Developer",
+            organization: "UW-IT Student Programs",
+            dates: "Feb. – June 2019",
+            description:
+                "Built Java and Spring APIs for the university’s course registration services.",
+            link: "https://www.washington.edu/uwit/"
         }
     ];
 
     return (
-        <section id="experience">
-            <div className="title">
-                <h2>Experience</h2>
-            </div>
-            {experience.map((role, i) => {
-                const parallaxData: PlxItem[] = [
-                    {
-                        start: "self",
-                        duration: 400,
-                        startOffset: -65,
-                        easing: "easeInOut",
-                        properties: [
-                            {
-                                startValue: (i % 2 === 0 ? 1 : -1) * 200,
-                                endValue: 0,
-                                property: "translateX"
-                            },
-                            {
-                                startValue: 0,
-                                endValue: 1,
-                                property: "opacity"
-                            }
-                        ]
-                    }
-                ];
-                return (
-                    <Plx
-                        parallaxData={parallaxData}
-                        key={i}
-                        style={{ margin: "2rem" }}
-                    >
-                        <h3>{role.title}</h3>
-                        <div className="experience-area">
-                            {role.logo && (
-                                <a href={role.link}>
-                                    <img
-                                        className="org-logo"
-                                        alt={role.logo}
-                                        src={`../assets/${role.logo}`}
-                                    ></img>
-                                </a>
-                            )}
-                            <div className="text-center">
-                                <p className="font-weight-bold">
-                                    {role.organization}
-                                </p>
-                                <p>{role.date[0] + " - " + role.date[1]}</p>
-                                <p className="role-desc">{role.description}</p>
-                            </div>
-                        </div>
-                    </Plx>
-                );
-            })}
+        <section id="experience" aria-labelledby="experience-heading">
+            <h2 id="experience-heading">Professional Experience</h2>
+            <article className="current-role">
+                <div className="role-header">
+                    <div>
+                        <h3>Software Development Engineer II</h3>
+                        <p className="role-meta">
+                            <a href="https://www.amazon.com/">Amazon</a> · Aug.
+                            2020 – Present
+                        </p>
+                    </div>
+                    <img
+                        src="/assets/amazon.png"
+                        alt=""
+                        className="experience-logo"
+                    />
+                </div>
+                <p>
+                    I build infrastructure for Alexa marketing and internal data
+                    pipelines, using Java and the AWS CDK for serverless,
+                    asynchronous services.
+                </p>
+                <p>
+                    My work has also included Alexa growth experiments, React
+                    Native features for the Amazon Shopping and Alexa apps, and
+                    a TypeScript Alexa skill.
+                </p>
+            </article>
+            <details className="earlier-experience">
+                <summary>Earlier experience · UW and Ticketmaster</summary>
+                <div className="earlier-roles">
+                    {earlierRoles.map((role) => (
+                        <article key={role.organization}>
+                            <h3>{role.title}</h3>
+                            <p className="role-meta">
+                                <a href={role.link}>{role.organization}</a> ·{" "}
+                                {role.dates}
+                            </p>
+                            <p>{role.description}</p>
+                        </article>
+                    ))}
+                </div>
+            </details>
         </section>
     );
 };
