@@ -1,0 +1,67 @@
+[
+  {
+    "id": "seattle-gloves-belgium-egypt",
+    "prompt": "Use case: stylized-concept. Asset type: ONE original transparent pixel sprite for a 3D travel map. Input image is a STYLE REFERENCE only; do not edit or duplicate its subject. Match crisp cheerful 16-bit inventory art: 96 by 96 logical pixel grid with square stepped pixels, charcoal outline, limited glacier teal/muted blue/ivory/coral/deep slate/purple palette with national-color accents. No antialiasing, gradients, smooth vector curves, photorealism, text, logos or watermark. One compact centered composition about 70% of a square frame with generous TRUE transparent margins; three-quarter view, strong silhouette, legible at 60px. Keep two main motifs at most, soccer item dominant and city cue secondary; no scene collage. Subject: A pair of goalkeeper gloves in black/yellow/red and red/white/black accent panels (Belgium and Egypt), with a small clearly recognizable Seattle Space Needle rising behind the wrists. Represent Belgium\u2013Egypt in Seattle. Gloves are dominant, Space Needle is a compact city cue.",
+    "url": "/assets/travel-log/world-cup-v1/seattle-gloves-belgium-egypt.png",
+    "generator": "built-in imagegen",
+    "generated": "2026-10-11",
+    "styleReference": "seattle-space-needle.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 908680,
+    "sha256": "7ed91bf88d50a53355c0c45cf92c9de83952ae7a6643f47399a7d6f6039886da",
+    "alpha": "RGBA, transparent corner verified"
+  },
+  {
+    "id": "dallas-cleat-japan-sweden",
+    "prompt": "Use case: stylized-concept. Asset type: ONE original transparent pixel sprite for a 3D travel map. Input image is a STYLE REFERENCE only; do not edit or duplicate its subject. Match crisp cheerful 16-bit inventory art: 96 by 96 logical pixel grid with square stepped pixels, charcoal outline, limited glacier teal/muted blue/ivory/coral/deep slate/purple palette with national-color accents. No antialiasing, gradients, smooth vector curves, photorealism, text, logos or watermark. One compact centered composition about 70% of a square frame with generous TRUE transparent margins; three-quarter view, strong silhouette, legible at 60px. Keep two main motifs at most, soccer item dominant and city cue secondary; no scene collage. Subject: A dynamic soccer cleat, ivory and blue with restrained red-circle and yellow accents (Japan and Sweden), leaning against one small warm coral cowboy boot as a Dallas cue. Two distinct footwear silhouettes, soccer cleat dominant; no soccer ball.",
+    "url": "/assets/travel-log/world-cup-v1/dallas-cleat-japan-sweden.png",
+    "generator": "built-in imagegen",
+    "generated": "2026-10-11",
+    "styleReference": "seattle-space-needle.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 708058,
+    "sha256": "de047e3345b7d5145189f833ea9371c3eaa5e29b9da4f6bc8cca7df4efe85208",
+    "alpha": "RGBA, transparent corner verified"
+  },
+  {
+    "id": "new-jersey-goal-panama-england",
+    "prompt": "Use case: stylized-concept. Asset type: ONE original transparent pixel sprite for a 3D travel map. Input image is a STYLE REFERENCE only; do not edit or duplicate its subject. Match crisp cheerful 16-bit inventory art: 96 by 96 logical pixel grid with square stepped pixels, charcoal outline, limited glacier teal/muted blue/ivory/coral/deep slate/purple palette with national-color accents. No antialiasing, gradients, smooth vector curves, photorealism, text, logos or watermark. One compact centered composition about 70% of a square frame with generous TRUE transparent margins; three-quarter view, strong silhouette, legible at 60px. Keep two main motifs at most, soccer item dominant and city cue secondary; no scene collage. Subject: A small soccer goal with crisp ivory net, red/blue/white side pennants (Panama and England), backed by a minimal bowl-stadium silhouette with simple lights as the New Jersey city cue. Goal net dominant; compact single stadium base, not a landscape.",
+    "url": "/assets/travel-log/world-cup-v1/new-jersey-goal-panama-england.png",
+    "generator": "built-in imagegen",
+    "generated": "2026-10-11",
+    "styleReference": "seattle-space-needle.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 814060,
+    "sha256": "ebb4b08f16183b167cc605411962883b072883e3e9102398e201586cccb925d8",
+    "alpha": "RGBA, transparent corner verified"
+  },
+  {
+    "id": "seattle-whistle-belgium-senegal",
+    "prompt": "Use case: stylized-concept. Asset type: ONE original transparent pixel sprite for a 3D travel map. Input image is a STYLE REFERENCE only; do not edit or duplicate its subject. Match crisp cheerful 16-bit inventory art: 96 by 96 logical pixel grid with square stepped pixels, charcoal outline, limited glacier teal/muted blue/ivory/coral/deep slate/purple palette with national-color accents. No antialiasing, gradients, smooth vector curves, photorealism, text, logos or watermark. One compact centered composition about 70% of a square frame with generous TRUE transparent margins; three-quarter view, strong silhouette, legible at 60px. Keep two main motifs at most, soccer item dominant and city cue secondary; no scene collage. Subject: A large referee whistle with black/yellow/red and green/yellow/red ribbon accents (Belgium and Senegal), in front of a tiny Seattle waterfront skyline with stepped buildings and one ferry silhouette. Whistle is dominant. Distinct Seattle cue, no Space Needle, no gloves, no soccer ball.",
+    "url": "/assets/travel-log/world-cup-v1/seattle-whistle-belgium-senegal.png",
+    "generator": "built-in imagegen",
+    "generated": "2026-10-11",
+    "styleReference": "seattle-space-needle.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 646779,
+    "sha256": "a40c8ea5424086bf326b2fbd92392d43592ac32f1d8f9ec49e1ce0d4f5edbe9b",
+    "alpha": "RGBA, transparent corner verified"
+  },
+  {
+    "id": "miami-corner-norway-england",
+    "prompt": "Use case: stylized-concept. Asset type: ONE original transparent pixel sprite for a 3D travel map. Input image is a STYLE REFERENCE only; do not edit or duplicate its subject. Match crisp cheerful 16-bit inventory art: 96 by 96 logical pixel grid with square stepped pixels, charcoal outline, limited glacier teal/muted blue/ivory/coral/deep slate/purple palette with national-color accents. No antialiasing, gradients, smooth vector curves, photorealism, text, logos or watermark. One compact centered composition about 70% of a square frame with generous TRUE transparent margins; three-quarter view, strong silhouette, legible at 60px. Keep two main motifs at most, soccer item dominant and city cue secondary; no scene collage. Subject: A soccer pitch corner flag and small right-angle turf patch, flag accents red/ivory/navy (Norway and England), with a compact Miami pastel Art Deco tower topped by one palm frond. Corner flag dominant, building+frond read as one city silhouette; no lifeguard stand, no soccer ball.",
+    "url": "/assets/travel-log/world-cup-v1/miami-corner-norway-england.png",
+    "generator": "built-in imagegen",
+    "generated": "2026-10-11",
+    "styleReference": "seattle-space-needle.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 601619,
+    "sha256": "506aeb646357c02f4f795cad53b599ddf00893cd4ef4c0f3a622f0e9ef8182ff",
+    "alpha": "RGBA, transparent corner verified"
+  }
+]

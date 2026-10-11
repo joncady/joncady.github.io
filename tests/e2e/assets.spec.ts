@@ -1,28 +1,40 @@
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { TRAVEL_STOPS } from "../../src/sections/travelData";
+import { TRAVEL_STOPS, WORLD_CUP_VISITS } from "../../src/sections/travelData";
 import { test, expect, openTravel, map } from "./fixtures";
 
 test("every marker has a distinct, real transparent PNG with recorded provenance", async ({
     request
 }) => {
-    const assets = TRAVEL_STOPS.flatMap((stop) =>
-        stop.markers.map((marker) => marker.img)
-    );
-    expect(assets).toHaveLength(25);
-    expect(new Set(assets).size).toBe(25);
-    const manifest = JSON.parse(
-        readFileSync("docs/travel-pixel-asset-manifest.json", "utf8")
-    ) as Array<{
+    const assets = [
+        ...TRAVEL_STOPS.flatMap((stop) =>
+            stop.markers.map((marker) => marker.img)
+        ),
+        ...WORLD_CUP_VISITS.filter((visit) => visit.img).map(
+            (visit) => visit.img
+        )
+    ];
+    expect(assets).toHaveLength(30);
+    expect(new Set(assets).size).toBe(30);
+    const manifest = [
+        ...JSON.parse(
+            readFileSync("docs/travel-pixel-asset-manifest.json", "utf8")
+        ),
+        ...JSON.parse(
+            readFileSync("docs/world-cup-asset-manifest.json", "utf8")
+        )
+    ] as Array<{
         url: string;
         bytes: number;
         sha256: string;
         generator: string;
     }>;
-    expect(new Set(manifest.map((item) => item.sha256)).size).toBe(25);
+    expect(new Set(manifest.map((item) => item.sha256)).size).toBe(30);
     let total = 0;
     for (const url of assets) {
-        expect(url).toMatch(/^\/assets\/travel-log\/pixel-v1\/[a-z-]+\.png$/);
+        expect(url).toMatch(
+            /^\/assets\/travel-log\/(?:pixel-v1|world-cup-v1)\/[a-z-]+\.png$/
+        );
         const response = await request.get(url!);
         expect(response.ok()).toBe(true);
         const bytes = await response.body();

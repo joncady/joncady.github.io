@@ -76,12 +76,12 @@ test("location controls move the actual camera without changing selected trip", 
         .poll(async () =>
             Number(await map(page).getAttribute("data-camera-longitude"))
         )
-        .toBeCloseTo(-80, 3);
+        .toBeCloseTo(-80.2, 3);
     await expect
         .poll(async () =>
             Number(await map(page).getAttribute("data-camera-latitude"))
         )
-        .toBeCloseTo(26, 3);
+        .toBeCloseTo(25.8, 3);
     await expect(page.locator("#travel-summary-heading")).toHaveText(
         "World Cup stadium trips"
     );

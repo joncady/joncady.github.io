@@ -160,6 +160,15 @@ const Travel = () => {
         });
     }, [selectedIndex, reduceMotion, instantCamera]);
     const selected = TRAVEL_STOPS[selectedIndex];
+    const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
+    const selectedVisit = selected.visits?.find(
+        (visit) => visit.id === selectedVisitId
+    );
+    const visitMarker = selectedVisit
+        ? selected.markers.find(
+              (marker) => marker.name === selectedVisit.markerName
+          )
+        : undefined;
     const [viewState, setViewState] = useState({
         longitude: selected.center[0],
         latitude: selected.center[1],
@@ -178,8 +187,13 @@ const Travel = () => {
     useEffect(() => {
         if (!mapReady) return;
         const options = {
-            center: selected.center,
-            zoom: selected.zoom,
+            center: visitMarker
+                ? ([visitMarker.longitude, visitMarker.latitude] as [
+                      number,
+                      number
+                  ])
+                : selected.center,
+            zoom: visitMarker ? 7 : selected.zoom,
             pitch: 50,
             bearing: 0
         };
@@ -190,7 +204,14 @@ const Travel = () => {
                 duration: 1100,
                 essential: false
             });
-    }, [selected, mapReady, reduceMotion, instantCamera]);
+    }, [
+        selected,
+        selectedVisit,
+        visitMarker,
+        mapReady,
+        reduceMotion,
+        instantCamera
+    ]);
     useEffect(() => {
         mapRef.current?.resize();
     }, [summaryOpen]);
@@ -351,6 +372,8 @@ const Travel = () => {
                     className="travel-map"
                     aria-label="Interactive 3D travel map"
                     data-selected-trip={selected.id}
+                    data-selected-visit={selectedVisit?.id ?? ""}
+                    data-selected-sprite={selectedVisit?.img ?? ""}
                     data-camera-longitude={viewState.longitude}
                     data-camera-latitude={viewState.latitude}
                     data-camera-zoom={viewState.zoom}
@@ -417,7 +440,13 @@ const Travel = () => {
                                                                     marker.latitude
                                                                 ]
                                                             )
-                                                                ? marker.img
+                                                                ? index ===
+                                                                      selectedIndex &&
+                                                                  selectedVisit?.markerName ===
+                                                                      marker.name
+                                                                    ? selectedVisit.img ??
+                                                                      marker.img
+                                                                    : marker.img
                                                                 : undefined
                                                     }}
                                                     selected={
@@ -426,6 +455,16 @@ const Travel = () => {
                                                     scale={pinScale}
                                                     onSelect={() => {
                                                         setSelectedIndex(index);
+                                                        if (stop.visits)
+                                                            setSelectedVisitId(
+                                                                stop.visits.find(
+                                                                    (visit) =>
+                                                                        visit.markerName ===
+                                                                            marker.name &&
+                                                                        visit.kind ===
+                                                                            "game"
+                                                                )?.id ?? null
+                                                            );
                                                         setSummaryOpen(true);
                                                     }}
                                                     year={stop.year}
@@ -464,7 +503,7 @@ const Travel = () => {
                 {summaryOpen && (
                     <aside
                         id="travel-summary"
-                        className="travel-summary"
+                        className={`travel-summary ${selected.visits ? "with-visits" : ""}`}
                         aria-labelledby="travel-summary-heading"
                         onKeyDown={(event) => {
                             if (event.key === "Escape") closeSummary();
@@ -485,6 +524,103 @@ const Travel = () => {
                             <h4 id="travel-summary-heading">
                                 {selected.title}
                             </h4>
+                            {selected.visits && (
+                                <section
+                                    className="world-cup-visits"
+                                    aria-label="World Cup visits"
+                                >
+                                    <h5>World Cup visits</h5>
+                                    <p>
+                                        Five games and a Seattle fan experience.
+                                    </p>
+                                    <div className="world-cup-game-buttons">
+                                        {selected.visits.map((visit) => (
+                                            <button
+                                                type="button"
+                                                key={visit.id}
+                                                data-visit-id={visit.id}
+                                                aria-pressed={
+                                                    selectedVisit?.id ===
+                                                    visit.id
+                                                }
+                                                onClick={() => {
+                                                    setSelectedVisitId(
+                                                        visit.id
+                                                    );
+                                                    if (
+                                                        visit.id ===
+                                                            selectedVisitId &&
+                                                        visitMarker
+                                                    ) {
+                                                        const options = {
+                                                            center: [
+                                                                visitMarker.longitude,
+                                                                visitMarker.latitude
+                                                            ] as [
+                                                                number,
+                                                                number
+                                                            ],
+                                                            zoom: 7,
+                                                            pitch: 50,
+                                                            bearing: 0
+                                                        };
+                                                        if (
+                                                            reduceMotion ||
+                                                            instantCamera
+                                                        )
+                                                            mapRef.current?.jumpTo(
+                                                                options
+                                                            );
+                                                        else
+                                                            mapRef.current?.flyTo(
+                                                                {
+                                                                    ...options,
+                                                                    duration: 1100
+                                                                }
+                                                            );
+                                                    }
+                                                }}
+                                            >
+                                                <span className="world-cup-visit-kind">
+                                                    {visit.kind === "game"
+                                                        ? "Game"
+                                                        : "Fan experience"}
+                                                </span>
+                                                <strong>{visit.title}</strong>
+                                                <span>
+                                                    {visit.city} ·{" "}
+                                                    <time dateTime={visit.date}>
+                                                        {new Intl.DateTimeFormat(
+                                                            "en-US",
+                                                            {
+                                                                month: "short",
+                                                                day: "numeric",
+                                                                timeZone: "UTC"
+                                                            }
+                                                        ).format(
+                                                            new Date(
+                                                                `${visit.date}T00:00:00Z`
+                                                            )
+                                                        )}
+                                                    </time>
+                                                </span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                    {selectedVisit && (
+                                        <p
+                                            role="status"
+                                            className="world-cup-selected"
+                                        >
+                                            {selectedVisit.kind === "game"
+                                                ? "Selected game"
+                                                : "Selected fan experience"}
+                                            : {selectedVisit.title} ·{" "}
+                                            {selectedVisit.city}
+                                        </p>
+                                    )}
+                                </section>
+                            )}
                             <h5>Broad regions</h5>
                             <ul>
                                 {selected.regions.map((region) => (

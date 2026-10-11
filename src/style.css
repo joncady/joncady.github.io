@@ -818,13 +818,24 @@ div.contact-container:hover {
 
 /* One chronological timeline for new trips and original destinations. */
 .travel-toolbar { display: block; }
-.travel-timeline { display: flex; overflow-x: auto; gap: 0; padding: .5rem .25rem 1rem; margin-bottom: .75rem; scrollbar-color: #7045a1 #eee; }
+.travel-timeline { display: flex; overflow-x: auto; gap: 0; padding: .5rem .25rem 1rem; margin-bottom: .75rem; scrollbar-color: #6c757d #f8f9fa; }
 .travel-timeline-entry { flex: 0 0 auto; min-width: 9rem; max-width: 15rem; }
-.travel-timeline-year { display: block; color: #67439a; font-weight: 700; margin: 0 1rem .5rem; }
-.travel-timeline button { position: relative; display: flex; align-items: center; gap: .65rem; width: 100%; min-height: 54px; padding: .75rem 1rem; border: 0; border-top: 2px solid #d9cee9; border-radius: 0 0 .5rem .5rem; background: #f7f4fa; color: #343a40; text-align: left; font-weight: 600; }
-.travel-timeline button:hover { background: #ece4f5; }
-.travel-timeline button[aria-current="true"] { background: #67439a; color: #fff; border-color: #67439a; }
-.travel-timeline button:focus-visible { outline: 3px solid #b98725; outline-offset: -3px; }
+.travel-timeline-year { display: block; color: #6c757d; font-weight: 700; margin: 0 1rem .5rem; }
+.travel-timeline button { position: relative; display: flex; align-items: center; gap: .65rem; width: 100%; min-height: 54px; padding: .75rem 1rem; border: 0; border-top: 2px solid #dee2e6; border-radius: 0 0 .375rem .375rem; background: #f8f9fa; color: #343a40; text-align: left; font-weight: 600; }
+.travel-timeline button:hover { background: #e9ecef; }
+.travel-timeline button[aria-current="true"] { background: #343a40; color: #fff; border-color: #6c757d; }
+.travel-timeline button:focus-visible { outline: 3px solid #7952b3; outline-offset: -3px; }
 .travel-timeline-dot { flex: 0 0 10px; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
 .travel-buttons { justify-content: flex-end; }
 @media (max-width: 767px) { .travel-timeline-entry { max-width: 12rem; } .travel-buttons { justify-content: flex-start; } }
+
+.world-cup-visits { margin-bottom: 1.25rem; }
+.world-cup-game-buttons { display: grid; gap: .5rem; }
+.world-cup-game-buttons button { display: flex; flex-direction: column; gap: .2rem; width: 100%; text-align: left; background: #f7f4fa; color: #343a40; border-color: #d9cee9; }
+.world-cup-game-buttons button[aria-pressed="true"] { color: #fff; background: #67439a; border-color: #67439a; }
+.world-cup-visit-kind { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.world-cup-selected { margin-top: .75rem; font-weight: 600; }
+
+@media (min-width: 901px) { .travel-summary.with-visits { max-height: 620px; overflow-y: auto; } }
+.world-cup-game-buttons button:hover { background: #ece4f5; color: #343a40; }
+.world-cup-game-buttons button[aria-pressed="true"]:hover { background: #5c398d; color: #fff; }

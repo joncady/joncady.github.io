@@ -6,6 +6,16 @@ export interface TravelMarker {
     latitude: number;
     longitude: number;
 }
+export interface WorldCupVisit {
+    id: string;
+    kind: "game" | "fan-experience";
+    date: string;
+    title: string;
+    city: string;
+    markerName: string;
+    img?: string;
+}
+
 export interface TravelStop {
     id: string;
     title: string;
@@ -15,12 +25,71 @@ export interface TravelStop {
     center: [number, number];
     zoom: number;
     earlier?: boolean;
+    visits?: WorldCupVisit[];
 }
 
 const pixel = (id: string) => `/assets/travel-log/pixel-v1/${id}.png`;
 
 // These rounded geographic anchors represent broad regions, not personal
 // photo coordinates, exact visited locations, or a recorded route.
+// Match identities are correlated with confirmed stadium visits. The July 6
+// event is a fan experience, with no claim of stadium attendance or match identity.
+export const WORLD_CUP_VISITS: WorldCupVisit[] = [
+    {
+        id: "seattle-belgium-egypt-2026",
+        img: "/assets/travel-log/world-cup-v1/seattle-gloves-belgium-egypt.png",
+        kind: "game",
+        date: "2026-06-15",
+        title: "Belgium–Egypt",
+        city: "Seattle",
+        markerName: "Seattle"
+    },
+    {
+        id: "dallas-japan-sweden-2026",
+        img: "/assets/travel-log/world-cup-v1/dallas-cleat-japan-sweden.png",
+        kind: "game",
+        date: "2026-06-25",
+        title: "Japan–Sweden",
+        city: "Dallas",
+        markerName: "Dallas"
+    },
+    {
+        id: "new-jersey-panama-england-2026",
+        img: "/assets/travel-log/world-cup-v1/new-jersey-goal-panama-england.png",
+        kind: "game",
+        date: "2026-06-27",
+        title: "Panama–England",
+        city: "New Jersey",
+        markerName: "New Jersey"
+    },
+    {
+        id: "seattle-belgium-senegal-2026",
+        img: "/assets/travel-log/world-cup-v1/seattle-whistle-belgium-senegal.png",
+        kind: "game",
+        date: "2026-07-01",
+        title: "Belgium–Senegal",
+        city: "Seattle",
+        markerName: "Seattle"
+    },
+    {
+        id: "seattle-fan-experience-2026",
+        kind: "fan-experience",
+        date: "2026-07-06",
+        title: "Seattle fan experience",
+        city: "Seattle",
+        markerName: "Seattle"
+    },
+    {
+        id: "miami-norway-england-2026",
+        img: "/assets/travel-log/world-cup-v1/miami-corner-norway-england.png",
+        kind: "game",
+        date: "2026-07-11",
+        title: "Norway–England",
+        city: "Miami",
+        markerName: "Miami"
+    }
+];
+
 export const RECENT_TRIPS: TravelStop[] = [
     {
         id: "alaska-2026",
@@ -40,6 +109,7 @@ export const RECENT_TRIPS: TravelStop[] = [
     },
     {
         id: "world-cup-2026",
+        visits: WORLD_CUP_VISITS,
         title: "World Cup stadium trips",
         year: "2026",
         regions: ["Dallas", "New Jersey", "Miami", "Seattle"],
@@ -47,26 +117,26 @@ export const RECENT_TRIPS: TravelStop[] = [
             {
                 name: "Dallas",
                 img: pixel("dallas-boot"),
-                latitude: 33,
-                longitude: -97
+                latitude: 32.8,
+                longitude: -96.8
             },
             {
                 name: "New Jersey",
                 img: pixel("new-jersey-stadium"),
-                latitude: 40,
-                longitude: -74
+                latitude: 40.8,
+                longitude: -74.1
             },
             {
                 name: "Miami",
                 img: pixel("miami-lifeguard"),
-                latitude: 26,
-                longitude: -80
+                latitude: 25.8,
+                longitude: -80.2
             },
             {
                 name: "Seattle",
                 img: pixel("seattle-space-needle"),
-                latitude: 48,
-                longitude: -122
+                latitude: 47.6,
+                longitude: -122.3
             }
         ],
         center: [-98, 39],
