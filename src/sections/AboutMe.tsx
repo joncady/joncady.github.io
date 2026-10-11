@@ -1,20 +1,4 @@
 import React from "react";
-import Plx, { PlxItem } from "react-plx";
-
-const parallaxData: PlxItem[] = [
-    {
-        start: "self",
-        duration: 200,
-        properties: [
-            {
-                startValue: 0.7,
-                endValue: 1,
-                property: "scale"
-            }
-        ]
-    }
-];
-
 const AboutMe = () => {
     return (
         <section id="about-me">
@@ -37,13 +21,11 @@ const AboutMe = () => {
                     </p>
                 </div>
                 <div className="other-pic">
-                    <Plx parallaxData={parallaxData}>
-                        <img
-                            id="resize-pic"
-                            src={"/assets/profile.jpg"}
-                            alt="Jonathan Cady profile"
-                        ></img>
-                    </Plx>
+                    <img
+                        id="resize-pic"
+                        src={"/assets/profile.jpg"}
+                        alt="Jonathan Cady profile"
+                    ></img>
                 </div>
             </div>
         </section>

@@ -8,12 +8,12 @@ const Contact = () => {
                 If you would like to reach out to me, email works well!
             </p>
             <address>
-                <a href="https://github.com/joncady">
+                <a href="https://github.com/joncady" aria-label="GitHub">
                     <div className="contact-container">
                         <i className="fab fa-github fa-lg"></i>
                     </div>
                 </a>
-                <a href="mailto:jonrcady@gmail.com">
+                <a href="mailto:jonrcady@gmail.com" aria-label="Email Jonathan">
                     <div id="email" className="contact-container">
                         <i className="fas fa-envelope fa-lg"></i>
                     </div>
@@ -23,7 +23,10 @@ const Contact = () => {
                         </span>
                     </div>
                 </a>
-                <a href="https://www.linkedin.com/in/jonathanrcady/">
+                <a
+                    href="https://www.linkedin.com/in/jonathanrcady/"
+                    aria-label="LinkedIn"
+                >
                     <div className="contact-container">
                         <i className="fab fa-linkedin fa-lg"></i>
                     </div>
