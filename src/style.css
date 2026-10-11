@@ -583,3 +583,265 @@ div.contact-container:hover {
 .portfolio-hero { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; background-image: linear-gradient(#0006, #0006), url(/assets/seattle4.jpg); }
 .portfolio-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); border-radius: 0; margin: 0; padding: 0; }
 .portfolio-hero p { margin: .75rem 0 0; font-size: 1.1rem; text-shadow: 0 1px 3px #222; }
+
+/* Integrated Travel Log follows the portfolio's Bootstrap styling. */
+.travel-log {
+    padding: 2rem 0;
+    color: #212529;
+}
+.travel-log-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.travel-log-intro h3 {
+    text-align: left;
+    padding: 0;
+    font-size: 1.75rem;
+}
+.travel-log-intro p {
+    margin: 0.5rem 0 1rem;
+}
+
+.travel-toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+.travel-toolbar label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    min-width: 0;
+}
+.travel-toolbar select {
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    background: white;
+    min-height: 44px;
+    max-width: 100%;
+    width: 330px;
+    color: #212529;
+}
+.travel-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.travel-log button {
+    min-height: 44px;
+    min-width: 44px;
+    border: 1px solid #343a40;
+    background: #343a40;
+    color: white;
+    border-radius: 0.375rem;
+    padding: 0.625rem 0.875rem;
+    cursor: pointer;
+}
+.travel-log button:hover {
+    background: #23272b;
+}
+.travel-log :focus-visible {
+    outline: 3px solid #6554c0;
+    outline-offset: 3px;
+}
+.travel-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.travel-stage.with-summary {
+    grid-template-columns: minmax(0, 1fr) 290px;
+}
+.travel-map {
+    position: relative;
+    height: 620px;
+    min-width: 0;
+}
+.travel-map-hint {
+    position: absolute;
+    bottom: 24px;
+    left: 12px;
+    pointer-events: none;
+    background: #ffffffec;
+    padding: 0.35rem 0.6rem;
+    border-radius: 0.25rem;
+    font-size: 0.7rem;
+    max-width: calc(100% - 24px);
+}
+.travel-map-status {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    right: 20px;
+    background: white;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+}
+.travel-summary {
+    padding: 1.25rem;
+    background: white;
+    border-left: 1px solid #dee2e6;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+.travel-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.travel-summary-header button {
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.25rem;
+    background: white;
+    color: #343a40;
+    border-color: #ced4da;
+}
+.travel-summary-header button:hover {
+    background: #f8f9fa;
+}
+.travel-year {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 0.875rem;
+    color: #4b2e83;
+}
+.travel-summary h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+}
+.travel-summary h5 {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.travel-summary ul {
+    padding-left: 1.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+}
+.travel-region-note {
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+.travel-summary-footer {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    font-size: 0.75rem;
+    border-top: 1px solid #dee2e6;
+}
+.travel-summary-footer p {
+    margin-top: 0.75rem;
+    color: #6c757d;
+    line-height: 1.6;
+}
+.travel-motion-choice {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-height: 44px;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}
+.travel-motion-choice input {
+    width: 20px;
+    height: 20px;
+    accent-color: #4b2e83;
+}
+.travel-map .maplibregl-ctrl-group button {
+    width: 44px;
+    height: 44px;
+    background: white;
+    border-color: #dee2e6;
+    color: #343a40;
+    border-radius: 0;
+    padding: 0;
+}
+.travel-map .maplibregl-ctrl-group button:hover {
+    background: #f8f9fa;
+}
+@media (max-width: 900px) {
+    .travel-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .travel-toolbar select {
+        width: 100%;
+    }
+    .travel-stage.with-summary {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .travel-map {
+        height: 480px;
+    }
+    .travel-summary {
+        border-left: 0;
+        border-top: 1px solid #dee2e6;
+    }
+    .travel-summary h4 {
+        margin-bottom: 1.25rem;
+    }
+    .travel-summary-footer {
+        margin-top: 0.75rem;
+    }
+    .travel-year {
+        margin-top: 1rem;
+    }
+}
+@media (max-width: 500px) {
+    .travel-log-intro {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0;
+    }
+    .travel-log-intro p {
+        margin-bottom: 0.75rem;
+    }
+    .travel-draft-badge {
+        margin-bottom: 0.75rem;
+    }
+    .travel-buttons {
+        gap: 0.375rem;
+    }
+    .travel-log button {
+        padding: 0.625rem 0.6875rem;
+        font-size: 0.8125rem;
+    }
+    .travel-map {
+        height: 420px;
+    }
+    .travel-summary {
+        padding: 1rem;
+    }
+    .travel-map-hint {
+        font-size: 0.625rem;
+    }
+}
+
+.travel-location-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+.travel-location-controls button {
+    min-height: 44px;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    background: white;
+    color: #343a40;
+}
