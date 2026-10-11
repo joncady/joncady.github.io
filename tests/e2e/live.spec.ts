@@ -17,9 +17,7 @@ for (const width of [1440, 390]) {
         await page
             .getByRole("checkbox", { name: "Reduce motion", exact: true })
             .check();
-        await page
-            .getByRole("combobox", { name: "Choose a trip", exact: true })
-            .selectOption("15");
+        await page.locator('[data-trip-index="15"]').click();
         await page.locator("#travel").scrollIntoViewIfNeeded();
         await expect(map).toHaveAttribute("data-map-ready", "true", {
             timeout: 20000

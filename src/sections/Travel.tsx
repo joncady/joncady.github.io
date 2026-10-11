@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Billboard, Text, useTexture } from "@react-three/drei";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useFrame } from "@react-three/fiber";
@@ -138,7 +138,42 @@ const Travel = () => {
     const [instantCamera, setInstantCamera] = useState(false);
     const mapRef = useRef<MapRef>(null);
     const summaryToggle = useRef<HTMLButtonElement>(null);
+    const timelineRef = useRef<HTMLDivElement>(null);
+    const [newestFirst, setNewestFirst] = useState(false);
+    const timelineOrder = useMemo(() => {
+        const order = TRAVEL_STOPS.map((_, index) => index).sort(
+            (a, b) =>
+                Number(TRAVEL_STOPS[b].year) - Number(TRAVEL_STOPS[a].year)
+        );
+        return newestFirst ? order : order.reverse();
+    }, [newestFirst]);
+    useEffect(() => {
+        const container = timelineRef.current;
+        const button = container?.querySelector<HTMLButtonElement>(
+            `[data-trip-index="${selectedIndex}"]`
+        );
+        if (!container || !button) return;
+        const bounds = button.getBoundingClientRect();
+        const viewport = container.getBoundingClientRect();
+        container.scrollTo({
+            left:
+                container.scrollLeft +
+                bounds.left -
+                viewport.left -
+                (viewport.width - bounds.width) / 2,
+            behavior: reduceMotion || instantCamera ? "auto" : "smooth"
+        });
+    }, [selectedIndex, reduceMotion, instantCamera, timelineOrder]);
     const selected = TRAVEL_STOPS[selectedIndex];
+    const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
+    const selectedVisit = selected.visits?.find(
+        (visit) => visit.id === selectedVisitId
+    );
+    const visitMarker = selectedVisit
+        ? selected.markers.find(
+              (marker) => marker.name === selectedVisit.markerName
+          )
+        : undefined;
     const [viewState, setViewState] = useState({
         longitude: selected.center[0],
         latitude: selected.center[1],
@@ -157,8 +192,13 @@ const Travel = () => {
     useEffect(() => {
         if (!mapReady) return;
         const options = {
-            center: selected.center,
-            zoom: selected.zoom,
+            center: visitMarker
+                ? ([visitMarker.longitude, visitMarker.latitude] as [
+                      number,
+                      number
+                  ])
+                : selected.center,
+            zoom: visitMarker ? 7 : selected.zoom,
             pitch: 50,
             bearing: 0
         };
@@ -169,14 +209,26 @@ const Travel = () => {
                 duration: 1100,
                 essential: false
             });
-    }, [selected, mapReady, reduceMotion, instantCamera]);
+    }, [
+        selected,
+        selectedVisit,
+        visitMarker,
+        mapReady,
+        reduceMotion,
+        instantCamera
+    ]);
     useEffect(() => {
         mapRef.current?.resize();
     }, [summaryOpen]);
     const move = (direction: number) =>
         setSelectedIndex(
             (index) =>
-                (index + direction + TRAVEL_STOPS.length) % TRAVEL_STOPS.length
+                timelineOrder[
+                    (timelineOrder.indexOf(index) +
+                        direction +
+                        timelineOrder.length) %
+                        timelineOrder.length
+                ]
         );
     const closeSummary = () => {
         setSummaryOpen(false);
@@ -203,37 +255,128 @@ const Travel = () => {
                 </div>
             </div>
             <div className="travel-toolbar">
-                <label htmlFor="travel-trip">
-                    Choose a trip
-                    <select
-                        id="travel-trip"
-                        value={selectedIndex}
-                        onChange={(event) =>
-                            setSelectedIndex(Number(event.target.value))
+                <div className="travel-timeline-order">
+                    <span aria-live="polite">
+                        {newestFirst ? "Newest first" : "Oldest first"}
+                    </span>
+                    <button
+                        type="button"
+                        aria-label={
+                            newestFirst
+                                ? "Show oldest trips first"
+                                : "Show newest trips first"
                         }
+                        title={
+                            newestFirst
+                                ? "Show oldest trips first"
+                                : "Show newest trips first"
+                        }
+                        aria-controls="trip-timeline"
+                        onClick={() => setNewestFirst((value) => !value)}
                     >
-                        <optgroup label="Trips">
-                            {TRAVEL_STOPS.map(
-                                (stop, index) =>
-                                    !stop.earlier && (
-                                        <option key={stop.id} value={index}>
-                                            {stop.title} · {stop.year}
-                                        </option>
-                                    )
-                            )}
-                        </optgroup>
-                        <optgroup label="Earlier destinations">
-                            {TRAVEL_STOPS.map(
-                                (stop, index) =>
-                                    stop.earlier && (
-                                        <option key={stop.id} value={index}>
-                                            {stop.title} · {stop.year}
-                                        </option>
-                                    )
-                            )}
-                        </optgroup>
-                    </select>
-                </label>
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d={
+                                    newestFirst
+                                        ? "M7 4v16m-4-4 4 4 4-4"
+                                        : "M7 20V4m-4 4 4-4 4 4"
+                                }
+                            />
+                            <path d="M15 5h6M15 12h4M15 19h2" />
+                        </svg>
+                    </button>
+                </div>
+                <div
+                    id="trip-timeline"
+                    className="travel-timeline"
+                    ref={timelineRef}
+                    aria-label="Trip timeline"
+                    role="navigation"
+                >
+                    {timelineOrder.map((index, position) => {
+                        const stop = TRAVEL_STOPS[index];
+                        const showYear =
+                            position === 0 ||
+                            stop.year !==
+                                TRAVEL_STOPS[timelineOrder[position - 1]].year;
+                        return (
+                            <div
+                                className="travel-timeline-entry"
+                                key={stop.id}
+                            >
+                                <span
+                                    className="travel-timeline-year"
+                                    aria-hidden="true"
+                                >
+                                    {showYear || index === selectedIndex
+                                        ? stop.year
+                                        : "\u00a0"}
+                                </span>
+                                <button
+                                    type="button"
+                                    data-trip-index={index}
+                                    aria-label={`${stop.title} · ${stop.year}`}
+                                    aria-current={
+                                        index === selectedIndex
+                                            ? "true"
+                                            : undefined
+                                    }
+                                    onClick={() => setSelectedIndex(index)}
+                                    onKeyDown={(event) => {
+                                        const direction =
+                                            event.key === "ArrowRight"
+                                                ? 1
+                                                : event.key === "ArrowLeft"
+                                                  ? -1
+                                                  : 0;
+                                        if (
+                                            !direction &&
+                                            event.key !== "Home" &&
+                                            event.key !== "End"
+                                        )
+                                            return;
+                                        event.preventDefault();
+                                        const next =
+                                            event.key === "Home"
+                                                ? timelineOrder[0]
+                                                : event.key === "End"
+                                                  ? timelineOrder[
+                                                        timelineOrder.length - 1
+                                                    ]
+                                                  : timelineOrder[
+                                                        (position +
+                                                            direction +
+                                                            timelineOrder.length) %
+                                                            timelineOrder.length
+                                                    ];
+                                        setSelectedIndex(next);
+                                        timelineRef.current
+                                            ?.querySelector<HTMLButtonElement>(
+                                                `[data-trip-index="${next}"]`
+                                            )
+                                            ?.focus();
+                                    }}
+                                >
+                                    <span
+                                        className="travel-timeline-dot"
+                                        aria-hidden="true"
+                                    />
+                                    {stop.title}
+                                </button>
+                            </div>
+                        );
+                    })}
+                </div>
                 <div className="travel-buttons">
                     <button
                         type="button"
@@ -276,6 +419,8 @@ const Travel = () => {
                     className="travel-map"
                     aria-label="Interactive 3D travel map"
                     data-selected-trip={selected.id}
+                    data-selected-visit={selectedVisit?.id ?? ""}
+                    data-selected-sprite={selectedVisit?.img ?? ""}
                     data-camera-longitude={viewState.longitude}
                     data-camera-latitude={viewState.latitude}
                     data-camera-zoom={viewState.zoom}
@@ -308,7 +453,7 @@ const Travel = () => {
                                 maxPitch={65}
                                 cooperativeGestures
                                 antialias
-                                mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+                                mapStyle="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
                             >
                                 <NavigationControl
                                     position="top-left"
@@ -342,7 +487,13 @@ const Travel = () => {
                                                                     marker.latitude
                                                                 ]
                                                             )
-                                                                ? marker.img
+                                                                ? index ===
+                                                                      selectedIndex &&
+                                                                  selectedVisit?.markerName ===
+                                                                      marker.name
+                                                                    ? selectedVisit.img ??
+                                                                      marker.img
+                                                                    : marker.img
                                                                 : undefined
                                                     }}
                                                     selected={
@@ -351,6 +502,16 @@ const Travel = () => {
                                                     scale={pinScale}
                                                     onSelect={() => {
                                                         setSelectedIndex(index);
+                                                        if (stop.visits)
+                                                            setSelectedVisitId(
+                                                                stop.visits.find(
+                                                                    (visit) =>
+                                                                        visit.markerName ===
+                                                                            marker.name &&
+                                                                        visit.kind ===
+                                                                            "game"
+                                                                )?.id ?? null
+                                                            );
                                                         setSummaryOpen(true);
                                                     }}
                                                     year={stop.year}
@@ -389,7 +550,7 @@ const Travel = () => {
                 {summaryOpen && (
                     <aside
                         id="travel-summary"
-                        className="travel-summary"
+                        className={`travel-summary ${selected.visits ? "with-visits" : ""}`}
                         aria-labelledby="travel-summary-heading"
                         onKeyDown={(event) => {
                             if (event.key === "Escape") closeSummary();
@@ -406,15 +567,107 @@ const Travel = () => {
                             </button>
                         </div>
                         <div aria-live="polite" aria-atomic="true">
-                            <p className="travel-year">
-                                {selected.year}
-                                {selected.earlier
-                                    ? " · Earlier destination"
-                                    : ""}
-                            </p>
+                            <p className="travel-year">{selected.year}</p>
                             <h4 id="travel-summary-heading">
                                 {selected.title}
                             </h4>
+                            {selected.visits && (
+                                <section
+                                    className="world-cup-visits"
+                                    aria-label="World Cup visits"
+                                >
+                                    <h5>World Cup visits</h5>
+                                    <p>
+                                        Six attended games across four cities.
+                                    </p>
+                                    <div className="world-cup-game-buttons">
+                                        {selected.visits.map((visit) => (
+                                            <button
+                                                type="button"
+                                                key={visit.id}
+                                                data-visit-id={visit.id}
+                                                aria-pressed={
+                                                    selectedVisit?.id ===
+                                                    visit.id
+                                                }
+                                                onClick={() => {
+                                                    setSelectedVisitId(
+                                                        visit.id
+                                                    );
+                                                    if (
+                                                        visit.id ===
+                                                            selectedVisitId &&
+                                                        visitMarker
+                                                    ) {
+                                                        const options = {
+                                                            center: [
+                                                                visitMarker.longitude,
+                                                                visitMarker.latitude
+                                                            ] as [
+                                                                number,
+                                                                number
+                                                            ],
+                                                            zoom: 7,
+                                                            pitch: 50,
+                                                            bearing: 0
+                                                        };
+                                                        if (
+                                                            reduceMotion ||
+                                                            instantCamera
+                                                        )
+                                                            mapRef.current?.jumpTo(
+                                                                options
+                                                            );
+                                                        else
+                                                            mapRef.current?.flyTo(
+                                                                {
+                                                                    ...options,
+                                                                    duration: 1100
+                                                                }
+                                                            );
+                                                    }
+                                                }}
+                                            >
+                                                <span className="world-cup-visit-kind">
+                                                    {visit.kind === "game"
+                                                        ? "Game"
+                                                        : "Fan experience"}
+                                                </span>
+                                                <strong>{visit.title}</strong>
+                                                <span>
+                                                    {visit.city} ·{" "}
+                                                    <time dateTime={visit.date}>
+                                                        {new Intl.DateTimeFormat(
+                                                            "en-US",
+                                                            {
+                                                                month: "short",
+                                                                day: "numeric",
+                                                                timeZone: "UTC"
+                                                            }
+                                                        ).format(
+                                                            new Date(
+                                                                `${visit.date}T00:00:00Z`
+                                                            )
+                                                        )}
+                                                    </time>
+                                                </span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                    {selectedVisit && (
+                                        <p
+                                            role="status"
+                                            className="world-cup-selected"
+                                        >
+                                            {selectedVisit.kind === "game"
+                                                ? "Selected game"
+                                                : "Selected fan experience"}
+                                            : {selectedVisit.title} ·{" "}
+                                            {selectedVisit.city}
+                                        </p>
+                                    )}
+                                </section>
+                            )}
                             <h5>Broad regions</h5>
                             <ul>
                                 {selected.regions.map((region) => (
@@ -449,8 +702,8 @@ const Travel = () => {
                         </div>
                         <div className="travel-summary-footer">
                             <span>
-                                {selectedIndex + 1} of {TRAVEL_STOPS.length}{" "}
-                                entries
+                                {timelineOrder.indexOf(selectedIndex) + 1} of{" "}
+                                {TRAVEL_STOPS.length} entries
                             </span>
                         </div>
                     </aside>

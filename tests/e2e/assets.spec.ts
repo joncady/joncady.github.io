@@ -1,28 +1,40 @@
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { TRAVEL_STOPS } from "../../src/sections/travelData";
+import { TRAVEL_STOPS, WORLD_CUP_VISITS } from "../../src/sections/travelData";
 import { test, expect, openTravel, map } from "./fixtures";
 
 test("every marker has a distinct, real transparent PNG with recorded provenance", async ({
     request
 }) => {
-    const assets = TRAVEL_STOPS.flatMap((stop) =>
-        stop.markers.map((marker) => marker.img)
-    );
-    expect(assets).toHaveLength(25);
-    expect(new Set(assets).size).toBe(25);
-    const manifest = JSON.parse(
-        readFileSync("docs/travel-pixel-asset-manifest.json", "utf8")
-    ) as Array<{
+    const assets = [
+        ...TRAVEL_STOPS.flatMap((stop) =>
+            stop.markers.map((marker) => marker.img)
+        ),
+        ...WORLD_CUP_VISITS.filter((visit) => visit.img).map(
+            (visit) => visit.img
+        )
+    ];
+    expect(assets).toHaveLength(31);
+    expect(new Set(assets).size).toBe(31);
+    const manifest = [
+        ...JSON.parse(
+            readFileSync("docs/travel-pixel-asset-manifest.json", "utf8")
+        ),
+        ...JSON.parse(
+            readFileSync("docs/world-cup-asset-manifest.json", "utf8")
+        )
+    ] as Array<{
         url: string;
         bytes: number;
         sha256: string;
         generator: string;
     }>;
-    expect(new Set(manifest.map((item) => item.sha256)).size).toBe(25);
+    expect(new Set(manifest.map((item) => item.sha256)).size).toBe(31);
     let total = 0;
     for (const url of assets) {
-        expect(url).toMatch(/^\/assets\/travel-log\/pixel-v1\/[a-z-]+\.png$/);
+        expect(url).toMatch(
+            /^\/assets\/travel-log\/(?:pixel-v1|world-cup-v1)\/[a-z-]+\.png$/
+        );
         const response = await request.get(url!);
         expect(response.ok()).toBe(true);
         const bytes = await response.body();
@@ -61,9 +73,7 @@ test("initial view requests only visible/current icons and keeps large remote te
         body: JSON.stringify([...requested], null, 2),
         contentType: "application/json"
     });
-    await page
-        .getByRole("combobox", { name: "Choose a trip", exact: true })
-        .selectOption("15");
+    await page.locator('[data-trip-index="15"]').click();
     await expect
         .poll(() =>
             requested.has("/assets/travel-log/pixel-v1/chicago-cloud-gate.png")

@@ -2,14 +2,16 @@
 
 The portfolio's existing MapLibre / React Three Fiber map now includes 17 selectable entries and 25 original pixel sprites. Approved newer entries cover Alaska, World Cup stadium trips, a coast-to-coast train trip, Catalina and the return journey, Japan, Roche Harbor, Singapore/Taiwan, and the United Kingdom. Entries use confirmed years and broad regions; no private photos, precise travel dates, album URLs, commute configuration, or route traces are published.
 
-Selecting a trip synchronizes its camera, year, regions, and summary. Previous/Next wrap through the log. Clicking a 3D sprite selects its trip; summary location controls move the camera to that location. Desktop summaries sit beside the map, and mobile summaries sit below it. Keyboard and system/manual reduced-motion controls remain available; missing textures or unavailable map/WebGL resources retain trip controls and summaries.
+Selecting a trip synchronizes its camera, year, regions, and summary. The horizontal timeline combines new trips and original destinations by year, oldest first. The compact sort button reverses the entire timeline, including entries within each year, without changing the selected trip or game. Clicking a trip moves the camera and updates its summary; Arrow keys, Home, and End select timeline entries. The selected entry scrolls into view. Previous/Next follow the selected timeline direction. Clicking a 3D sprite selects its trip; summary location controls move the camera to that location. Desktop summaries sit beside the map, and mobile summaries sit below it. Keyboard and system/manual reduced-motion controls remain available; missing textures or unavailable map/WebGL resources retain trip controls and summaries.
 
-The floating items are geographically anchored PNG planes, with gentle motion and nearest texture filtering. Selected/visible locations load textures; the rest use lightweight pins until they enter the view. The scene remains a 3D map rather than a spherical globe.
+The floating items are geographically anchored PNG planes, with gentle motion and nearest texture filtering. Selected/visible locations load textures; the rest use lightweight pins until they enter the view. The scene remains a 3D map rather than a spherical globe. CARTO Voyager supplies blue water, green parks, and colored roads.
 
 ## Assets and review evidence
 
 All 25 PNGs in `public/assets/travel-log/pixel-v1` have unique filenames and SHA-256 hashes. They were generated with built-in imagegen after subject approval, then visually approved in the labeled sheet and desktop/mobile views. `travel-pixel-asset-manifest.json` records the final prompts, dimensions, source method, bytes, and hashes. Each PNG is 1254 × 1254 RGBA with transparent corners.
 
+- [Timeline desktop preview](review-evidence/travel-timeline-desktop.png)
+- [Timeline mobile preview](review-evidence/travel-timeline-mobile.png)
 - [Approved sprite sheet](review-evidence/travel-pixel-contact-sheet.png)
 - [Desktop production preview](review-evidence/travel-pixel-desktop.png)
 - [Mobile production preview](review-evidence/travel-pixel-mobile.png)
@@ -36,9 +38,9 @@ This does not block asset review or publication. A later optimization must prese
 
 Run `npm ci`, then `npm run check`. Install the pinned Playwright browsers once with `npx playwright install chromium webkit` (CI adds `--with-deps`).
 
-`npm run check` runs lint, test TypeScript checking, the TypeScript/Vite production build, and production-preview E2E tests. The deterministic suite comprises 48 cases across desktop Chromium, mobile Chromium, and desktop WebKit. It intentionally fulfills the external map style with a local blank-background fixture to isolate UI/rendering behavior from third-party availability.
+`npm run check` runs lint, test TypeScript checking, the TypeScript/Vite production build, and production-preview E2E tests. The deterministic suite comprises 60 cases across desktop Chromium, mobile Chromium, and desktop WebKit. It intentionally fulfills the external map style with a local blank-background fixture to isolate UI/rendering behavior from third-party availability.
 
-Coverage includes anchor navigation and deep links, mobile menu collapse, skip-link focus, every project modal/destination, project filter/reset, complete preserved Amazon text and additions, all 17 camera/selector/summary combinations, next/previous wraparound, summary focus, system/manual reduced motion, responsive placement/control size/overlap, loading and missing resources, WebGL fallback, PNG uniqueness/hashes/budgets, and selective loading. A real canvas hit on an unselected Midwest sprite changes the trip, camera, and summary in all three browser projects. The test derives coordinates through MapLibre's documented custom-layer projection matrix.
+Coverage includes anchor navigation and deep links, mobile menu collapse, skip-link focus, every project modal/destination, project filter/reset, complete preserved Amazon text and additions, all 17 camera/timeline/summary combinations plus chronological ordering and arrow/Home/End selection, next/previous wraparound, summary focus, system/manual reduced motion, responsive placement/control size/overlap, loading and missing resources, WebGL fallback, PNG uniqueness/hashes/budgets, and selective loading. A real canvas hit on an unselected Midwest sprite changes the trip, camera, and summary in all three browser projects. The test derives coordinates through MapLibre's documented custom-layer projection matrix.
 
 Real basemap and deployed-site smoke are opt-in:
 
@@ -53,3 +55,18 @@ The GitHub workflow runs deterministic tests before uploading the preview/Pages 
 ## Limits
 
 Physical-touch hardware, screen-reader interaction, and handset GPU/frame-rate/texture-memory benchmarking remain manual checks. Resource budgets are regression limits rather than performance benchmark claims. Existing Vite/lottie/bundle warnings and legacy dependency audit findings remain. No coverage percentage or accessibility conformance certification is claimed.
+
+
+## Combined timeline and World Cup review
+
+The timeline uses the portfolio's neutral gray and charcoal controls, with the existing purple focus indicator. It opens oldest first; the 44px sort button reverses the full order, announces the direction, and retains the selected trip/game and camera. Previous/Next, arrow keys, Home/End, and the entry counter follow the displayed order, including when an endpoint was already selected. The approved World Cup game panel and six city/soccer sprites are included in the same draft; see [World Cup review](world-cup.md).
+
+[Interaction video](review-evidence/travel-timeline-interaction.webm) demonstrates trip selection, World Cup game selection, map movement, earlier destinations, previous-trip navigation, direction reversal without changing selection, and summary toggling on the real basemap.
+
+To regenerate the opt-in recording:
+
+```sh
+INTERACTION_REVIEW=1 npm run test:e2e -- tests/e2e/timeline-video.spec.ts --project=desktop-chromium
+```
+
+Direction-update validation: lint, application/test TypeScript, and production build passed. The full local browser run passed 62 cases; its one all-trips timeout passed in isolation with unchanged assertions and timeout. All direction cases passed across desktop Chromium, mobile Chromium, and WebKit. Seven live-map/gallery checks and the isolated 53-second interaction recording passed. The previously documented intermittent mesh-click issue remains unresolved.
