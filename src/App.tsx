@@ -36,16 +36,18 @@ const App = () => {
 
     return (
         <div>
+            <a className="skip-link" href="#main-content">
+                Skip to content
+            </a>
             <Navigation />
             <Header />
-            <main>
+            <main id="main-content" tabIndex={-1}>
                 <div className="content">
                     <AboutMe />
-                    <h2>Professional Experience</h2>
                     <Experience />
                     <Projects />
                     <Skills />
-                    <h2>Hobbies</h2>
+                    <h2>Travel</h2>
                     <Travel />
                     <Contact />
                 </div>
@@ -61,7 +63,8 @@ const App = () => {
                     >
                         <a
                             id="back-to-top"
-                            href="/#"
+                            href="#"
+                            aria-label="Back to top"
                             ref={target}
                             onClick={toggle}
                             className="back-to-top btn btn-dark btn-lg"
