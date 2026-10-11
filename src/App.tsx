@@ -11,8 +11,25 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import Travel from "./sections/Travel";
 
 const App = () => {
+    useEffect(() => {
+        if (window.location.hash === "#travel") {
+            document
+                .getElementById("travel")
+                ?.scrollIntoView({ behavior: "auto" });
+        }
+    }, []);
     const [tooltipOpen, setToolTipOpen] = useState(false);
     const [showIcon, setShowIcon] = useState(false);
+    const [travelInView, setTravelInView] = useState(false);
+    useEffect(() => {
+        const travel = document.getElementById("travel");
+        if (!travel) return;
+        const observer = new IntersectionObserver(([entry]) =>
+            setTravelInView(entry.isIntersecting)
+        );
+        observer.observe(travel);
+        return () => observer.disconnect();
+    }, []);
     const target = useRef(null);
 
     const toggle = () => {
@@ -36,7 +53,7 @@ const App = () => {
 
     return (
         <div>
-            <a className="skip-link" href="#main-content">
+            <a className="skip-link" href="#main-content" tabIndex={0}>
                 Skip to content
             </a>
             <Navigation />
@@ -53,7 +70,7 @@ const App = () => {
                 </div>
             </main>
             <Footer />
-            {showIcon && (
+            {showIcon && !travelInView && (
                 <div>
                     <OverlayTrigger
                         placement="left"

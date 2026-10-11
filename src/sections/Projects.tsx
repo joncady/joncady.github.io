@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { webDevProjects, mobileDevProjects, Project } from "./Helpers";
 
 const Projects = () => {
@@ -68,15 +68,16 @@ const Projects = () => {
                                       }
                                     : {})
                             }}
-                            onClick={() =>
+                            onClick={(event) => {
+                                event.currentTarget.focus();
                                 setModalState(
                                     project.content,
                                     project.link,
                                     project.src,
                                     project.tech,
                                     project.title
-                                )
-                            }
+                                );
+                            }}
                         >
                             <span className="project-label">
                                 {project.title}
@@ -237,16 +238,24 @@ const Projects = () => {
                                 );
                             })}
                         <p style={{ marginTop: "0.5rem" }}>{content}</p>
-                        {/* @ts-expect-error -- React Bootstrap Button types conflict with Three.js JSX extensions. */}
-                        <Button
-                            href={link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            variant="dark"
-                            disabled={!link}
-                        >
-                            {link ? "View Project" : "Project link unavailable"}
-                        </Button>
+                        {link ? (
+                            <a
+                                href={link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-dark"
+                            >
+                                View Project
+                            </a>
+                        ) : (
+                            <button
+                                type="button"
+                                className="btn btn-dark"
+                                disabled
+                            >
+                                Project link unavailable
+                            </button>
+                        )}
                     </div>
                 </Modal>
             </div>

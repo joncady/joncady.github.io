@@ -1,0 +1,2 @@
+# Existing source and npm lock files use CRLF; allow that line terminator in diff checks.
+* whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
