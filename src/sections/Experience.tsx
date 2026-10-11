@@ -54,15 +54,31 @@ const Experience = () => {
                         className="experience-logo"
                     />
                 </div>
+                <details className="amazon-background">
+                    <summary>Earlier Amazon work</summary>
+                    <p>
+                        I began my career at Amazon as an engineer on an
+                        experimentation team in the Alexa organization. I worked
+                        on high-velocity growth experiments, primarily to drive
+                        increased customer engagment across all Alexa surfaces.
+                        On my current team, I manage infrastructure that
+                        supports Alexa marketing iniatives and internal data
+                        pipelines. Over the past 3.5 years, I've learned to
+                        build serverless and asyncronous software solutions
+                        using proprietary Java frameworks and the AWS CDK.
+                        Additionally, I've developed multiple features using
+                        React Native for both the Amazon Shopping and Alexa
+                        apps. I also designed an Alexa skill in Typescript from
+                        the ground up to support short-term experiments.
+                    </p>
+                </details>
                 <p>
-                    I build infrastructure for Alexa marketing and internal data
-                    pipelines, using Java and the AWS CDK for serverless,
-                    asynchronous services.
+                    Worked on Alexa Smart Home, building model evaluation
+                    pipelines and web apps for data labeling.
                 </p>
                 <p>
-                    My work has also included Alexa growth experiments, React
-                    Native features for the Amazon Shopping and Alexa apps, and
-                    a TypeScript Alexa skill.
+                    Developed and supported an evaluation MCP for running
+                    experiments with AI tools.
                 </p>
             </article>
             <details className="earlier-experience">

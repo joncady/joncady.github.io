@@ -10,3 +10,5 @@ Desktop interaction checks: earlier roles expand on click and collapse with Ente
 Source checks: navigation toggle and collapse IDs match; filters have associated labels; icon-only contact and map controls have accessible names; skip link targets the main landmark. Removed scroll parallax/blur/zoom and spinning map icons. CSS disables smooth scroll, transitions, and animation for reduced-motion preference; map navigation no longer marks its flight essential.
 
 Mobile layouts were visually inspected; full mobile touch and screen-reader testing has not been performed. The browser's extension-origin console error is unrelated to portfolio source. Existing bundle-size and lottie eval build warnings remain.
+
+The screenshots predate the appended Alexa Smart Home description and the restoration of the complete original Amazon background in an expandable block. All original Amazon description text is preserved verbatim (whitespace normalized), with the supplied Smart Home work appended. The text update passed build and lint; a fresh browser capture was deferred because native Chrome was in active use for another activity.
