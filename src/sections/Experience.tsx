@@ -9,7 +9,7 @@ const Experience = () => {
             date: ["Jan. 2019", "June 2020"],
             description: `I was a student developer on the Husky Tech team! We promote networking and career advancement to students at UW.
                 I work on developing our website and launching new features.`,
-            link: undefined,
+            link: "https://huskytech.org/#/",
             logo: "ht.png"
         },
         {

@@ -118,6 +118,7 @@ export const webDevProjects: Project[] = [
     {
         title: "FreShip",
         filters: ["Python", "Angular", "IBM Cloud"],
+        link: "https://www.zdnet.com/article/ibm-hackathon-winner-helps-fight-rash-of-wasted-food/",
         content: `Team FreShip won the IBM Food Waste Virtual Hackathon!`,
         tech: ["python", "angular"],
         src: "freship.png"
