@@ -50,7 +50,7 @@ test("labeled World Cup city and soccer sprite sheet", async ({
         })
     );
     await page.goto("/__world-cup-review");
-    await expect(page.locator("img")).toHaveCount(5);
+    await expect(page.locator("img")).toHaveCount(6);
     await expect
         .poll(() =>
             page

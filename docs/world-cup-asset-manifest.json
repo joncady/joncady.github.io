@@ -63,5 +63,18 @@
     "bytes": 601619,
     "sha256": "506aeb646357c02f4f795cad53b599ddf00893cd4ef4c0f3a622f0e9ef8182ff",
     "alpha": "RGBA, transparent corner verified"
+  },
+  {
+    "id": "seattle-ball-usa-belgium",
+    "prompt": "Use case: stylized-concept. Asset type: ONE original transparent pixel sprite for a 3D travel map. Input image is a STYLE REFERENCE only; do not edit or duplicate its subject. Match crisp cheerful 16-bit inventory art: 96 by 96 logical pixel grid with square stepped pixels, charcoal outline, limited glacier teal/muted blue/ivory/coral/deep slate/purple palette with national-color accents. No antialiasing, gradients, smooth vector curves, photorealism, text, logos or watermark. One compact centered composition about 70% of a square frame with generous TRUE transparent margins; three-quarter view, strong silhouette, legible at 60px. Keep two main motifs at most, soccer item dominant and city cue secondary; no scene collage. Subject: A large clearly recognizable ivory-and-charcoal soccer ball with restrained red/white/blue panels for USA and black/yellow/red accent panels for Belgium, resting beside one small Seattle waterfront ferry with a teal hull and ivory deck. Ball dominates the composition; ferry is the compact Seattle cue. This is a distinct USA\u2013Belgium Seattle game sprite: no Space Needle, gloves, whistle, trophy, goal, cleat or corner flag. True transparent background.",
+    "url": "/assets/travel-log/world-cup-v1/seattle-ball-usa-belgium.png",
+    "generator": "built-in imagegen",
+    "generated": "2026-10-11",
+    "styleReference": "seattle-space-needle.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 861766,
+    "sha256": "bd06ea32052ab7b750a03c26cd5ff1e232c19382d3ddf39c8c101ee604c4cecc",
+    "alpha": "RGBA, transparent corner verified"
   }
 ]

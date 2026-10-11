@@ -14,8 +14,8 @@ test("every marker has a distinct, real transparent PNG with recorded provenance
             (visit) => visit.img
         )
     ];
-    expect(assets).toHaveLength(30);
-    expect(new Set(assets).size).toBe(30);
+    expect(assets).toHaveLength(31);
+    expect(new Set(assets).size).toBe(31);
     const manifest = [
         ...JSON.parse(
             readFileSync("docs/travel-pixel-asset-manifest.json", "utf8")
@@ -29,7 +29,7 @@ test("every marker has a distinct, real transparent PNG with recorded provenance
         sha256: string;
         generator: string;
     }>;
-    expect(new Set(manifest.map((item) => item.sha256)).size).toBe(30);
+    expect(new Set(manifest.map((item) => item.sha256)).size).toBe(31);
     let total = 0;
     for (const url of assets) {
         expect(url).toMatch(

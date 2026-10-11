@@ -30,9 +30,7 @@ test("timeline interaction video with live map", async ({ page }, testInfo) => {
         if (id === "world-cup-2026") {
             for (const visit of [
                 "dallas-japan-sweden-2026",
-                "seattle-belgium-senegal-2026",
-                "miami-norway-england-2026",
-                "seattle-fan-experience-2026"
+                "seattle-usa-belgium-2026"
             ]) {
                 await page.locator(`[data-visit-id="${visit}"]`).click();
                 await expect(map).toHaveAttribute("data-selected-visit", visit);

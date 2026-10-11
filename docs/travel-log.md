@@ -59,9 +59,9 @@ Physical-touch hardware, screen-reader interaction, and handset GPU/frame-rate/t
 
 ## Combined timeline and World Cup review
 
-The timeline uses the portfolio's neutral gray and charcoal controls, with the existing purple focus indicator. The approved World Cup game panel and five city/soccer sprites are included in the same draft; see [World Cup review](world-cup.md).
+The timeline uses the portfolio's neutral gray and charcoal controls, with the existing purple focus indicator. The approved World Cup game panel and six city/soccer sprites are included in the same draft; see [World Cup review](world-cup.md).
 
-[Interaction video](review-evidence/travel-timeline-interaction.webm) demonstrates trip selection, World Cup game and fan selection, map movement, earlier destinations, previous-trip navigation, and summary toggling on the real basemap.
+[Interaction video](review-evidence/travel-timeline-interaction.webm) demonstrates trip selection, World Cup game selection, map movement, earlier destinations, previous-trip navigation, and summary toggling on the real basemap.
 
 To regenerate the opt-in recording:
 

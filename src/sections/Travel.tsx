@@ -531,7 +531,7 @@ const Travel = () => {
                                 >
                                     <h5>World Cup visits</h5>
                                     <p>
-                                        Five games and a Seattle fan experience.
+                                        Six attended games across four cities.
                                     </p>
                                     <div className="world-cup-game-buttons">
                                         {selected.visits.map((visit) => (

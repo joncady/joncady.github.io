@@ -4,7 +4,7 @@ test.skip(
     "Run with LIVE_E2E=1 for real World Cup basemap previews"
 );
 for (const [width, visit] of [
-    [1440, "dallas-japan-sweden-2026"],
+    [1440, "seattle-usa-belgium-2026"],
     [390, "miami-norway-england-2026"]
 ] as const) {
     test(`World Cup real map and selected game at ${width}px`, async ({

@@ -32,8 +32,8 @@ const pixel = (id: string) => `/assets/travel-log/pixel-v1/${id}.png`;
 
 // These rounded geographic anchors represent broad regions, not personal
 // photo coordinates, exact visited locations, or a recorded route.
-// Match identities are correlated with confirmed stadium visits. The July 6
-// event is a fan experience, with no claim of stadium attendance or match identity.
+// Match identities are confirmed stadium visits. July 6 USA–Belgium attendance
+// was explicitly confirmed by the portfolio owner.
 export const WORLD_CUP_VISITS: WorldCupVisit[] = [
     {
         id: "seattle-belgium-egypt-2026",
@@ -72,10 +72,11 @@ export const WORLD_CUP_VISITS: WorldCupVisit[] = [
         markerName: "Seattle"
     },
     {
-        id: "seattle-fan-experience-2026",
-        kind: "fan-experience",
+        id: "seattle-usa-belgium-2026",
+        img: "/assets/travel-log/world-cup-v1/seattle-ball-usa-belgium.png",
+        kind: "game",
         date: "2026-07-06",
-        title: "Seattle fan experience",
+        title: "USA–Belgium",
         city: "Seattle",
         markerName: "Seattle"
     },

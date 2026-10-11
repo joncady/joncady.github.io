@@ -1,7 +1,7 @@
 import { test, expect, openTravel, map } from "./fixtures";
 import { TRAVEL_STOPS, WORLD_CUP_VISITS } from "../../src/sections/travelData";
 
-test("each game selects its own sprite and city; fan visit remains distinct", async ({
+test("all six attended games select distinct sprites and the correct city", async ({
     page
 }) => {
     const requested = new Set<string>();
@@ -52,16 +52,23 @@ test("each game selects its own sprite and city; fan visit remains distinct", as
             visit.title
         );
     }
-    const fan = WORLD_CUP_VISITS.find(
-        (visit) => visit.kind === "fan-experience"
+    const usaBelgium = WORLD_CUP_VISITS.find(
+        (visit) => visit.id === "seattle-usa-belgium-2026"
     )!;
-    await page.locator(`[data-visit-id="${fan.id}"]`).click();
+    expect(usaBelgium.kind).toBe("game");
+    expect(usaBelgium.date).toBe("2026-07-06");
+    await page.locator(`[data-visit-id="${usaBelgium.id}"]`).click();
     await expect(page.locator(".world-cup-selected")).toContainText(
-        "Selected fan experience"
+        "Selected game: USA–Belgium"
     );
-    await expect(map(page)).toHaveAttribute("data-selected-sprite", "");
+    await expect(page.locator(".world-cup-visits")).toContainText(
+        "Six attended games across four cities."
+    );
+    await expect(
+        page.locator('[data-visit-id="seattle-usa-belgium-2026"] time')
+    ).toHaveAttribute("dateTime", "2026-07-06");
     await expect(page.locator(".world-cup-visits")).not.toContainText(
-        "USA–Belgium"
+        "Fan experience"
     );
 });
 
