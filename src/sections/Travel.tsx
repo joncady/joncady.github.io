@@ -5,7 +5,7 @@ import Map from "react-map-gl/maplibre";
 import { Canvas } from "react-three-map/maplibre";
 import { Coordinates } from "react-three-map";
 import { DoubleSide, Mesh } from "three";
-import { useFrame, Vector3 } from "@react-three/fiber";
+import { Vector3 } from "@react-three/fiber";
 import { Button } from "react-bootstrap";
 import { Map as MapGl } from "maplibre-gl";
 import { Place, PLACES } from "./Helpers";
@@ -19,7 +19,6 @@ const Travel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mapRef = useRef<any>(null);
-    console.log(mapRef);
 
     const Controls = ({ map }: { map?: MapGl }) => {
         const onClick = (direction: string) => {
@@ -48,7 +47,7 @@ const Travel = () => {
                 curve: 1, // change the speed at which it zooms out
 
                 // this animation is considered essential with respect to prefers-reduced-motion
-                essential: true
+                essential: false
             });
             setCurrentIndex(newIndex);
         };
@@ -64,15 +63,25 @@ const Travel = () => {
             >
                 <Button
                     variant="primary"
+                    aria-label="Previous destination"
                     onClick={() => onClick("backward")}
-                    style={{ width: 200, height: 50, marginRight: 5 }}
+                    style={{
+                        width: "min(40%, 200px)",
+                        height: 50,
+                        marginRight: 5
+                    }}
                 >
                     <i className="fa fa-arrow-left"></i>
                 </Button>
                 <Button
                     variant="primary"
+                    aria-label="Next destination"
                     onClick={() => onClick("forward")}
-                    style={{ width: 200, height: 50, marginLeft: 5 }}
+                    style={{
+                        width: "min(40%, 200px)",
+                        height: 50,
+                        marginLeft: 5
+                    }}
                 >
                     <i className="fa fa-arrow-right"></i>
                 </Button>
@@ -83,11 +92,6 @@ const Travel = () => {
     const Box = (props: { position: Vector3; img: string }) => {
         // This reference gives us direct access to the THREE.Mesh object
         const ref = useRef<Mesh>(null);
-        // Subscribe this component to the render-loop, rotate the mesh every frame
-        useFrame((_state, delta) => {
-            if (!ref.current) return;
-            ref.current.rotation.y += delta;
-        });
         return (
             <mesh {...props} ref={ref}>
                 <Image url={props.img} transparent side={DoubleSide} />
@@ -144,7 +148,11 @@ const Travel = () => {
                     mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
                 >
                     <Canvas latitude={51} longitude={0}>
-                        {PLACES.map((place) => renderPlace(place))}
+                        {PLACES.map((place) => (
+                            <React.Fragment key={place.name}>
+                                {renderPlace(place)}
+                            </React.Fragment>
+                        ))}
                     </Canvas>
                 </Map>
                 <Controls map={mapRef.current?.getMap()} />

@@ -546,3 +546,40 @@ div.contact-container:hover {
         opacity: 1;
     }
 }
+/* Reading and navigation stay still; only map navigation is user initiated. */
+.content { max-width: 1200px; }
+#experience { max-width: 860px; margin: 0 auto; padding: 2rem 1rem; }
+.current-role { margin-top: 1.5rem; padding: 1.5rem; border: 1px solid #dee2e6; border-radius: 12px; }
+.role-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+#experience h3 { text-align: left; padding-top: 0; font-size: 1.25rem; line-height: 1.4; }
+.role-meta { color: #5b6168; font-size: .9rem; }
+.experience-logo { width: 56px; height: auto; flex-shrink: 0; }
+.current-role p:last-child { margin-bottom: 0; }
+.earlier-experience { margin-top: 1rem; }
+.earlier-experience summary { cursor: pointer; padding: 1rem 0; font-weight: bold; }
+.earlier-roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; padding-top: 1rem; }
+.earlier-roles article { border-top: 1px solid #dee2e6; padding-top: 1rem; }
+.boxes { position: relative; padding: 0; overflow: hidden; cursor: pointer; }
+.project-label { margin-top: auto; width: 100%; padding: .6rem; background: #171b20; color: #fff; font-size: .85rem; }
+.boxes:hover, div.contact-container:hover { transform: none; }
+.boxes:hover .project-label { background: #4b2e83; }
+:focus-visible { outline: 3px solid #6554c0; outline-offset: 4px; }
+.skip-link { position: absolute; left: 1rem; top: -100px; z-index: 2000; padding: .75rem 1rem; background: white; color: #222; }
+.skip-link:focus { top: 1rem; }
+#modal-pic { height: auto; }
+@media (max-width: 599px) {
+    .earlier-roles { grid-template-columns: 1fr; }
+    .current-role { padding: 1rem; }
+    .experience-logo { width: 40px; }
+    #experience h3 { font-size: 1.1rem; }
+    #modal-pic { width: 100%; }
+    .project-label { font-size: .75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+.portfolio-hero { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; background-image: linear-gradient(#0006, #0006), url(/assets/seattle4.jpg); }
+.portfolio-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); border-radius: 0; margin: 0; padding: 0; }
+.portfolio-hero p { margin: .75rem 0 0; font-size: 1.1rem; text-shadow: 0 1px 3px #222; }
