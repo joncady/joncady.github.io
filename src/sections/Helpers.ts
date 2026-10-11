@@ -1,13 +1,22 @@
 export interface Project {
     title: string;
     filters: string[];
-    link: string;
+    link?: string;
     content: string;
     tech: string[];
     src: string;
 }
 
 export const webDevProjects: Project[] = [
+    {
+        title: "Raspberry Pi Transit Display",
+        filters: ["React", "Python", "Raspberry Pi"],
+        link: "https://github.com/joncady/OneBusAwayTransitTimesForPi",
+        content:
+            "I built a React and Python app that displays live transit arrivals on a Raspberry Pi touchscreen. Scheduled wake times and idle polling controls keep the display active when needed.",
+        tech: ["react", "python"],
+        src: "transit.jpg"
+    },
     {
         title: "Yelp Business App",
         filters: ["R, Shiny", "Yelp API"],
@@ -29,7 +38,7 @@ export const webDevProjects: Project[] = [
     {
         title: "FeelingFeed",
         filters: ["JavaScript", "Bootstrap", "PHP"],
-        link: "https://students.washington.edu/joncady/projects/dubhacks/landing.html",
+        link: "https://github.com/joncady/dubhacks18",
         content:
             "I developed a full, dynamic website with my teammates at a Hackathon.",
         tech: ["php", "js", "html5"],
@@ -38,7 +47,6 @@ export const webDevProjects: Project[] = [
     {
         title: "SpotiViz",
         filters: ["React", "Node"],
-        link: "https://info340b-a18.github.io/react-project-music-viz/",
         content:
             "I constructed a React app with classmates that visualizes an album timeline using the Spotify API.",
         tech: ["react", "node-js"],
@@ -56,7 +64,7 @@ export const webDevProjects: Project[] = [
     {
         title: "Fire Emblem Adventures",
         filters: ["JavaScript", "HTML", "CSS"],
-        link: "https://students.washington.edu/joncady/projects/feadventures/",
+        link: "https://joncady.github.io/feadventures/",
         content:
             "I designed a 2D game using only vanilla JavaScript, HTML, and CSS. I created classes to encapsulate behavior for players, enemies, and obstacles.",
         tech: ["js", "html5", "css3"],
@@ -65,7 +73,7 @@ export const webDevProjects: Project[] = [
     {
         title: "Satellite Smash Brand Website",
         filters: ["React", "Firebase"],
-        link: "http://satellitesmash.com",
+        link: "https://satellitesmash.com/",
         content:
             "I developed a React app that includes a player database, as well as a news feed. I used client rounting to emulate a multi-page site.",
         tech: ["react"],
@@ -83,7 +91,7 @@ export const webDevProjects: Project[] = [
     {
         title: "Draw with Me ()",
         filters: ["React", "Socket IO", "Node"],
-        link: "https://joncady.me/draw-with-me",
+        link: "https://joncady.github.io/draw-with-me/",
         content:
             "I designed an interactive drawing app that allows friends to draw live over the internet and save their pictures!",
         tech: ["react", "node-js"],
@@ -110,8 +118,8 @@ export const webDevProjects: Project[] = [
     {
         title: "FreShip",
         filters: ["Python", "Angular", "IBM Cloud"],
-        link: "https://docs.google.com/presentation/d/1bpSRR3cq6qomSm5p7QTX45gt_1ppyESKYYIGhIC-v-c/edit?usp=sharing",
-        content: `Team FreShip won the IBM Food Waste Virtual Hackathon! Take a look at these slides to see our solution.`,
+        link: "https://www.zdnet.com/article/ibm-hackathon-winner-helps-fight-rash-of-wasted-food/",
+        content: `Team FreShip won the IBM Food Waste Virtual Hackathon!`,
         tech: ["python", "angular"],
         src: "freship.png"
     },

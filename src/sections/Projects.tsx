@@ -6,7 +6,7 @@ const Projects = () => {
     const [modal, setModal] = useState(false);
     const [title, setTitle] = useState("");
     const [src, setSrc] = useState("");
-    const [link, setLink] = useState("");
+    const [link, setLink] = useState<string | undefined>("");
     const [tech, setTech] = useState<string[]>([]);
     const [content, setContent] = useState("");
     const [webCurrentFilter, setWebCurrentFilter] = useState("");
@@ -40,8 +40,33 @@ const Projects = () => {
                     <Col key={`item${i}`} xs={6} md={3}>
                         <div
                             className="boxes rounded"
+                            role="button"
+                            tabIndex={0}
+                            aria-label={project.title}
+                            onKeyDown={(event) => {
+                                if (
+                                    event.key === "Enter" ||
+                                    event.key === " "
+                                ) {
+                                    event.preventDefault();
+                                    setModalState(
+                                        project.content,
+                                        project.link,
+                                        project.src,
+                                        project.tech,
+                                        project.title
+                                    );
+                                }
+                            }}
                             style={{
-                                backgroundImage: `url(./assets/${project.src})`
+                                backgroundImage: `url(./assets/${project.src})`,
+                                ...(project.src === "transit.jpg"
+                                    ? {
+                                          backgroundSize: "contain",
+                                          backgroundRepeat: "no-repeat",
+                                          backgroundColor: "#101214"
+                                      }
+                                    : {})
                             }}
                             onClick={() =>
                                 setModalState(
@@ -68,7 +93,7 @@ const Projects = () => {
 
     const setModalState = (
         content: string,
-        link: string,
+        link: string | undefined,
         src: string,
         tech: string[],
         title: string
@@ -122,6 +147,7 @@ const Projects = () => {
                                     selectOnChange(target.value ?? "", "webDev")
                                 }
                             >
+                                <option value="">ALL PROJECTS</option>
                                 {webDevOptions}
                             </Form.Select>
                         </Form.Group>
@@ -158,6 +184,7 @@ const Projects = () => {
                                     )
                                 }
                             >
+                                <option value="">ALL PROJECTS</option>
                                 {mobileDevOptions}
                             </Form.Select>
                         </Form.Group>
@@ -179,7 +206,7 @@ const Projects = () => {
                         <div id="rounded">
                             <img
                                 id="modal-pic"
-                                alt={src}
+                                alt={title}
                                 src={`/assets/${src}`}
                             ></img>
                         </div>
@@ -194,9 +221,15 @@ const Projects = () => {
                                 );
                             })}
                         <p style={{ marginTop: "0.5rem" }}>{content}</p>
-                        {/* @ts-expect-error */}
-                        <Button href={link} target="_blank" color="#343a40">
-                            View Project
+                        {/* @ts-expect-error -- React Bootstrap Button types conflict with Three.js JSX extensions. */}
+                        <Button
+                            href={link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="dark"
+                            disabled={!link}
+                        >
+                            {link ? "View Project" : "Project link unavailable"}
                         </Button>
                     </div>
                 </Modal>
