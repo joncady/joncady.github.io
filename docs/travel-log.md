@@ -16,6 +16,14 @@ All 25 PNGs in `public/assets/travel-log/pixel-v1` have unique filenames and SHA
 
 The sheet and screenshots preserve the approved review state; local-draft wording shown in that evidence is removed from the prepared public UI.
 
+### Adding a future trip or sprite
+
+1. Choose a recognizable subject that differs from the existing set; review the contact sheet and approve the subject before generation. Use an existing manifest prompt and reference sprites as the style guide: crisp 96 × 96 logical pixels, stepped charcoal outline, restrained teal/blue/ivory/coral/purple palette, centered three-quarter view occupying about 70% of the frame, true transparent margins, no text/logos/gradients, legible at 60px. Change only the subject and its natural colors.
+2. Generate one transparent PNG per location. Match the current 1254 × 1254 RGBA canvas and apparent subject scale; review beside existing sprites and in desktop/mobile map views before publication. Preserve the original file and embedded provenance rather than silently resizing or recompressing it.
+3. Save under `public/assets/travel-log/pixel-v1/<region>-<subject>.png` using a unique lowercase hyphenated name. Add a `RECENT_TRIPS` entry in `src/sections/travelData.ts` with a unique trip ID, approved public title/year/regions, `pixel("<region>-<subject>")` per marker, broad rounded latitude/longitude, and camera `center` in longitude/latitude order plus zoom. For a legacy destination, update its existing icon mapping in the same file. Do not use private photo coordinates or exact itineraries.
+4. Append the exact final prompt, subject/label, URL, actual dimensions, bytes, SHA-256, generator, date, and alpha verification to `docs/travel-pixel-asset-manifest.json`. Keep hashes unique; check alpha and provenance. Update the labeled contact sheet and intentionally revise count/budget assertions in `tests/e2e/assets.spec.ts` and trip expectations when the set grows.
+5. Run `npm run check`, then the live smoke command below. Review the new marker selection, camera, summary, motion settings, missing-texture behavior, and both viewport layouts. Use `ASSET_REVIEW=1 npm run test:e2e -- tests/e2e/review.spec.ts --project=desktop-chromium` to capture the updated sheet after updating its HTML. Obtain visual approval before publishing new assets.
+
 ### Bounded compression assessment
 
 Before: 23,702,481 bytes (22.60 MiB). After: 23,702,481 bytes. No files were recompressed or visually altered, and all existing whole-file hashes remain unchanged.
