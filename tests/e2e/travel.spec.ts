@@ -11,9 +11,7 @@ test("all trips synchronize selector, summary, regions, actual camera", async ({
         .check();
     await expect(map(page)).toHaveAttribute("data-map-ready", "true");
     for (const [index, stop] of TRAVEL_STOPS.entries()) {
-        await page
-            .getByRole("combobox", { name: "Choose a trip", exact: true })
-            .selectOption(String(index));
+        await page.locator(`[data-trip-index="${String(index)}"]`).click();
         await expect(page.locator("#travel-summary-heading")).toHaveText(
             stop.title
         );
@@ -43,14 +41,17 @@ test("keyboard next/previous wrap; Escape closes, restores focus and Enter reope
         .getByRole("button", { name: "Previous trip", exact: true })
         .press("Enter");
     await expect(
-        page.getByRole("combobox", { name: "Choose a trip", exact: true })
-    ).toHaveValue(String(TRAVEL_STOPS.length - 1));
+        page.locator(
+            `[data-trip-index="${String(TRAVEL_STOPS.findIndex((stop) => stop.title === "Tokyo"))}"]`
+        )
+    ).toHaveAttribute("aria-current", "true");
     await page
         .getByRole("button", { name: "Next trip", exact: true })
         .press("Enter");
-    await expect(
-        page.getByRole("combobox", { name: "Choose a trip", exact: true })
-    ).toHaveValue("0");
+    await expect(page.locator('[data-trip-index="0"]')).toHaveAttribute(
+        "aria-current",
+        "true"
+    );
     await page
         .getByRole("button", { name: "Close trip summary", exact: true })
         .press("Escape");
@@ -68,9 +69,7 @@ test("location controls move the actual camera without changing selected trip", 
     page
 }) => {
     await openTravel(page);
-    await page
-        .getByRole("combobox", { name: "Choose a trip", exact: true })
-        .selectOption("1");
+    await page.locator('[data-trip-index="1"]').click();
     await expect(map(page)).toHaveAttribute("data-map-ready", "true");
     await page.getByRole("button", { name: "View Miami", exact: true }).click();
     await expect
@@ -120,9 +119,7 @@ test("responsive map, summary, controls and back-to-top do not overlap", async (
     await page
         .getByRole("checkbox", { name: "Reduce motion", exact: true })
         .check();
-    await page
-        .getByRole("combobox", { name: "Choose a trip", exact: true })
-        .selectOption("15");
+    await page.locator('[data-trip-index="15"]').click();
     await expect(page.locator(".back-to-top")).toHaveCount(0);
     expect(
         await page.evaluate(
@@ -151,7 +148,7 @@ test("responsive map, summary, controls and back-to-top do not overlap", async (
 test("blocked map resources retain trip controls and a visible error status", async ({
     page
 }) => {
-    await page.route("**/positron-gl-style/style.json", (route) =>
+    await page.route("**/voyager-gl-style/style.json", (route) =>
         route.abort()
     );
     await openTravel(page);
@@ -204,9 +201,7 @@ test("missing floating textures fall back without losing the portfolio", async (
         return route.fulfill({ status: 404, body: "missing fixture" });
     });
     await openTravel(page);
-    await page
-        .getByRole("combobox", { name: "Choose a trip", exact: true })
-        .selectOption("4");
+    await page.locator('[data-trip-index="4"]').click();
     await expect(map(page)).toHaveAttribute("data-map-ready", "true");
     await expect(page.locator("#travel-summary-heading")).toHaveText("Japan");
     await expect(page.locator("#travel canvas")).toHaveCount(1);
@@ -224,7 +219,7 @@ test("loading state stays usable until the map resources arrive", async ({
     const ready = new Promise<void>((resolve) => {
         release = resolve;
     });
-    await page.route("**/positron-gl-style/style.json", async (route) => {
+    await page.route("**/voyager-gl-style/style.json", async (route) => {
         await ready;
         await route.fulfill({
             json: {
@@ -268,9 +263,7 @@ test("a real unselected 3D mesh click updates trip, camera and summary", async (
     await page
         .getByRole("checkbox", { name: "Reduce motion", exact: true })
         .check();
-    await page
-        .getByRole("combobox", { name: "Choose a trip", exact: true })
-        .selectOption("15");
+    await page.locator('[data-trip-index="15"]').click();
     await expect(map(page)).toHaveAttribute("data-map-ready", "true");
     await expect(map(page)).toHaveAttribute("data-map-idle", "true");
     await map(page).scrollIntoViewIfNeeded();
@@ -279,9 +272,10 @@ test("a real unselected 3D mesh click updates trip, camera and summary", async (
         latitude: 42
     });
     await page.mouse.click(point.x, point.y);
-    await expect(
-        page.getByRole("combobox", { name: "Choose a trip", exact: true })
-    ).toHaveValue("2");
+    await expect(page.locator('[data-trip-index="2"]')).toHaveAttribute(
+        "aria-current",
+        "true"
+    );
     await expect(page.locator("#travel-summary-heading")).toHaveText(
         "Coast-to-coast train trip"
     );
@@ -292,4 +286,46 @@ test("a real unselected 3D mesh click updates trip, camera and summary", async (
         )
         .toBeCloseTo(-96, 3);
     await expect(page.locator("#travel-summary")).toBeVisible();
+});
+
+test("timeline combines all years, scrolls horizontally and supports arrow/Home/End selection", async ({
+    page
+}) => {
+    await openTravel(page);
+    await page
+        .getByRole("checkbox", { name: "Reduce motion", exact: true })
+        .check();
+    const timeline = page.getByRole("navigation", { name: "Trip timeline" });
+    const buttons = timeline.getByRole("button");
+    await expect(buttons).toHaveCount(TRAVEL_STOPS.length);
+    await expect(
+        page.getByRole("combobox", { name: "Choose a trip" })
+    ).toHaveCount(0);
+    const labels = await buttons.evaluateAll((nodes) =>
+        nodes.map((node) => node.getAttribute("aria-label")!)
+    );
+    const years = labels.map((label) => Number(label.split(" · ").pop()));
+    expect(years).toEqual([...years].sort((a, b) => b - a));
+    expect(labels.indexOf("Chicago · 2024")).toBeLessThan(
+        labels.indexOf("United Kingdom · 2023")
+    );
+    await buttons.first().focus();
+    await buttons.first().press("End");
+    await expect(buttons.last()).toBeFocused();
+    await expect(buttons.last()).toHaveAttribute("aria-current", "true");
+    await expect(
+        buttons.last().locator("..").locator(".travel-timeline-year")
+    ).toHaveText("2022");
+    await expect(map(page)).toHaveAttribute("data-selected-trip", "tokyo-2022");
+    expect(await timeline.evaluate((node) => node.scrollLeft)).toBeGreaterThan(
+        0
+    );
+    await buttons.last().press("Home");
+    await expect(buttons.first()).toBeFocused();
+    await buttons.first().press("ArrowRight");
+    await expect(buttons.nth(1)).toBeFocused();
+    await expect(map(page)).toHaveAttribute(
+        "data-selected-trip",
+        "world-cup-2026"
+    );
 });

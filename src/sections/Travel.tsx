@@ -138,6 +138,27 @@ const Travel = () => {
     const [instantCamera, setInstantCamera] = useState(false);
     const mapRef = useRef<MapRef>(null);
     const summaryToggle = useRef<HTMLButtonElement>(null);
+    const timelineRef = useRef<HTMLDivElement>(null);
+    const timelineOrder = TRAVEL_STOPS.map((_, index) => index).sort(
+        (a, b) => Number(TRAVEL_STOPS[b].year) - Number(TRAVEL_STOPS[a].year)
+    );
+    useEffect(() => {
+        const container = timelineRef.current;
+        const button = container?.querySelector<HTMLButtonElement>(
+            `[data-trip-index="${selectedIndex}"]`
+        );
+        if (!container || !button) return;
+        const bounds = button.getBoundingClientRect();
+        const viewport = container.getBoundingClientRect();
+        container.scrollTo({
+            left:
+                container.scrollLeft +
+                bounds.left -
+                viewport.left -
+                (viewport.width - bounds.width) / 2,
+            behavior: reduceMotion || instantCamera ? "auto" : "smooth"
+        });
+    }, [selectedIndex, reduceMotion, instantCamera]);
     const selected = TRAVEL_STOPS[selectedIndex];
     const [viewState, setViewState] = useState({
         longitude: selected.center[0],
@@ -176,7 +197,12 @@ const Travel = () => {
     const move = (direction: number) =>
         setSelectedIndex(
             (index) =>
-                (index + direction + TRAVEL_STOPS.length) % TRAVEL_STOPS.length
+                timelineOrder[
+                    (timelineOrder.indexOf(index) +
+                        direction +
+                        timelineOrder.length) %
+                        timelineOrder.length
+                ]
         );
     const closeSummary = () => {
         setSummaryOpen(false);
@@ -203,37 +229,86 @@ const Travel = () => {
                 </div>
             </div>
             <div className="travel-toolbar">
-                <label htmlFor="travel-trip">
-                    Choose a trip
-                    <select
-                        id="travel-trip"
-                        value={selectedIndex}
-                        onChange={(event) =>
-                            setSelectedIndex(Number(event.target.value))
-                        }
-                    >
-                        <optgroup label="Trips">
-                            {TRAVEL_STOPS.map(
-                                (stop, index) =>
-                                    !stop.earlier && (
-                                        <option key={stop.id} value={index}>
-                                            {stop.title} · {stop.year}
-                                        </option>
-                                    )
-                            )}
-                        </optgroup>
-                        <optgroup label="Earlier destinations">
-                            {TRAVEL_STOPS.map(
-                                (stop, index) =>
-                                    stop.earlier && (
-                                        <option key={stop.id} value={index}>
-                                            {stop.title} · {stop.year}
-                                        </option>
-                                    )
-                            )}
-                        </optgroup>
-                    </select>
-                </label>
+                <div
+                    className="travel-timeline"
+                    ref={timelineRef}
+                    aria-label="Trip timeline"
+                    role="navigation"
+                >
+                    {timelineOrder.map((index, position) => {
+                        const stop = TRAVEL_STOPS[index];
+                        const showYear =
+                            position === 0 ||
+                            stop.year !==
+                                TRAVEL_STOPS[timelineOrder[position - 1]].year;
+                        return (
+                            <div
+                                className="travel-timeline-entry"
+                                key={stop.id}
+                            >
+                                <span
+                                    className="travel-timeline-year"
+                                    aria-hidden="true"
+                                >
+                                    {showYear || index === selectedIndex
+                                        ? stop.year
+                                        : "\u00a0"}
+                                </span>
+                                <button
+                                    type="button"
+                                    data-trip-index={index}
+                                    aria-label={`${stop.title} · ${stop.year}`}
+                                    aria-current={
+                                        index === selectedIndex
+                                            ? "true"
+                                            : undefined
+                                    }
+                                    onClick={() => setSelectedIndex(index)}
+                                    onKeyDown={(event) => {
+                                        const direction =
+                                            event.key === "ArrowRight"
+                                                ? 1
+                                                : event.key === "ArrowLeft"
+                                                  ? -1
+                                                  : 0;
+                                        if (
+                                            !direction &&
+                                            event.key !== "Home" &&
+                                            event.key !== "End"
+                                        )
+                                            return;
+                                        event.preventDefault();
+                                        const next =
+                                            event.key === "Home"
+                                                ? timelineOrder[0]
+                                                : event.key === "End"
+                                                  ? timelineOrder[
+                                                        timelineOrder.length - 1
+                                                    ]
+                                                  : timelineOrder[
+                                                        (position +
+                                                            direction +
+                                                            timelineOrder.length) %
+                                                            timelineOrder.length
+                                                    ];
+                                        setSelectedIndex(next);
+                                        timelineRef.current
+                                            ?.querySelector<HTMLButtonElement>(
+                                                `[data-trip-index="${next}"]`
+                                            )
+                                            ?.focus({ preventScroll: true });
+                                    }}
+                                >
+                                    <span
+                                        className="travel-timeline-dot"
+                                        aria-hidden="true"
+                                    />
+                                    {stop.title}
+                                </button>
+                            </div>
+                        );
+                    })}
+                </div>
                 <div className="travel-buttons">
                     <button
                         type="button"
@@ -308,7 +383,7 @@ const Travel = () => {
                                 maxPitch={65}
                                 cooperativeGestures
                                 antialias
-                                mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+                                mapStyle="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
                             >
                                 <NavigationControl
                                     position="top-left"
@@ -406,12 +481,7 @@ const Travel = () => {
                             </button>
                         </div>
                         <div aria-live="polite" aria-atomic="true">
-                            <p className="travel-year">
-                                {selected.year}
-                                {selected.earlier
-                                    ? " · Earlier destination"
-                                    : ""}
-                            </p>
+                            <p className="travel-year">{selected.year}</p>
                             <h4 id="travel-summary-heading">
                                 {selected.title}
                             </h4>
@@ -449,8 +519,8 @@ const Travel = () => {
                         </div>
                         <div className="travel-summary-footer">
                             <span>
-                                {selectedIndex + 1} of {TRAVEL_STOPS.length}{" "}
-                                entries
+                                {timelineOrder.indexOf(selectedIndex) + 1} of{" "}
+                                {TRAVEL_STOPS.length} entries
                             </span>
                         </div>
                     </aside>

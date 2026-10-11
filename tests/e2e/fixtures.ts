@@ -4,7 +4,7 @@ import { test as base, expect, Page } from "@playwright/test";
 export const test = base.extend({
     page: async ({ page }, use) => {
         await page.route("https://**/*", (route) => {
-            if (route.request().url().includes("positron-gl-style/style.json"))
+            if (route.request().url().includes("voyager-gl-style/style.json"))
                 return route.fulfill({
                     json: {
                         version: 8,
