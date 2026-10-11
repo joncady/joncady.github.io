@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Billboard, Text, useTexture } from "@react-three/drei";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useFrame } from "@react-three/fiber";
@@ -139,9 +139,14 @@ const Travel = () => {
     const mapRef = useRef<MapRef>(null);
     const summaryToggle = useRef<HTMLButtonElement>(null);
     const timelineRef = useRef<HTMLDivElement>(null);
-    const timelineOrder = TRAVEL_STOPS.map((_, index) => index).sort(
-        (a, b) => Number(TRAVEL_STOPS[b].year) - Number(TRAVEL_STOPS[a].year)
-    );
+    const [newestFirst, setNewestFirst] = useState(false);
+    const timelineOrder = useMemo(() => {
+        const order = TRAVEL_STOPS.map((_, index) => index).sort(
+            (a, b) =>
+                Number(TRAVEL_STOPS[b].year) - Number(TRAVEL_STOPS[a].year)
+        );
+        return newestFirst ? order : order.reverse();
+    }, [newestFirst]);
     useEffect(() => {
         const container = timelineRef.current;
         const button = container?.querySelector<HTMLButtonElement>(
@@ -158,7 +163,7 @@ const Travel = () => {
                 (viewport.width - bounds.width) / 2,
             behavior: reduceMotion || instantCamera ? "auto" : "smooth"
         });
-    }, [selectedIndex, reduceMotion, instantCamera]);
+    }, [selectedIndex, reduceMotion, instantCamera, timelineOrder]);
     const selected = TRAVEL_STOPS[selectedIndex];
     const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
     const selectedVisit = selected.visits?.find(
@@ -250,7 +255,49 @@ const Travel = () => {
                 </div>
             </div>
             <div className="travel-toolbar">
+                <div className="travel-timeline-order">
+                    <span aria-live="polite">
+                        {newestFirst ? "Newest first" : "Oldest first"}
+                    </span>
+                    <button
+                        type="button"
+                        aria-label={
+                            newestFirst
+                                ? "Show oldest trips first"
+                                : "Show newest trips first"
+                        }
+                        title={
+                            newestFirst
+                                ? "Show oldest trips first"
+                                : "Show newest trips first"
+                        }
+                        aria-controls="trip-timeline"
+                        onClick={() => setNewestFirst((value) => !value)}
+                    >
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d={
+                                    newestFirst
+                                        ? "M7 4v16m-4-4 4 4 4-4"
+                                        : "M7 20V4m-4 4 4-4 4 4"
+                                }
+                            />
+                            <path d="M15 5h6M15 12h4M15 19h2" />
+                        </svg>
+                    </button>
+                </div>
                 <div
+                    id="trip-timeline"
                     className="travel-timeline"
                     ref={timelineRef}
                     aria-label="Trip timeline"
@@ -317,7 +364,7 @@ const Travel = () => {
                                             ?.querySelector<HTMLButtonElement>(
                                                 `[data-trip-index="${next}"]`
                                             )
-                                            ?.focus({ preventScroll: true });
+                                            ?.focus();
                                     }}
                                 >
                                     <span

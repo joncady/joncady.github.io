@@ -2,7 +2,7 @@
 
 The portfolio's existing MapLibre / React Three Fiber map now includes 17 selectable entries and 25 original pixel sprites. Approved newer entries cover Alaska, World Cup stadium trips, a coast-to-coast train trip, Catalina and the return journey, Japan, Roche Harbor, Singapore/Taiwan, and the United Kingdom. Entries use confirmed years and broad regions; no private photos, precise travel dates, album URLs, commute configuration, or route traces are published.
 
-Selecting a trip synchronizes its camera, year, regions, and summary. The horizontal timeline combines new trips and original destinations by year, newest first. Clicking a trip moves the camera and updates its summary; Arrow keys, Home, and End select timeline entries. The selected entry scrolls into view. Previous/Next follow the same chronological order. Clicking a 3D sprite selects its trip; summary location controls move the camera to that location. Desktop summaries sit beside the map, and mobile summaries sit below it. Keyboard and system/manual reduced-motion controls remain available; missing textures or unavailable map/WebGL resources retain trip controls and summaries.
+Selecting a trip synchronizes its camera, year, regions, and summary. The horizontal timeline combines new trips and original destinations by year, oldest first. The compact sort button reverses the entire timeline, including entries within each year, without changing the selected trip or game. Clicking a trip moves the camera and updates its summary; Arrow keys, Home, and End select timeline entries. The selected entry scrolls into view. Previous/Next follow the selected timeline direction. Clicking a 3D sprite selects its trip; summary location controls move the camera to that location. Desktop summaries sit beside the map, and mobile summaries sit below it. Keyboard and system/manual reduced-motion controls remain available; missing textures or unavailable map/WebGL resources retain trip controls and summaries.
 
 The floating items are geographically anchored PNG planes, with gentle motion and nearest texture filtering. Selected/visible locations load textures; the rest use lightweight pins until they enter the view. The scene remains a 3D map rather than a spherical globe. CARTO Voyager supplies blue water, green parks, and colored roads.
 
@@ -59,12 +59,14 @@ Physical-touch hardware, screen-reader interaction, and handset GPU/frame-rate/t
 
 ## Combined timeline and World Cup review
 
-The timeline uses the portfolio's neutral gray and charcoal controls, with the existing purple focus indicator. The approved World Cup game panel and six city/soccer sprites are included in the same draft; see [World Cup review](world-cup.md).
+The timeline uses the portfolio's neutral gray and charcoal controls, with the existing purple focus indicator. It opens oldest first; the 44px sort button reverses the full order, announces the direction, and retains the selected trip/game and camera. Previous/Next, arrow keys, Home/End, and the entry counter follow the displayed order, including when an endpoint was already selected. The approved World Cup game panel and six city/soccer sprites are included in the same draft; see [World Cup review](world-cup.md).
 
-[Interaction video](review-evidence/travel-timeline-interaction.webm) demonstrates trip selection, World Cup game selection, map movement, earlier destinations, previous-trip navigation, and summary toggling on the real basemap.
+[Interaction video](review-evidence/travel-timeline-interaction.webm) demonstrates trip selection, World Cup game selection, map movement, earlier destinations, previous-trip navigation, direction reversal without changing selection, and summary toggling on the real basemap.
 
 To regenerate the opt-in recording:
 
 ```sh
 INTERACTION_REVIEW=1 npm run test:e2e -- tests/e2e/timeline-video.spec.ts --project=desktop-chromium
 ```
+
+Direction-update validation: lint, application/test TypeScript, and production build passed. The full local browser run passed 62 cases; its one all-trips timeout passed in isolation with unchanged assertions and timeout. All direction cases passed across desktop Chromium, mobile Chromium, and WebKit. Seven live-map/gallery checks and the isolated 53-second interaction recording passed. The previously documented intermittent mesh-click issue remains unresolved.

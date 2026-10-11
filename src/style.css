@@ -839,3 +839,8 @@ div.contact-container:hover {
 @media (min-width: 901px) { .travel-summary.with-visits { max-height: 620px; overflow-y: auto; } }
 .world-cup-game-buttons button:hover { background: #ece4f5; color: #343a40; }
 .world-cup-game-buttons button[aria-pressed="true"]:hover { background: #5c398d; color: #fff; }
+
+.travel-timeline-order { display: flex; align-items: center; justify-content: flex-end; gap: .5rem; color: #6c757d; font-size: .875rem; }
+.travel-timeline-order button { display: grid; place-items: center; width: 44px; height: 44px; padding: .5rem; border: 1px solid #ced4da; border-radius: .375rem; background: #f8f9fa; color: #343a40; }
+.travel-timeline-order button:hover { background: #e9ecef; }
+.travel-timeline-order button:focus-visible { outline: 3px solid #7952b3; outline-offset: 2px; }

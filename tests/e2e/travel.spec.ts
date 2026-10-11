@@ -38,7 +38,7 @@ test("keyboard next/previous wrap; Escape closes, restores focus and Enter reope
 }) => {
     await openTravel(page);
     await page
-        .getByRole("button", { name: "Previous trip", exact: true })
+        .getByRole("button", { name: "Next trip", exact: true })
         .press("Enter");
     await expect(
         page.locator(
@@ -46,7 +46,7 @@ test("keyboard next/previous wrap; Escape closes, restores focus and Enter reope
         )
     ).toHaveAttribute("aria-current", "true");
     await page
-        .getByRole("button", { name: "Next trip", exact: true })
+        .getByRole("button", { name: "Previous trip", exact: true })
         .press("Enter");
     await expect(page.locator('[data-trip-index="0"]')).toHaveAttribute(
         "aria-current",
@@ -157,7 +157,9 @@ test("blocked map resources retain trip controls and a visible error status", as
             .getByRole("status")
             .filter({ hasText: "Some map resources could not load" })
     ).toBeVisible();
-    await page.getByRole("button", { name: "Next trip", exact: true }).click();
+    await page
+        .getByRole("button", { name: "Previous trip", exact: true })
+        .click();
     await expect(page.locator("#travel-summary-heading")).toHaveText(
         "World Cup stadium trips"
     );
@@ -183,7 +185,9 @@ test("WebGL unavailable retains the portfolio, summaries and navigation", async 
             .getByRole("status")
             .filter({ hasText: "Your browser cannot display the 3D map" })
     ).toBeVisible();
-    await page.getByRole("button", { name: "Next trip", exact: true }).click();
+    await page
+        .getByRole("button", { name: "Previous trip", exact: true })
+        .click();
     await expect(page.locator("#travel-summary-heading")).toHaveText(
         "World Cup stadium trips"
     );
@@ -206,7 +210,9 @@ test("missing floating textures fall back without losing the portfolio", async (
     await expect(page.locator("#travel-summary-heading")).toHaveText("Japan");
     await expect(page.locator("#travel canvas")).toHaveCount(1);
     await expect.poll(() => missingRequests).toBeGreaterThan(0);
-    await page.getByRole("button", { name: "Next trip", exact: true }).click();
+    await page
+        .getByRole("button", { name: "Previous trip", exact: true })
+        .click();
     await expect(page.locator("#travel-summary-heading")).toHaveText(
         "Roche Harbor"
     );
@@ -241,7 +247,7 @@ test("loading state stays usable until the map resources arrive", async ({
             page.getByRole("status").filter({ hasText: "Loading the 3D map" })
         ).toBeVisible();
         await page
-            .getByRole("button", { name: "Next trip", exact: true })
+            .getByRole("button", { name: "Previous trip", exact: true })
             .click();
         await expect(page.locator("#travel-summary-heading")).toHaveText(
             "World Cup stadium trips"
@@ -305,8 +311,8 @@ test("timeline combines all years, scrolls horizontally and supports arrow/Home/
         nodes.map((node) => node.getAttribute("aria-label")!)
     );
     const years = labels.map((label) => Number(label.split(" · ").pop()));
-    expect(years).toEqual([...years].sort((a, b) => b - a));
-    expect(labels.indexOf("Chicago · 2024")).toBeLessThan(
+    expect(years).toEqual([...years].sort((a, b) => a - b));
+    expect(labels.indexOf("Chicago · 2024")).toBeGreaterThan(
         labels.indexOf("United Kingdom · 2023")
     );
     await buttons.first().focus();
@@ -315,8 +321,11 @@ test("timeline combines all years, scrolls horizontally and supports arrow/Home/
     await expect(buttons.last()).toHaveAttribute("aria-current", "true");
     await expect(
         buttons.last().locator("..").locator(".travel-timeline-year")
-    ).toHaveText("2022");
-    await expect(map(page)).toHaveAttribute("data-selected-trip", "tokyo-2022");
+    ).toHaveText("2026");
+    await expect(map(page)).toHaveAttribute(
+        "data-selected-trip",
+        "alaska-2026"
+    );
     expect(await timeline.evaluate((node) => node.scrollLeft)).toBeGreaterThan(
         0
     );
@@ -326,6 +335,105 @@ test("timeline combines all years, scrolls horizontally and supports arrow/Home/
     await expect(buttons.nth(1)).toBeFocused();
     await expect(map(page)).toHaveAttribute(
         "data-selected-trip",
-        "world-cup-2026"
+        "sapporo-2022"
     );
+});
+
+test("sort direction retains selection and camera; navigation follows both directions", async ({
+    page
+}) => {
+    await openTravel(page);
+    await page
+        .getByRole("checkbox", { name: "Reduce motion", exact: true })
+        .check();
+    const timeline = page.getByRole("navigation", { name: "Trip timeline" });
+    const buttons = timeline.getByRole("button");
+    const oldestOrder = await buttons.evaluateAll((nodes) =>
+        nodes.map((node) => node.getAttribute("aria-label"))
+    );
+    await page
+        .getByRole("button", {
+            name: "World Cup stadium trips · 2026",
+            exact: true
+        })
+        .click();
+    await page.locator('[data-visit-id="dallas-japan-sweden-2026"]').click();
+    await expect(map(page)).toHaveAttribute("data-map-idle", "true");
+    const longitude = await map(page).getAttribute("data-camera-longitude");
+    for (const newest of [true, false, true, false]) {
+        const toggle = page.getByRole("button", {
+            name: newest
+                ? "Show newest trips first"
+                : "Show oldest trips first",
+            exact: true
+        });
+        const size = await toggle.boundingBox();
+        expect(size?.width).toBeGreaterThanOrEqual(44);
+        expect(size?.height).toBeGreaterThanOrEqual(44);
+        await toggle.press(newest ? "Enter" : "Space");
+        await expect(buttons).toHaveCount(17);
+        expect(
+            await buttons.evaluateAll((nodes) =>
+                nodes.map((node) => node.getAttribute("aria-label"))
+            )
+        ).toEqual(newest ? [...oldestOrder].reverse() : oldestOrder);
+        await expect(map(page)).toHaveAttribute(
+            "data-selected-visit",
+            "dallas-japan-sweden-2026"
+        );
+        await expect(map(page)).toHaveAttribute(
+            "data-camera-longitude",
+            longitude!
+        );
+        await expect(page.locator("#travel-summary-heading")).toHaveText(
+            "World Cup stadium trips"
+        );
+        await expect(page.locator("#travel-summary")).toContainText(
+            `${newest ? 2 : 16} of 17 entries`
+        );
+        await expect
+            .poll(async () =>
+                timeline.evaluate((node) => {
+                    const selected = node
+                        .querySelector('[aria-current="true"]')!
+                        .getBoundingClientRect();
+                    const visible = node.getBoundingClientRect();
+                    return (
+                        selected.left >= visible.left - 1 &&
+                        selected.right <= visible.right + 1
+                    );
+                })
+            )
+            .toBe(true);
+        await page
+            .getByRole("button", { name: "Next trip", exact: true })
+            .click();
+        await expect(map(page)).toHaveAttribute(
+            "data-selected-trip",
+            newest ? "train-2026" : "alaska-2026"
+        );
+        await page
+            .getByRole("button", { name: "Previous trip", exact: true })
+            .click();
+        await expect(map(page)).toHaveAttribute(
+            "data-selected-trip",
+            "world-cup-2026"
+        );
+    }
+    await page
+        .getByRole("button", { name: "Show newest trips first", exact: true })
+        .click();
+    await buttons.first().focus();
+    await buttons.first().press("End");
+    await expect(map(page)).toHaveAttribute("data-selected-trip", "tokyo-2022");
+    await buttons.last().press("ArrowRight");
+    await expect(buttons.first()).toBeFocused();
+    await expect(map(page)).toHaveAttribute(
+        "data-selected-trip",
+        "alaska-2026"
+    );
+    await buttons.first().press("ArrowLeft");
+    await expect(buttons.last()).toBeFocused();
+    await buttons.last().press("Home");
+    await expect(buttons.first()).toBeFocused();
 });
