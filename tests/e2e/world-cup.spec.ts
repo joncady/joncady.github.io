@@ -62,7 +62,7 @@ test("all six attended games select distinct sprites and the correct city", asyn
         "Selected game: USA–Belgium"
     );
     await expect(page.locator(".world-cup-visits")).toContainText(
-        "Six attended games across four cities."
+        "I attended six games in four cities."
     );
     await expect(
         page.locator('[data-visit-id="seattle-usa-belgium-2026"] time')
@@ -72,7 +72,7 @@ test("all six attended games select distinct sprites and the correct city", asyn
     );
 });
 
-test("game selection is keyboard usable and can recenter after map zoom", async ({
+test("game selection is keyboard usable and recenters on each selected visit", async ({
     page
 }) => {
     await openTravel(page);
@@ -89,12 +89,13 @@ test("game selection is keyboard usable and can recenter after map zoom", async 
     await page
         .locator('[data-visit-id="seattle-belgium-egypt-2026"]')
         .press("Enter");
-    await page.getByRole("button", { name: "Zoom in", exact: true }).click();
-    await expect
-        .poll(async () =>
-            Number(await map(page).getAttribute("data-camera-zoom"))
-        )
-        .toBeCloseTo(8, 2);
+    await page
+        .locator('[data-visit-id="dallas-japan-sweden-2026"]')
+        .press("Enter");
+    await expect(map(page)).toHaveAttribute(
+        "data-selected-visit",
+        "dallas-japan-sweden-2026"
+    );
     await game.press("Enter");
     await expect
         .poll(async () =>
@@ -105,12 +106,13 @@ test("game selection is keyboard usable and can recenter after map zoom", async 
         "data-selected-visit",
         "seattle-belgium-senegal-2026"
     );
-    await page.getByRole("button", { name: "Zoom in", exact: true }).click();
-    await expect
-        .poll(async () =>
-            Number(await map(page).getAttribute("data-camera-zoom"))
-        )
-        .toBeCloseTo(8, 2);
+    await page
+        .locator('[data-visit-id="dallas-japan-sweden-2026"]')
+        .press("Enter");
+    await expect(map(page)).toHaveAttribute(
+        "data-selected-visit",
+        "dallas-japan-sweden-2026"
+    );
     await game.press("Enter");
     await expect
         .poll(async () =>
@@ -127,7 +129,9 @@ test("game selection is keyboard usable and can recenter after map zoom", async 
             exact: true
         })
         .click();
-    await expect(game).toHaveAttribute("aria-pressed", "true");
+    await expect(
+        page.locator('[data-visit-id="seattle-belgium-egypt-2026"]')
+    ).toHaveAttribute("aria-pressed", "true");
 });
 
 test("missing game textures keep match selection and map usable", async ({

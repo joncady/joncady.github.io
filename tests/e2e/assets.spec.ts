@@ -73,7 +73,7 @@ test("initial view requests only visible/current icons and keeps large remote te
         body: JSON.stringify([...requested], null, 2),
         contentType: "application/json"
     });
-    await page.locator('[data-trip-index="15"]').click();
+    await page.locator('[data-trip-index="9"]').click();
     await expect
         .poll(() =>
             requested.has("/assets/travel-log/pixel-v1/chicago-cloud-gate.png")

@@ -12,8 +12,8 @@ const AboutMe = () => {
                         <span>full-stack software engineer</span> working at
                         Amazon in the Seattle area. I have an undergraduate
                         degree in Informatics from the University of Washington.
-                        What is Informatics exactly? Well, Informatics designs
-                        technology for the good of people (learn more{" "}
+                        The program focuses on designing technology for people
+                        (learn more{" "}
                         <a href="https://ischool.uw.edu/programs/informatics/what-is-informatics">
                             here
                         </a>

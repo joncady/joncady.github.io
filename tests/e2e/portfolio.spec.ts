@@ -1,125 +1,191 @@
-import { test, expect } from "./fixtures";
-import { webDevProjects, mobileDevProjects } from "../../src/sections/Helpers";
-const oldAmazon =
-    "I began my career at Amazon as an engineer on an experimentation team in the Alexa organization. I worked on high-velocity growth experiments, primarily to drive increased customer engagment across all Alexa surfaces. On my current team, I manage infrastructure that supports Alexa marketing iniatives and internal data pipelines. Over the past 3.5 years, I've learned to build serverless and asyncronous software solutions using proprietary Java frameworks and the AWS CDK. Additionally, I've developed multiple features using React Native for both the Amazon Shopping and Alexa apps. I also designed an Alexa skill in Typescript from the ground up to support short-term experiments.";
+import { test, expect, openTravel, map } from "./fixtures";
+import { TRAVEL_STOPS } from "../../src/sections/travelData";
 
-test("navigation anchors, deep links, mobile menu collapse, skip link", async ({
-    page,
-    isMobile
+test("hero and project process use the simplified presentation", async ({
+    page
 }) => {
     await page.goto("/");
-    await page.keyboard.press("Tab");
+    const heading = page.locator("#home h1");
+    await expect(heading).toHaveText("Jonathan Cady");
+    await expect(heading).toHaveCSS("font-style", "normal");
+    await expect(heading.locator("em")).toHaveCount(0);
+    await expect(page.locator(".hero-identity .profile-photo")).toHaveAttribute(
+        "src",
+        "/assets/profile.jpg"
+    );
+    await expect(page.locator(".experience-intro .profile-photo")).toHaveCount(
+        0
+    );
+    await expect(page.locator(".brand-dot")).toHaveCount(0);
+    await expect(
+        page.getByRole("link", { name: "View my projects" })
+    ).toHaveCount(0);
+    await expect(page.locator(".hero-bottom")).toHaveCount(0);
+    await expect(
+        page.locator("#my-projects > .section-heading > p:not(.eyebrow)")
+    ).toHaveCount(0);
+    await expect(
+        page.locator(
+            ".featured-project:not(.kureo-project) .case-process ul > li"
+        )
+    ).toHaveCount(4);
+    await expect(
+        page.locator(".case-process ol, .case-process h4")
+    ).toHaveCount(0);
+    await expect(
+        page.locator(".featured-project:not(.kureo-project) .case-process ul")
+    ).toHaveCSS("display", "block");
+    await expect(
+        page.locator(".featured-project:not(.kureo-project) .case-process ul")
+    ).toHaveCSS("list-style-type", "disc");
+    await expect(page.locator("#travel-log-heading")).toHaveText("Travel Log");
+});
+
+test("navigation deep links, mobile menu, and keyboard skip link", async ({
+    page,
+    isMobile,
+    browserName
+}) => {
+    await page.goto("/");
+    // Safari defaults to option-tab for links unless full keyboard access is enabled.
+    await page.keyboard.press(browserName === "webkit" ? "Alt+Tab" : "Tab");
     await expect(
         page.getByRole("link", { name: "Skip to content" })
     ).toBeFocused();
     await page.keyboard.press("Enter");
     await expect(page.locator("main")).toBeFocused();
-    for (const [name, hash] of [
-        ["About Me", "about-me"],
-        ["Experience", "experience"],
-        ["Projects", "my-projects"],
-        ["Skills", "skills"],
-        ["Travel", "travel"],
-        ["Contact", "contact"]
+    for (const [name, id] of [
+        ["01 / Work", "my-projects"],
+        ["02 / Experience", "experience"],
+        ["03 / Travel Log", "travel"],
+        ["Contact ↗", "contact"]
     ]) {
         if (isMobile)
             await page
                 .getByRole("button", { name: "Toggle navigation" })
                 .click();
         await page.getByRole("link", { name, exact: true }).click();
-        await expect(page).toHaveURL(new RegExp(`#${hash}$`));
+        await expect(page).toHaveURL(new RegExp("#" + id + "$"));
         if (isMobile)
-            await expect(page.locator("#basic-navbar-nav")).not.toHaveClass(
-                /show/
+            await expect(page.locator("#site-links")).not.toHaveClass(
+                /is-open/
             );
         await page.reload();
-        await expect(page.locator(`#${hash}`)).toBeVisible();
+        await expect(page.locator("#" + id)).toBeVisible();
     }
 });
 
-test("Amazon additions preserve the complete original text", async ({
-    page
-}) => {
-    await page.goto("/#experience");
-    await page.getByText("Earlier Amazon work", { exact: true }).click();
-    const text = await page.locator(".amazon-background p").innerText();
-    expect(text.replace(/\s+/g, " ").trim()).toBe(oldAmazon);
-    await expect(page.locator(".current-role")).toContainText(
-        "Worked on Alexa Smart Home, building model evaluation pipelines and web apps for data labeling."
-    );
-    await expect(page.locator(".current-role")).toContainText(
-        "Developed and supported an evaluation MCP for running experiments with AI tools."
-    );
-});
-
-test("every project opens the correct modal and link, Escape returns focus", async ({
+test("process-led case study, accurate source links, archive disclosures", async ({
     page
 }) => {
     await page.goto("/#my-projects");
-    for (const project of [...webDevProjects, ...mobileDevProjects]) {
-        const card = page.getByRole("button", {
-            name: project.title,
-            exact: true
-        });
-        await card.click();
-        const modal = page.getByRole("dialog", {
-            name: project.title,
-            exact: true
-        });
-        await expect(modal).toBeVisible();
-        await expect(modal).toContainText(
-            project.content.replace(/\s+/g, " ").trim()
-        );
-        if (project.link) {
-            await expect(
-                modal.getByRole("link", { name: "View Project", exact: true })
-            ).toHaveAttribute("href", project.link);
-            await expect(
-                modal.getByRole("link", { name: "View Project", exact: true })
-            ).toHaveAttribute("rel", "noopener noreferrer");
-        } else
-            await expect(
-                modal.getByRole("button", { name: "Project link unavailable" })
-            ).toBeDisabled();
-        await page.keyboard.press("Escape");
-        await expect(modal).not.toBeVisible();
-        await expect(card).toBeFocused();
+    await expect(page.locator("#transit-heading")).toContainText("arrivals.");
+    await expect(
+        page.locator(".featured-project:not(.kureo-project) .case-process")
+    ).toContainText("SSH");
+    await expect(
+        page.getByRole("link", { name: "View source" })
+    ).toHaveAttribute(
+        "href",
+        "https://github.com/joncady/OneBusAwayTransitTimesForPi"
+    );
+    await expect(page.locator("#skills")).toHaveCount(0);
+    await expect(page.locator(".hackathon-grid article")).toHaveCount(8);
+    await expect(
+        page
+            .locator(".travel-hud")
+            .getByRole("button", { name: "Next location or trip" })
+    ).toHaveCount(1);
+    await expect(page.locator(".archive-grid")).not.toBeVisible();
+    await page.locator(".project-archive summary").click();
+    await expect(page.locator(".archive-grid article")).toHaveCount(7);
+    await expect(page.locator(".archive-grid")).not.toContainText(" ()");
+    await expect(page.locator('a[href="https://vocaby.app/"]')).toHaveCount(0);
+    await page.locator(".earlier-experience summary").click();
+    await expect(page.locator(".earlier-roles article")).toHaveCount(4);
+    await page.locator(".amazon-background summary").click();
+    await expect(page.locator(".amazon-background")).toContainText(
+        "serverless and asynchronous"
+    );
+});
+
+test("featured projects lead with Kureo and the current Fire Emblem game", async ({
+    page
+}) => {
+    await page.goto("/#my-projects");
+    const cards = page.locator("#my-projects > article");
+    await expect(cards.nth(0)).toContainText("Kureo");
+    await expect(cards.nth(0).locator("img")).toHaveAttribute(
+        "src",
+        "/assets/kureo-phone-render.png"
+    );
+    await expect(cards.nth(1)).toContainText("Fire Emblem Adventures");
+    await expect(cards.nth(1)).toContainText("Phaser");
+    await expect(cards.nth(1)).toContainText("in development");
+    await expect(page.locator(".project-archive")).not.toContainText(
+        "Fire Emblem Adventures"
+    );
+});
+
+test("theme has no horizontal overflow and all displayed images load", async ({
+    page
+}, testInfo) => {
+    await page.goto("/");
+    const images = page.locator("img");
+    for (const img of await images.all()) {
+        await img.scrollIntoViewIfNeeded();
+        await expect(img).toHaveJSProperty("complete", true);
+        expect(
+            await img.evaluate((el: HTMLImageElement) => el.naturalWidth)
+        ).toBeGreaterThan(0);
     }
-});
-
-test("project filters reset independently; corrected public links", async ({
-    page
-}) => {
-    await page.goto("/#my-projects");
-    await page.locator("#web-project-filter").selectOption("Python");
-    await expect(
-        page.getByRole("button", {
-            name: "Raspberry Pi Transit Display",
-            exact: true
-        })
-    ).toBeVisible();
-    await expect(
-        page.getByRole("button", {
-            name: "Fire Emblem Adventures",
-            exact: true
-        })
-    ).toHaveCount(0);
-    await page.locator("#web-project-filter").selectOption("");
-    await expect(
-        page.getByRole("button", {
-            name: "Fire Emblem Adventures",
-            exact: true
-        })
-    ).toBeVisible();
-    await page.locator("#mobile-project-filter").selectOption("");
-    const links = await page
-        .locator("a[href]")
-        .evaluateAll((els) => els.map((el) => el.getAttribute("href")!));
-    expect(links.every((h) => !h.startsWith("javascript:"))).toBe(true);
     expect(
-        webDevProjects.find((p) => p.title === "Fire Emblem Adventures")?.link
-    ).toBe("https://joncady.github.io/feadventures/");
-    expect(webDevProjects.find((p) => p.title === "FeelingFeed")?.link).toBe(
-        "https://github.com/joncady/dubhacks18"
+        await page.evaluate(
+            () => document.documentElement.scrollWidth <= innerWidth
+        )
+    ).toBe(true);
+    await page.locator("#home").screenshot({
+        path: testInfo.outputPath("refresh-hero.png"),
+        animations: "disabled"
+    });
+    await page.locator("#my-projects").screenshot({
+        path: testInfo.outputPath("refresh-work.png"),
+        animations: "disabled"
+    });
+});
+
+test("full-width map fades into the page, with mobile summary below", async ({
+    page
+}) => {
+    await openTravel(page);
+    const viewport = page.viewportSize()!;
+    const rect = await map(page).boundingBox();
+    expect(rect!.x).toBeCloseTo(0, 0);
+    expect(rect!.width).toBeCloseTo(viewport.width, 0);
+    const summary = await page.locator("#travel-summary").boundingBox();
+    if (viewport.width <= 700)
+        expect(summary!.y).toBeGreaterThanOrEqual(rect!.y + rect!.height);
+    else expect(summary!.x).toBeGreaterThan(viewport.width / 2);
+});
+
+test("trip HUD stays visible while viewing the map", async ({ page }) => {
+    await openTravel(page);
+    await page.locator(".travel-map").evaluate((el) =>
+        window.scrollTo({
+            top: el.getBoundingClientRect().top + window.scrollY + 100,
+            behavior: "instant"
+        })
     );
+    const hud = page.locator(".travel-hud");
+    const rect = await hud.boundingBox();
+    expect(rect!.y).toBeGreaterThanOrEqual(0);
+    expect(rect!.y + rect!.height).toBeLessThan(page.viewportSize()!.height);
+    const before = await page.locator("#travel-summary-heading").textContent();
+    await hud.getByRole("button", { name: "Next location or trip" }).click();
+    await expect(page.locator("#travel-summary-heading")).not.toHaveText(
+        before!
+    );
+    await expect(
+        page.getByRole("complementary", { name: "Trip photos and videos" })
+    ).toContainText("Photos & videos /");
 });

@@ -1,5 +1,4 @@
-import { PLACES } from "./Helpers";
-
+// Explicit local-editor export. Review before copying into the portfolio.
 export interface TravelMarker {
     name: string;
     img?: string;
@@ -15,7 +14,6 @@ export interface WorldCupVisit {
     markerName: string;
     img?: string;
 }
-
 export interface TravelStop {
     id: string;
     title: string;
@@ -27,71 +25,7 @@ export interface TravelStop {
     earlier?: boolean;
     visits?: WorldCupVisit[];
 }
-
-const pixel = (id: string) => `/assets/travel-log/pixel-v1/${id}.png`;
-
-// These rounded geographic anchors represent broad regions, not personal
-// photo coordinates, exact visited locations, or a recorded route.
-// Match identities are confirmed stadium visits. July 6 USA–Belgium attendance
-// was explicitly confirmed by the portfolio owner.
-export const WORLD_CUP_VISITS: WorldCupVisit[] = [
-    {
-        id: "seattle-belgium-egypt-2026",
-        img: "/assets/travel-log/world-cup-v1/seattle-gloves-belgium-egypt.png",
-        kind: "game",
-        date: "2026-06-15",
-        title: "Belgium–Egypt",
-        city: "Seattle",
-        markerName: "Seattle"
-    },
-    {
-        id: "dallas-japan-sweden-2026",
-        img: "/assets/travel-log/world-cup-v1/dallas-cleat-japan-sweden.png",
-        kind: "game",
-        date: "2026-06-25",
-        title: "Japan–Sweden",
-        city: "Dallas",
-        markerName: "Dallas"
-    },
-    {
-        id: "new-jersey-panama-england-2026",
-        img: "/assets/travel-log/world-cup-v1/new-jersey-goal-panama-england.png",
-        kind: "game",
-        date: "2026-06-27",
-        title: "Panama–England",
-        city: "New Jersey",
-        markerName: "New Jersey"
-    },
-    {
-        id: "seattle-belgium-senegal-2026",
-        img: "/assets/travel-log/world-cup-v1/seattle-whistle-belgium-senegal.png",
-        kind: "game",
-        date: "2026-07-01",
-        title: "Belgium–Senegal",
-        city: "Seattle",
-        markerName: "Seattle"
-    },
-    {
-        id: "seattle-usa-belgium-2026",
-        img: "/assets/travel-log/world-cup-v1/seattle-ball-usa-belgium.png",
-        kind: "game",
-        date: "2026-07-06",
-        title: "USA–Belgium",
-        city: "Seattle",
-        markerName: "Seattle"
-    },
-    {
-        id: "miami-norway-england-2026",
-        img: "/assets/travel-log/world-cup-v1/miami-corner-norway-england.png",
-        kind: "game",
-        date: "2026-07-11",
-        title: "Norway–England",
-        city: "Miami",
-        markerName: "Miami"
-    }
-];
-
-export const RECENT_TRIPS: TravelStop[] = [
+export const TRAVEL_STOPS: TravelStop[] = [
     {
         id: "alaska-2026",
         title: "Alaska",
@@ -100,9 +34,9 @@ export const RECENT_TRIPS: TravelStop[] = [
         markers: [
             {
                 name: "Alaska",
-                img: pixel("alaska-iceberg"),
                 latitude: 61,
-                longitude: -150
+                longitude: -150,
+                img: "/assets/travel-log/pixel-v1/alaska-iceberg.png"
             }
         ],
         center: [-150, 61],
@@ -110,38 +44,93 @@ export const RECENT_TRIPS: TravelStop[] = [
     },
     {
         id: "world-cup-2026",
-        visits: WORLD_CUP_VISITS,
         title: "World Cup stadium trips",
         year: "2026",
         regions: ["Dallas", "New Jersey", "Miami", "Seattle"],
         markers: [
             {
                 name: "Dallas",
-                img: pixel("dallas-boot"),
                 latitude: 32.8,
-                longitude: -96.8
+                longitude: -96.8,
+                img: "/assets/travel-log/pixel-v1/dallas-boot.png"
             },
             {
                 name: "New Jersey",
-                img: pixel("new-jersey-stadium"),
                 latitude: 40.8,
-                longitude: -74.1
+                longitude: -74.1,
+                img: "/assets/travel-log/pixel-v1/new-jersey-stadium.png"
             },
             {
                 name: "Miami",
-                img: pixel("miami-lifeguard"),
                 latitude: 25.8,
-                longitude: -80.2
+                longitude: -80.2,
+                img: "/assets/travel-log/pixel-v1/miami-lifeguard.png"
             },
             {
                 name: "Seattle",
-                img: pixel("seattle-space-needle"),
                 latitude: 47.6,
-                longitude: -122.3
+                longitude: -122.3,
+                img: "/assets/travel-log/pixel-v1/seattle-space-needle.png"
             }
         ],
         center: [-98, 39],
-        zoom: 3.5
+        zoom: 3.5,
+        visits: [
+            {
+                id: "seattle-belgium-egypt-2026",
+                kind: "game",
+                date: "2026-06-15",
+                title: "Belgium–Egypt",
+                city: "Seattle",
+                markerName: "Seattle",
+                img: "/assets/travel-log/world-cup-v1/seattle-gloves-belgium-egypt.png"
+            },
+            {
+                id: "dallas-japan-sweden-2026",
+                kind: "game",
+                date: "2026-06-25",
+                title: "Japan–Sweden",
+                city: "Dallas",
+                markerName: "Dallas",
+                img: "/assets/travel-log/world-cup-v1/dallas-cleat-japan-sweden.png"
+            },
+            {
+                id: "new-jersey-panama-england-2026",
+                kind: "game",
+                date: "2026-06-27",
+                title: "Panama–England",
+                city: "New Jersey",
+                markerName: "New Jersey",
+                img: "/assets/travel-log/world-cup-v1/new-jersey-goal-panama-england.png"
+            },
+            {
+                id: "seattle-belgium-senegal-2026",
+                kind: "game",
+                date: "2026-07-01",
+                title: "Belgium–Senegal",
+                city: "Seattle",
+                markerName: "Seattle",
+                img: "/assets/travel-log/world-cup-v1/seattle-whistle-belgium-senegal.png"
+            },
+            {
+                id: "seattle-usa-belgium-2026",
+                kind: "game",
+                date: "2026-07-06",
+                title: "USA–Belgium",
+                city: "Seattle",
+                markerName: "Seattle",
+                img: "/assets/travel-log/world-cup-v1/seattle-ball-usa-belgium.png"
+            },
+            {
+                id: "miami-norway-england-2026",
+                kind: "game",
+                date: "2026-07-11",
+                title: "Norway–England",
+                city: "Miami",
+                markerName: "Miami",
+                img: "/assets/travel-log/world-cup-v1/miami-corner-norway-england.png"
+            }
+        ]
     },
     {
         id: "train-2026",
@@ -151,21 +140,21 @@ export const RECENT_TRIPS: TravelStop[] = [
         markers: [
             {
                 name: "Pacific Northwest",
-                img: pixel("northwest-train"),
                 latitude: 47,
-                longitude: -122
+                longitude: -122,
+                img: "/assets/travel-log/pixel-v1/northwest-train.png"
             },
             {
                 name: "Midwest",
-                img: pixel("midwest-rail"),
                 latitude: 42,
-                longitude: -88
+                longitude: -88,
+                img: "/assets/travel-log/pixel-v1/midwest-rail.png"
             },
             {
                 name: "Northeast",
-                img: pixel("northeast-station"),
                 latitude: 41,
-                longitude: -74
+                longitude: -74,
+                img: "/assets/travel-log/pixel-v1/northeast-station.png"
             }
         ],
         center: [-96, 39],
@@ -173,21 +162,21 @@ export const RECENT_TRIPS: TravelStop[] = [
     },
     {
         id: "catalina-2026",
-        title: "Catalina Island and return journey",
+        title: "Catalina Island and return trip",
         year: "2026",
         regions: ["Catalina Island and California", "Pacific Northwest"],
         markers: [
             {
                 name: "California",
-                img: pixel("california-catalina"),
                 latitude: 35,
-                longitude: -120
+                longitude: -120,
+                img: "/assets/travel-log/pixel-v1/california-catalina.png"
             },
             {
                 name: "Pacific Northwest",
-                img: pixel("northwest-ferry"),
                 latitude: 47,
-                longitude: -122
+                longitude: -122,
+                img: "/assets/travel-log/pixel-v1/northwest-ferry.png"
             }
         ],
         center: [-120, 38],
@@ -203,7 +192,7 @@ export const RECENT_TRIPS: TravelStop[] = [
                 name: "Japan",
                 latitude: 36,
                 longitude: 138,
-                img: pixel("japan-sushi")
+                img: "/assets/travel-log/pixel-v1/japan-sushi.png"
             }
         ],
         center: [138, 36],
@@ -217,9 +206,9 @@ export const RECENT_TRIPS: TravelStop[] = [
         markers: [
             {
                 name: "San Juan Islands",
-                img: pixel("san-juan-lighthouse"),
                 latitude: 48.5,
-                longitude: -123
+                longitude: -123,
+                img: "/assets/travel-log/pixel-v1/san-juan-lighthouse.png"
             }
         ],
         center: [-123, 48.5],
@@ -235,13 +224,13 @@ export const RECENT_TRIPS: TravelStop[] = [
                 name: "Singapore",
                 latitude: 1,
                 longitude: 104,
-                img: pixel("singapore-merlion")
+                img: "/assets/travel-log/pixel-v1/singapore-merlion.png"
             },
             {
                 name: "Taiwan",
                 latitude: 24,
                 longitude: 121,
-                img: pixel("taiwan-boba")
+                img: "/assets/travel-log/pixel-v1/taiwan-boba.png"
             }
         ],
         center: [113, 14],
@@ -255,61 +244,117 @@ export const RECENT_TRIPS: TravelStop[] = [
         markers: [
             {
                 name: "England",
-                img: pixel("england-phone-box"),
                 latitude: 52,
-                longitude: -2
+                longitude: -2,
+                img: "/assets/travel-log/pixel-v1/england-phone-box.png"
             },
             {
                 name: "Scotland",
-                img: pixel("scotland-highland-cow"),
                 latitude: 56,
-                longitude: -4
+                longitude: -4,
+                img: "/assets/travel-log/pixel-v1/scotland-highland-cow.png"
             }
         ],
         center: [-3, 54],
         zoom: 4.8
-    }
-];
-
-// Preserve the original public destination log; Singapore/Taiwan are represented
-// in their confirmed 2024 trip above. Original PLACES entries remain unchanged.
-const ORIGINAL_PIXEL_ASSETS: Record<string, string> = {
-    Seoul: "seoul-palace",
-    Busan: "busan-bridge",
-    Fukuoka: "fukuoka-ramen",
-    Hiroshima: "hiroshima-crane",
-    Osaka: "osaka-castle",
-    Sapporo: "sapporo-clock",
-    Tokyo: "tokyo-tower",
-    Chicago: "chicago-cloud-gate",
-    Nashville: "nashville-guitar"
-};
-
-export const TRAVEL_STOPS: TravelStop[] = [
-    ...RECENT_TRIPS,
-    ...PLACES.filter(
-        (place) =>
-            !(
-                place.year === "2024" &&
-                ["Singapore", "Taipei"].includes(place.name)
-            )
-    ).map((place) => ({
-        id: `${place.name.toLowerCase()}-${place.year}`,
-        title: place.name,
-        year: place.year,
-        regions: [place.name],
+    },
+    {
+        id: "japan-korea-2022",
+        title: "Japan / Korea",
+        year: "2022",
+        regions: [
+            "Seoul",
+            "Busan",
+            "Fukuoka",
+            "Hiroshima",
+            "Osaka",
+            "Sapporo",
+            "Tokyo"
+        ],
         markers: [
             {
-                name: place.name,
-                img: ORIGINAL_PIXEL_ASSETS[place.name]
-                    ? pixel(ORIGINAL_PIXEL_ASSETS[place.name])
-                    : undefined,
-                latitude: place.latitude,
-                longitude: place.longitude
+                name: "Seoul",
+                latitude: 37.5519,
+                longitude: 126.9918,
+                img: "/assets/travel-log/pixel-v1/seoul-palace.png"
+            },
+            {
+                name: "Busan",
+                latitude: 35.21,
+                longitude: 129.0689,
+                img: "/assets/travel-log/pixel-v1/busan-bridge.png"
+            },
+            {
+                name: "Fukuoka",
+                latitude: 33.5902,
+                longitude: 130.4017,
+                img: "/assets/travel-log/pixel-v1/fukuoka-ramen.png"
+            },
+            {
+                name: "Hiroshima",
+                latitude: 34.3853,
+                longitude: 132.4553,
+                img: "/assets/travel-log/pixel-v1/hiroshima-crane.png"
+            },
+            {
+                name: "Osaka",
+                latitude: 34.6937,
+                longitude: 135.5023,
+                img: "/assets/travel-log/pixel-v1/osaka-castle.png"
+            },
+            {
+                name: "Sapporo",
+                latitude: 43.0618,
+                longitude: 141.3545,
+                img: "/assets/travel-log/pixel-v1/sapporo-clock.png"
+            },
+            {
+                name: "Tokyo",
+                latitude: 35.6764,
+                longitude: 139.65,
+                img: "/assets/travel-log/pixel-v1/tokyo-tower.png"
             }
         ],
-        center: [place.longitude, place.latitude] as [number, number],
+        center: [135, 37],
+        zoom: 4,
+        earlier: true
+    },
+    {
+        id: "chicago-2024",
+        title: "Chicago",
+        year: "2024",
+        regions: ["Chicago"],
+        markers: [
+            {
+                name: "Chicago",
+                latitude: 41.8781,
+                longitude: -87.6298,
+                img: "/assets/travel-log/pixel-v1/chicago-cloud-gate.png"
+            }
+        ],
+        center: [-87.6298, 41.8781],
         zoom: 8,
         earlier: true
-    }))
+    },
+    {
+        id: "nashville-2024",
+        title: "Nashville",
+        year: "2024",
+        regions: ["Nashville"],
+        markers: [
+            {
+                name: "Nashville",
+                latitude: 36.1627,
+                longitude: -86.7816,
+                img: "/assets/travel-log/pixel-v1/nashville-guitar.png"
+            }
+        ],
+        center: [-86.7816, 36.1627],
+        zoom: 8,
+        earlier: true
+    }
 ];
+export const RECENT_TRIPS = TRAVEL_STOPS.filter((trip) => !trip.earlier);
+export const WORLD_CUP_VISITS = TRAVEL_STOPS.flatMap(
+    (trip) => trip.visits || []
+);

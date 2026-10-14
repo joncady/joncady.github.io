@@ -1,103 +1,93 @@
 import React from "react";
-
-const Experience = () => {
-    const earlierRoles = [
-        {
-            title: "Teaching Assistant · Client-Side Development",
-            organization: "UW Information School",
-            dates: "Sept. 2019 – June 2020",
-            description:
-                "Taught HTML, CSS, JavaScript, and React in the client-side development course.",
-            link: "https://ischool.uw.edu/"
-        },
-        {
-            title: "Software Engineering Intern and Part-time",
-            organization: "Ticketmaster",
-            dates: "June – Dec. 2019",
-            description:
-                "Built full-stack features with Java and React alongside the Seattle engineering team.",
-            link: "https://www.ticketmaster.com/"
-        },
-        {
-            title: "Student Developer",
-            organization: "Husky Tech",
-            dates: "Jan. 2019 – June 2020",
-            description:
-                "Developed website features supporting student networking and career advancement at UW.",
-            link: "https://huskytech.org/#/"
-        },
-        {
-            title: "Student Developer",
-            organization: "UW-IT Student Programs",
-            dates: "Feb. – June 2019",
-            description:
-                "Built Java and Spring APIs for the university’s course registration services.",
-            link: "https://www.washington.edu/uwit/"
-        }
-    ];
-
+const earlierRoles = [
+    {
+        title: "Teaching Assistant · Client-Side Development",
+        organization: "UW Information School",
+        dates: "2019–2020",
+        description:
+            "Taught HTML, CSS, JavaScript, and React in the client-side development course."
+    },
+    {
+        title: "Software Engineering Intern and Part-time",
+        organization: "Ticketmaster",
+        dates: "2019",
+        description:
+            "Built full-stack features with Java and React alongside the Seattle engineering team."
+    },
+    {
+        title: "Student Developer",
+        organization: "Husky Tech",
+        dates: "2019–2020",
+        description:
+            "Developed website features supporting student networking and career advancement at UW."
+    },
+    {
+        title: "Student Developer",
+        organization: "UW-IT Student Programs",
+        dates: "2019",
+        description:
+            "Built Java and Spring APIs for the university’s course registration services."
+    }
+];
+export default function Experience() {
     return (
-        <section id="experience" aria-labelledby="experience-heading">
-            <h2 id="experience-heading">Professional Experience</h2>
-            <article className="current-role">
-                <div className="role-header">
-                    <div>
-                        <h3>Software Development Engineer II</h3>
-                        <p className="role-meta">
-                            <a href="https://www.amazon.com/">Amazon</a> · Aug.
-                            2020 – Present
+        <section
+            id="experience"
+            className="experience-section section-shell"
+            aria-labelledby="experience-heading"
+        >
+            <div className="experience-intro">
+                <p className="eyebrow">02 / My experience</p>
+                <h2 id="experience-heading">My experience</h2>
+                <p>
+                    My experience includes software engineering at Amazon,
+                    Ticketmaster, and UW, and teaching client-side development.
+                </p>
+            </div>
+            <div className="experience-history">
+                <article className="current-role">
+                    <p className="role-meta">Amazon / Aug. 2020 – Present</p>
+                    <h3>Software Development Engineer II</h3>
+                    <ul>
+                        <li>
+                            Worked on Alexa Smart Home, creating model
+                            evaluation pipelines and web applications for
+                            labeling data.
+                        </li>
+                        <li>
+                            Developed and supported an evaluation MCP for
+                            performing experiments using AI tools.
+                        </li>
+                    </ul>
+                    <details className="amazon-background">
+                        <summary>Earlier Amazon work</summary>
+                        <p>
+                            Started on an experimentation team in the Alexa
+                            organization. Built growth experiments across Alexa
+                            surfaces, infrastructure for Alexa marketing, and
+                            internal data pipelines. Developed serverless and
+                            asynchronous software with Java and AWS CDK, React
+                            Native features for Amazon Shopping and Alexa, and
+                            an Alexa skill in TypeScript for short-term
+                            experiments.
                         </p>
+                    </details>
+                </article>
+                <details className="earlier-experience">
+                    <summary>Earlier experience / UW & Ticketmaster</summary>
+                    <div className="earlier-roles">
+                        {earlierRoles.map((role) => (
+                            <article key={role.organization}>
+                                <p className="role-meta">
+                                    {role.organization} / {role.dates}
+                                </p>
+                                <h3>{role.title}</h3>
+                                <p>{role.description}</p>
+                            </article>
+                        ))}
                     </div>
-                    <img
-                        src="/assets/amazon.png"
-                        alt=""
-                        className="experience-logo"
-                    />
-                </div>
-                <details className="amazon-background">
-                    <summary>Earlier Amazon work</summary>
-                    <p>
-                        I began my career at Amazon as an engineer on an
-                        experimentation team in the Alexa organization. I worked
-                        on high-velocity growth experiments, primarily to drive
-                        increased customer engagment across all Alexa surfaces.
-                        On my current team, I manage infrastructure that
-                        supports Alexa marketing iniatives and internal data
-                        pipelines. Over the past 3.5 years, I've learned to
-                        build serverless and asyncronous software solutions
-                        using proprietary Java frameworks and the AWS CDK.
-                        Additionally, I've developed multiple features using
-                        React Native for both the Amazon Shopping and Alexa
-                        apps. I also designed an Alexa skill in Typescript from
-                        the ground up to support short-term experiments.
-                    </p>
                 </details>
-                <p>
-                    Worked on Alexa Smart Home, building model evaluation
-                    pipelines and web apps for data labeling.
-                </p>
-                <p>
-                    Developed and supported an evaluation MCP for running
-                    experiments with AI tools.
-                </p>
-            </article>
-            <details className="earlier-experience">
-                <summary>Earlier experience · UW and Ticketmaster</summary>
-                <div className="earlier-roles">
-                    {earlierRoles.map((role) => (
-                        <article key={role.organization}>
-                            <h3>{role.title}</h3>
-                            <p className="role-meta">
-                                <a href={role.link}>{role.organization}</a> ·{" "}
-                                {role.dates}
-                            </p>
-                            <p>{role.description}</p>
-                        </article>
-                    ))}
-                </div>
-            </details>
+            </div>
         </section>
     );
-};
-
-export default Experience;
+}

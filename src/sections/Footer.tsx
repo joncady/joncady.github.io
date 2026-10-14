@@ -1,14 +1,10 @@
 import React from "react";
-
-const Footer = () => {
+export default function Footer() {
     return (
-        <footer>
-            <p id="footer">
-                Designed by Jonathan Cady, 2024
-                <br></br>All credit for the logos go to their respective owners.
-            </p>
+        <footer className="site-footer">
+            <span>Jonathan Cady / Seattle</span>
+            <span>Projects, experience & travel</span>
+            <a href="#home">Back to top ↑</a>
         </footer>
     );
-};
-
-export default Footer;
+}

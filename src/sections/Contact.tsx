@@ -1,39 +1,28 @@
 import React from "react";
-
-const Contact = () => {
+export default function Contact() {
     return (
-        <section id="contact">
-            <h2>Contact</h2>
-            <p className="mt-5">
-                If you would like to reach out to me, email works well!
-            </p>
-            <address>
-                <a href="https://github.com/joncady" aria-label="GitHub">
-                    <div className="contact-container">
-                        <i className="fab fa-github fa-lg"></i>
-                    </div>
-                </a>
-                <a href="mailto:jonrcady@gmail.com" aria-label="Email Jonathan">
-                    <div id="email" className="contact-container">
-                        <i className="fas fa-envelope fa-lg"></i>
-                    </div>
-                    <div id="written">
-                        <span>
-                            <strong>jonrcady@gmail.com</strong>
-                        </span>
-                    </div>
+        <section className="contact-section section-shell" id="contact">
+            <p className="eyebrow">Contact</p>
+            <h2>Contact me</h2>
+            <a className="contact-email" href="mailto:jonrcady@gmail.com">
+                Email me <span aria-hidden="true">↗</span>
+            </a>
+            <div className="social-links">
+                <a
+                    href="https://github.com/joncady"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub ↗
                 </a>
                 <a
                     href="https://www.linkedin.com/in/jonathanrcady/"
-                    aria-label="LinkedIn"
+                    target="_blank"
+                    rel="noopener noreferrer"
                 >
-                    <div className="contact-container">
-                        <i className="fab fa-linkedin fa-lg"></i>
-                    </div>
+                    LinkedIn ↗
                 </a>
-            </address>
+            </div>
         </section>
     );
-};
-
-export default Contact;
+}
