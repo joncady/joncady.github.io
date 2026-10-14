@@ -6,7 +6,17 @@ import { TRAVEL_VIDEOS } from "../../src/sections/travelVideos";
 
 for (const trip of TRAVEL_STOPS) {
     test(`travel media and summary render for ${trip.id}`, async ({ page }) => {
+        // This case visits every item; large galleries need a bounded per-item budget.
+        test.setTimeout(
+            30000 +
+                (TRAVEL_PHOTOS[trip.id]?.length ?? 0) * 2000 +
+                (TRAVEL_VIDEOS[trip.id]?.length ?? 0) * 5000
+        );
         await openTravel(page);
+        // Camera animation is covered separately; keep this exhaustive media pass light.
+        await page
+            .getByRole("checkbox", { name: "Reduce motion", exact: true })
+            .check();
         await page
             .locator(`[data-trip-index="${TRAVEL_STOPS.indexOf(trip)}"]`)
             .click();
