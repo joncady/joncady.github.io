@@ -26,12 +26,8 @@ export const test = base.extend({
 export { expect };
 export async function openTravel(page: Page) {
     await page.goto("/#travel");
-    await page
-        .getByRole("heading", { name: "Travel Log", exact: true })
-        .scrollIntoViewIfNeeded();
-    await expect(
-        page.getByRole("region", { name: "Travel Log", exact: true })
-    ).toBeVisible();
+    await page.locator("#travel-log-heading").scrollIntoViewIfNeeded();
+    await expect(page.locator("#travel")).toBeVisible();
 }
 export const map = (page: Page) =>
     page.getByLabel("Interactive 3D travel map", { exact: true });

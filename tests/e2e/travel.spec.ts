@@ -1,5 +1,4 @@
 import { test, expect, openTravel, map } from "./fixtures";
-import { markerScreenPoint } from "./project-marker";
 import { TRAVEL_STOPS } from "../../src/sections/travelData";
 
 test("all trips synchronize selector, summary, regions, actual camera", async ({
@@ -16,16 +15,21 @@ test("all trips synchronize selector, summary, regions, actual camera", async ({
             stop.title
         );
         await expect(map(page)).toHaveAttribute("data-selected-trip", stop.id);
+        const marker = stop.visits?.[0]
+            ? stop.markers.find(
+                  (item) => item.name === stop.visits![0].markerName
+              )!
+            : stop.markers[0];
         await expect
             .poll(async () =>
                 Number(await map(page).getAttribute("data-camera-longitude"))
             )
-            .toBeCloseTo(stop.center[0], 3);
+            .toBeCloseTo(marker?.longitude ?? stop.center[0], 3);
         await expect
             .poll(async () =>
                 Number(await map(page).getAttribute("data-camera-latitude"))
             )
-            .toBeCloseTo(stop.center[1], 3);
+            .toBeCloseTo(marker?.latitude ?? stop.center[1], 3);
         for (const region of stop.regions)
             await expect(
                 page.locator("#travel-summary li").filter({ hasText: region })
@@ -38,16 +42,16 @@ test("keyboard next/previous wrap; Escape closes, restores focus and Enter reope
 }) => {
     await openTravel(page);
     await page
-        .getByRole("button", { name: "Next trip", exact: true })
-        .press("Enter");
+        .locator('[aria-current="true"][data-trip-index]')
+        .press("ArrowRight");
     await expect(
         page.locator(
-            `[data-trip-index="${String(TRAVEL_STOPS.findIndex((stop) => stop.title === "Tokyo"))}"]`
+            `[data-trip-index="${String(TRAVEL_STOPS.findIndex((stop) => stop.id === "japan-korea-2022"))}"]`
         )
     ).toHaveAttribute("aria-current", "true");
     await page
-        .getByRole("button", { name: "Previous trip", exact: true })
-        .press("Enter");
+        .locator('[aria-current="true"][data-trip-index]')
+        .press("ArrowLeft");
     await expect(page.locator('[data-trip-index="0"]')).toHaveAttribute(
         "aria-current",
         "true"
@@ -119,7 +123,7 @@ test("responsive map, summary, controls and back-to-top do not overlap", async (
     await page
         .getByRole("checkbox", { name: "Reduce motion", exact: true })
         .check();
-    await page.locator('[data-trip-index="15"]').click();
+    await page.locator('[data-trip-index="9"]').click();
     await expect(page.locator(".back-to-top")).toHaveCount(0);
     expect(
         await page.evaluate(
@@ -130,10 +134,20 @@ test("responsive map, summary, controls and back-to-top do not overlap", async (
     const summary = await page.locator("#travel-summary").boundingBox();
     expect(stage).not.toBeNull();
     expect(summary).not.toBeNull();
-    if (page.viewportSize()!.width <= 900)
+    if (page.viewportSize()!.width <= 700)
         expect(summary!.y).toBeGreaterThanOrEqual(stage!.y + stage!.height - 1);
-    else expect(summary!.x).toBeGreaterThanOrEqual(stage!.x + stage!.width - 1);
-    for (const name of ["Previous trip", "Next trip", "Close trip summary"]) {
+    else {
+        expect(stage!.width).toBeCloseTo(page.viewportSize()!.width, 0);
+        expect(summary!.x).toBeGreaterThan(stage!.x + stage!.width / 2);
+        expect(summary!.x + summary!.width).toBeLessThanOrEqual(
+            stage!.x + stage!.width
+        );
+    }
+    for (const name of [
+        "Previous location or trip",
+        "Next location or trip",
+        "Close trip summary"
+    ]) {
         const rect = await page
             .getByRole("button", { name, exact: true })
             .boundingBox();
@@ -158,8 +172,8 @@ test("blocked map resources retain trip controls and a visible error status", as
             .filter({ hasText: "Some map resources could not load" })
     ).toBeVisible();
     await page
-        .getByRole("button", { name: "Previous trip", exact: true })
-        .click();
+        .locator('[aria-current="true"][data-trip-index]')
+        .press("ArrowLeft");
     await expect(page.locator("#travel-summary-heading")).toHaveText(
         "World Cup stadium trips"
     );
@@ -186,13 +200,13 @@ test("WebGL unavailable retains the portfolio, summaries and navigation", async 
             .filter({ hasText: "Your browser cannot display the 3D map" })
     ).toBeVisible();
     await page
-        .getByRole("button", { name: "Previous trip", exact: true })
-        .click();
+        .locator('[aria-current="true"][data-trip-index]')
+        .press("ArrowLeft");
     await expect(page.locator("#travel-summary-heading")).toHaveText(
         "World Cup stadium trips"
     );
     await expect(
-        page.getByRole("heading", { name: "Professional Experience" })
+        page.getByRole("heading", { name: "My experience" })
     ).toBeVisible();
 });
 
@@ -211,8 +225,8 @@ test("missing floating textures fall back without losing the portfolio", async (
     await expect(page.locator("#travel canvas")).toHaveCount(1);
     await expect.poll(() => missingRequests).toBeGreaterThan(0);
     await page
-        .getByRole("button", { name: "Previous trip", exact: true })
-        .click();
+        .locator('[aria-current="true"][data-trip-index]')
+        .press("ArrowLeft");
     await expect(page.locator("#travel-summary-heading")).toHaveText(
         "Roche Harbor"
     );
@@ -247,8 +261,8 @@ test("loading state stays usable until the map resources arrive", async ({
             page.getByRole("status").filter({ hasText: "Loading the 3D map" })
         ).toBeVisible();
         await page
-            .getByRole("button", { name: "Previous trip", exact: true })
-            .click();
+            .locator('[aria-current="true"][data-trip-index]')
+            .press("ArrowLeft");
         await expect(page.locator("#travel-summary-heading")).toHaveText(
             "World Cup stadium trips"
         );
@@ -261,37 +275,45 @@ test("loading state stays usable until the map resources arrive", async ({
     ).toHaveCount(0);
 });
 
-test("a real unselected 3D mesh click updates trip, camera and summary", async ({
+test("map gestures stay locked while region controls move the camera", async ({
     page
 }) => {
-    await page.setViewportSize({ width: 1440, height: 1000 });
     await openTravel(page);
     await page
         .getByRole("checkbox", { name: "Reduce motion", exact: true })
         .check();
-    await page.locator('[data-trip-index="15"]').click();
+    await page.locator('[data-trip-index="2"]').click();
     await expect(map(page)).toHaveAttribute("data-map-ready", "true");
     await expect(map(page)).toHaveAttribute("data-map-idle", "true");
     await map(page).scrollIntoViewIfNeeded();
-    const point = await markerScreenPoint(page, {
-        longitude: -88,
-        latitude: 42
-    });
-    await page.mouse.click(point.x, point.y);
-    await expect(page.locator('[data-trip-index="2"]')).toHaveAttribute(
-        "aria-current",
-        "true"
+    const before = await map(page).getAttribute("data-camera-longitude");
+    const box = (await map(page).boundingBox())!;
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 3);
+    await page.mouse.down();
+    await page.mouse.move(
+        box.x + box.width / 2 + 80,
+        box.y + box.height / 3 + 40,
+        { steps: 5 }
     );
-    await expect(page.locator("#travel-summary-heading")).toHaveText(
-        "Coast-to-coast train trip"
-    );
-    await expect(map(page)).toHaveAttribute("data-selected-trip", "train-2026");
+    await page.mouse.up();
+    await expect(map(page)).toHaveAttribute("data-camera-longitude", before!);
+    await page
+        .getByRole("button", { name: "Next location or trip", exact: true })
+        .click();
     await expect
         .poll(async () =>
             Number(await map(page).getAttribute("data-camera-longitude"))
         )
-        .toBeCloseTo(-96, 3);
-    await expect(page.locator("#travel-summary")).toBeVisible();
+        .toBeCloseTo(-88, 3);
+    await expect(map(page)).toHaveAttribute("data-selected-trip", "train-2026");
+    await page
+        .getByRole("button", { name: "Previous location or trip", exact: true })
+        .click();
+    await expect
+        .poll(async () =>
+            Number(await map(page).getAttribute("data-camera-longitude"))
+        )
+        .toBeCloseTo(-122, 3);
 });
 
 test("timeline combines all years, scrolls horizontally and supports arrow/Home/End selection", async ({
@@ -333,10 +355,7 @@ test("timeline combines all years, scrolls horizontally and supports arrow/Home/
     await expect(buttons.first()).toBeFocused();
     await buttons.first().press("ArrowRight");
     await expect(buttons.nth(1)).toBeFocused();
-    await expect(map(page)).toHaveAttribute(
-        "data-selected-trip",
-        "sapporo-2022"
-    );
+    await expect(map(page)).toHaveAttribute("data-selected-trip", "uk-2023");
 });
 
 test("sort direction retains selection and camera; navigation follows both directions", async ({
@@ -361,6 +380,18 @@ test("sort direction retains selection and camera; navigation follows both direc
     await expect(map(page)).toHaveAttribute("data-map-idle", "true");
     const longitude = await map(page).getAttribute("data-camera-longitude");
     for (const newest of [true, false, true, false]) {
+        await page
+            .locator('[data-visit-id="dallas-japan-sweden-2026"]')
+            .click();
+        await expect(map(page)).toHaveAttribute(
+            "data-selected-visit",
+            "dallas-japan-sweden-2026"
+        );
+        await expect
+            .poll(async () =>
+                Number(await map(page).getAttribute("data-camera-longitude"))
+            )
+            .toBeCloseTo(-96.8, 3);
         const toggle = page.getByRole("button", {
             name: newest
                 ? "Show newest trips first"
@@ -371,7 +402,7 @@ test("sort direction retains selection and camera; navigation follows both direc
         expect(size?.width).toBeGreaterThanOrEqual(44);
         expect(size?.height).toBeGreaterThanOrEqual(44);
         await toggle.press(newest ? "Enter" : "Space");
-        await expect(buttons).toHaveCount(17);
+        await expect(buttons).toHaveCount(TRAVEL_STOPS.length);
         expect(
             await buttons.evaluateAll((nodes) =>
                 nodes.map((node) => node.getAttribute("aria-label"))
@@ -389,7 +420,7 @@ test("sort direction retains selection and camera; navigation follows both direc
             "World Cup stadium trips"
         );
         await expect(page.locator("#travel-summary")).toContainText(
-            `${newest ? 2 : 16} of 17 entries`
+            `${newest ? 2 : TRAVEL_STOPS.length - 1} of ${TRAVEL_STOPS.length} entries`
         );
         await expect
             .poll(async () =>
@@ -406,15 +437,15 @@ test("sort direction retains selection and camera; navigation follows both direc
             )
             .toBe(true);
         await page
-            .getByRole("button", { name: "Next trip", exact: true })
-            .click();
+            .locator('[aria-current="true"][data-trip-index]')
+            .press("ArrowRight");
         await expect(map(page)).toHaveAttribute(
             "data-selected-trip",
             newest ? "train-2026" : "alaska-2026"
         );
         await page
-            .getByRole("button", { name: "Previous trip", exact: true })
-            .click();
+            .locator('[aria-current="true"][data-trip-index]')
+            .press("ArrowLeft");
         await expect(map(page)).toHaveAttribute(
             "data-selected-trip",
             "world-cup-2026"
@@ -425,7 +456,10 @@ test("sort direction retains selection and camera; navigation follows both direc
         .click();
     await buttons.first().focus();
     await buttons.first().press("End");
-    await expect(map(page)).toHaveAttribute("data-selected-trip", "tokyo-2022");
+    await expect(map(page)).toHaveAttribute(
+        "data-selected-trip",
+        "japan-korea-2022"
+    );
     await buttons.last().press("ArrowRight");
     await expect(buttons.first()).toBeFocused();
     await expect(map(page)).toHaveAttribute(

@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-13",
+  "source_export": "portfolio-travel-export-2026-10-14T04-53-30.zip",
+  "trip_count": 11,
+  "photo_count": 103,
+  "photo_verification": "All 103 imported JPEGs byte-equal archive; all public JPEGs below 256000 bytes and without APP/comment metadata. All referenced pixel art exists.",
+  "videos": [
+    {
+      "path": "public/assets/travel-videos/alaska-2026/001.mp4",
+      "bytes": 2555158,
+      "sha256": "de6fab84704483b539f7c20bd4d53b5a540af8430ecac2b2779d1326998ee755"
+    },
+    {
+      "path": "public/assets/travel-videos/alaska-2026/002.mp4",
+      "bytes": 2953345,
+      "sha256": "fd121494e3417dd9f55832b3202c7756827585e344f2f5a83ac923bbcb28eb7b"
+    },
+    {
+      "path": "public/assets/travel-videos/alaska-2026/003.mp4",
+      "bytes": 2522835,
+      "sha256": "2419036eb83793ba861ea2254641983abda733e404c8251e558f9ce1a8e0ace6"
+    },
+    {
+      "path": "public/assets/travel-videos/alaska-2026/004.mp4",
+      "bytes": 2978853,
+      "sha256": "2142db12ba1adb0efc3c9f29628936aa5b8b0bf81f7f1a60e18faa4593fa92fe"
+    },
+    {
+      "path": "public/assets/travel-videos/catalina-2026/001.mp4",
+      "bytes": 1856607,
+      "sha256": "2b5db10a3d1479d291b0a32d9edee0cd9854ceeb62a3e818896131ca3b2d8ab2"
+    },
+    {
+      "path": "public/assets/travel-videos/train-2026/001.mp4",
+      "bytes": 9443192,
+      "sha256": "a8cc6757c08cfc341252fcf330bb3c7217b79c2f7e9b5ce2e8ddeac069df9884"
+    },
+    {
+      "path": "public/assets/travel-videos/train-2026/002.mp4",
+      "bytes": 7125822,
+      "sha256": "59695d79876f8007aeb633c93899b2f5fb3f3a0e04cdf2d6c452be8ec3eff77b"
+    }
+  ],
+  "video_processing": "H.264/AAC, 1280-pixel maximum edge, rotation baked into pixels; HDR converted to SDR; container/stream metadata and chapters removed; faststart. Original ZIPs remain in Downloads.",
+  "publication": "Local integration only; no commit, push, or deployment.",
+  "validation": {
+    "lint": "passed",
+    "test_typecheck": "passed",
+    "production_build": "passed",
+    "browser_tests": "22 passed; all 11 trips in desktop Chromium and Pixel 7 Chromium; every photo decoded and all seven videos played",
+    "visual_review": "Train video viewer inspected on desktop and mobile; external map tiles stubbed during browser validation",
+    "scope": "Focused media checks; full existing suite and live remote-basemap checks not run"
+  },
+  "color_correction": "HLG nominal peak normalization corrected to 1000 nits, with Hable tone mapping at normalized peak 1, SDR BT.709 color tags, dark letterboxing and versioned URLs. SDR Catalina sample visually matches original. All original files preserved.",
+  "color_validation": "Final production build passed; all seven version-4 clips decoded and played in isolated Chrome; corrected Alaska frame visually inspected. Original source SDR frame compared with Catalina derivative."
+}

@@ -17,7 +17,7 @@ test("timeline interaction video with live map", async ({ page }, testInfo) => {
         ["World Cup stadium trips · 2026", "world-cup-2026"],
         ["Japan · 2025", "japan-2025"],
         ["Chicago · 2024", "chicago-2024"],
-        ["Tokyo · 2022", "tokyo-2022"]
+        ["Japan / Korea · 2022", "japan-korea-2022"]
     ]) {
         await page.getByRole("button", { name: label, exact: true }).click();
         await expect(map).toHaveAttribute("data-selected-trip", id);
@@ -43,18 +43,18 @@ test("timeline interaction video with live map", async ({ page }, testInfo) => {
     await page
         .getByRole("button", { name: "Show newest trips first", exact: true })
         .click();
-    await expect(map).toHaveAttribute("data-selected-trip", "tokyo-2022");
+    await expect(map).toHaveAttribute("data-selected-trip", "japan-korea-2022");
     await page
-        .getByRole("button", { name: "Previous trip", exact: true })
+        .getByRole("button", { name: "Next location or trip", exact: true })
         .click();
-    await expect(map).toHaveAttribute("data-selected-trip", "sapporo-2022");
+    await expect(map).toHaveAttribute("data-selected-trip", "uk-2023");
     await expect(map).toHaveAttribute("data-map-idle", "true", {
         timeout: 20000
     });
     await page
         .getByRole("button", { name: "Show oldest trips first", exact: true })
         .click();
-    await expect(map).toHaveAttribute("data-selected-trip", "sapporo-2022");
+    await expect(map).toHaveAttribute("data-selected-trip", "uk-2023");
     await page
         .getByRole("button", { name: "Hide summary", exact: true })
         .click();

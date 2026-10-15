@@ -22,7 +22,7 @@ export const webDevProjects: Project[] = [
         filters: ["R, Shiny", "Yelp API"],
         link: "https://jit98.shinyapps.io/BE-shrug/",
         content:
-            "I collaborated with a team to create a web app that utilizes the Yelp API to present information on businesses.",
+            "I built a web app with a team to display business information from the Yelp API.",
         tech: ["r-project", "yelp"],
         src: "yelp.PNG"
     },
@@ -31,7 +31,7 @@ export const webDevProjects: Project[] = [
         filters: ["CSS", "JavaScript", "PHP"],
         link: "https://github.com/joncady/rmpUW",
         content:
-            "I designed a Chrome extension that displays the professor's RateMyProfessor score next to their course. Actively used by students at my school!",
+            "I designed a Chrome extension that displays the professor's RateMyProfessor score next to their course. Used by students at the University of Washington.",
         tech: ["php", "js"],
         src: "rmp.PNG"
     },
@@ -39,8 +39,7 @@ export const webDevProjects: Project[] = [
         title: "FeelingFeed",
         filters: ["JavaScript", "Bootstrap", "PHP"],
         link: "https://github.com/joncady/dubhacks18",
-        content:
-            "I developed a full, dynamic website with my teammates at a Hackathon.",
+        content: "I developed a dynamic website with teammates at a hackathon.",
         tech: ["php", "js", "html5"],
         src: "feeling.png"
     },
@@ -48,7 +47,7 @@ export const webDevProjects: Project[] = [
         title: "SpotiViz",
         filters: ["React", "Node"],
         content:
-            "I constructed a React app with classmates that visualizes an album timeline using the Spotify API.",
+            "I built a React app with classmates that displays an album timeline using the Spotify API.",
         tech: ["react", "node-js"],
         src: "spotify.PNG"
     },
@@ -57,43 +56,43 @@ export const webDevProjects: Project[] = [
         filters: ["React", "Firebase"],
         link: "https://joncady.github.io/help.me/",
         content:
-            "I collorated with a team during a hackathon to create an emotional support chat bot that has user authentication.",
+            "I worked with a team at a hackathon to build an emotional support chatbot with user authentication.",
         tech: ["react"],
         src: "help.PNG"
     },
     {
         title: "Fire Emblem Adventures",
-        filters: ["JavaScript", "HTML", "CSS"],
+        filters: ["Phaser 3", "TypeScript", "Vite"],
         link: "https://joncady.github.io/feadventures/",
         content:
-            "I designed a 2D game using only vanilla JavaScript, HTML, and CSS. I created classes to encapsulate behavior for players, enemies, and obstacles.",
+            "I rebuilt my Fire Emblem-inspired browser game with Phaser and TypeScript, adding real-time party combat, mission objectives, equipment and forging, earned XP, browser saves, and keyboard, mouse and touch controls.",
         tech: ["js", "html5", "css3"],
-        src: "fe.PNG"
+        src: "fire-emblem-current.png"
     },
     {
         title: "Satellite Smash Brand Website",
         filters: ["React", "Firebase"],
         link: "https://satellitesmash.com/",
         content:
-            "I developed a React app that includes a player database, as well as a news feed. I used client rounting to emulate a multi-page site.",
+            "I developed a React app with a player database, news feed, and client-side routing between pages.",
         tech: ["react"],
         src: "ss.PNG"
     },
     {
-        title: "DuetWithMe ()",
+        title: "DuetWithMe",
         filters: ["React", "Node", "Speech-to-Text"],
         link: "https://devpost.com/software/duetwithme-fu9y5p",
         content:
-            "I collaborated with a team during a hackathon to create a interactive web app that can respond to voice commands and plays with you!",
+            "I worked with a team at a hackathon to build a web app that responds to voice commands and plays with the user.",
         tech: ["react", "node-js", "microsoft"],
         src: "duet.PNG"
     },
     {
-        title: "Draw with Me ()",
+        title: "Draw with Me",
         filters: ["React", "Socket IO", "Node"],
         link: "https://joncady.github.io/draw-with-me/",
         content:
-            "I designed an interactive drawing app that allows friends to draw live over the internet and save their pictures!",
+            "I designed a drawing app that lets users draw together online in real time and save their pictures.",
         tech: ["react", "node-js"],
         src: "draw.PNG"
     },
@@ -101,8 +100,8 @@ export const webDevProjects: Project[] = [
         title: "ShipShop",
         filters: ["Angular", "NodeJS", "Python"],
         link: "https://devpost.com/software/ship-shop",
-        content: `I worked with a team to win first place at T-Mobile's NB-IoT Hackathon! We created a E-Commerce Solution that helped
-        with food waste.`,
+        content:
+            "I worked with a team to build an e-commerce tool to reduce food waste. We won first place at T-Mobile's NB-IoT Hackathon.",
         tech: ["angular", "node-js", "python"],
         src: "shipshop.png"
     },
@@ -110,8 +109,8 @@ export const webDevProjects: Project[] = [
         title: "Ticketmaster Event Finder",
         filters: ["React"],
         link: "https://github.com/joncady/seahacks",
-        content: `For my intern hackathon at Ticketmaster, I developed a interactive map of events in your area! I worked with the
-        awesome other interns to build this app.`,
+        content:
+            "I worked with other interns at a Ticketmaster hackathon to build an interactive map of local events.",
         tech: ["react"],
         src: "tm.PNG"
     },
@@ -119,7 +118,8 @@ export const webDevProjects: Project[] = [
         title: "FreShip",
         filters: ["Python", "Angular", "IBM Cloud"],
         link: "https://www.zdnet.com/article/ibm-hackathon-winner-helps-fight-rash-of-wasted-food/",
-        content: `Team FreShip won the IBM Food Waste Virtual Hackathon!`,
+        content:
+            "Our team won the IBM Food Waste Virtual Hackathon with FreShip.",
         tech: ["python", "angular"],
         src: "freship.png"
     },
@@ -127,8 +127,8 @@ export const webDevProjects: Project[] = [
         title: "Snack Saver",
         filters: ["React", "Firebase"],
         link: "https://devpost.com/software/snacksaver",
-        content: `I attended Dubhacks and created a platform to help encourage students to choose healthy, cheaper food options
-        called Snack Saver! For the hackathon, we created a proof of concept based on the designs and it turned out great.`,
+        content:
+            "I worked with a team at DubHacks to build a proof of concept for Snack Saver, a platform intended to help students choose healthy, less expensive food options.",
         tech: ["react", "node-js"],
         src: "snacksaver.PNG"
     },
@@ -136,7 +136,8 @@ export const webDevProjects: Project[] = [
         title: "Vocaby",
         filters: ["React", "Chrome Extension"],
         link: "https://vocaby.app/",
-        content: `The extension to build vocabulary online. Get definitions instantly. Save words for later. I functioned as the project manager to take this project from an initial hackathon idea to reality.`,
+        content:
+            "I managed a project that started at a hackathon: a Chrome extension for looking up definitions and saving vocabulary words.",
         tech: ["react", "chrome"],
         src: "vocaby.png"
     },
@@ -144,9 +145,8 @@ export const webDevProjects: Project[] = [
         title: "Stream Dashboard",
         filters: ["React", "Electron", "Socket IO"],
         link: "https://github.com/joncady/stream-dashboard",
-        content: `I wrote a multi-platform desktop application that enables live streams to update HTML overlays. Additionally, it utilizes the start.gg API to dynamically fetch player tags and metadata.
-        It has been used for the past couple years at the Port Priority Smash Bros. tournament series in Seattle. I used Electron.js to quickly develop a desktop application which leverages socket.io to
-        deliver data to HTML overlays in real time.`,
+        content:
+            "I wrote a multi-platform desktop application with Electron to update HTML overlays for live streams. It fetches player tags and metadata from the start.gg API and sends updates through Socket.IO in real time. It has been used at the Port Priority Smash Bros. tournament series in Seattle.",
         tech: ["react"],
         src: "dashboard.png"
     }
@@ -158,7 +158,7 @@ export const mobileDevProjects: Project[] = [
         filters: ["React Native"],
         link: "https://github.com/joncady/monitoodApp",
         content:
-            "I designed the front-end of a React Native app that stores user information in a Python back-end.",
+            "I designed the React Native front end for an app that stores user information in a Python back end.",
         tech: ["react"],
         src: "monitood.png"
     },
@@ -167,7 +167,7 @@ export const mobileDevProjects: Project[] = [
         filters: ["Swift"],
         link: "https://stanfchristina.github.io/solace-landing/",
         content:
-            "Solace is a free iOS mobile app geared towards providing resources, information, and connection to survivors of domestic violence, especially those who are currently quarantined with their partners. I worked as a developer to implement chat and other main features.",
+            "Solace is a free iOS app that provides resources, information, and connections for survivors of domestic violence, including those quarantined with their partners. I implemented chat and other core features.",
         tech: ["swift"],
         src: "solace.png"
     }

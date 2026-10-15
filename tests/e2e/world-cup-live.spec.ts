@@ -40,11 +40,9 @@ for (const [width, visit] of [
                 () => document.documentElement.scrollWidth <= innerWidth
             )
         ).toBe(true);
-        await page
-            .locator("#travel")
-            .screenshot({
-                path: testInfo.outputPath(`world-cup-live-${width}.png`),
-                animations: "disabled"
-            });
+        await page.locator("#travel").screenshot({
+            path: testInfo.outputPath(`world-cup-live-${width}.png`),
+            animations: "disabled"
+        });
     });
 }

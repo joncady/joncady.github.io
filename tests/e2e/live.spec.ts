@@ -17,7 +17,7 @@ for (const width of [1440, 390]) {
         await page
             .getByRole("checkbox", { name: "Reduce motion", exact: true })
             .check();
-        await page.locator('[data-trip-index="15"]').click();
+        await page.locator('[data-trip-index="9"]').click();
         await page.locator("#travel").scrollIntoViewIfNeeded();
         await expect(map).toHaveAttribute("data-map-ready", "true", {
             timeout: 20000
@@ -48,12 +48,7 @@ test("deployed portfolio serves Amazon refresh and transit project", async ({
         page.getByRole("heading", { name: "Jonathan Cady", exact: true })
     ).toBeVisible();
     await expect(page.locator(".current-role")).toContainText(
-        "Worked on Alexa Smart Home"
+        "Alexa Smart Home"
     );
-    await expect(
-        page.getByRole("button", {
-            name: "Raspberry Pi Transit Display",
-            exact: true
-        })
-    ).toBeVisible();
+    await expect(page.locator("#transit-heading")).toBeVisible();
 });
