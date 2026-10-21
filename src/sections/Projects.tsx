@@ -123,6 +123,54 @@ export default function Projects() {
                 />
             </article>
             <article
+                className="supporting-project"
+                aria-labelledby="table-tennis-heading"
+            >
+                <div>
+                    <p className="eyebrow">Table Tennis / Browser game</p>
+                    <h3 id="table-tennis-heading">Step up to the table.</h3>
+                    <p>
+                        I built a first-person 3D table tennis prototype with
+                        React Three Fiber. Play against an AI with mouse and
+                        keyboard, or pair a phone and webcam to swing your
+                        paddle with motion controls.
+                    </p>
+                    <p>
+                        Matches play to 11, win by two, with customizable paddle
+                        rubber and sponge thickness. The phone mode combines
+                        motion sensors with browser-based body tracking and
+                        sends sound and haptic feedback on contact.
+                    </p>
+                    <p>
+                        <a
+                            className="text-link"
+                            href="https://joncady.github.io/R3F-Table-Tennis/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Play Table Tennis <span aria-hidden="true">↗</span>
+                        </a>
+                        {" · "}
+                        <a
+                            className="text-link"
+                            href="https://github.com/joncady/R3F-Table-Tennis"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View on GitHub <span aria-hidden="true">↗</span>
+                        </a>
+                    </p>
+                    <p className="project-stack">
+                        React Three Fiber / TypeScript / Three.js / AWS
+                    </p>
+                </div>
+                <img
+                    src="/assets/table-tennis.png"
+                    alt="First-person table tennis with a blue table, red paddles and a ball ready to serve"
+                    loading="lazy"
+                />
+            </article>
+            <article
                 className="featured-project"
                 aria-labelledby="transit-heading"
             >
