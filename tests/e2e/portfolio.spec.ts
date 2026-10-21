@@ -130,6 +130,10 @@ test("featured projects lead with Kureo and the current Fire Emblem game", async
 test("theme has no horizontal overflow and all displayed images load", async ({
     page
 }, testInfo) => {
+    // Walking every lazy-loaded image and capturing the long projects section
+    // needs more time on mobile CI than a single interaction test.
+    test.setTimeout(60000);
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
     const images = page.locator("img");
     for (const img of await images.all()) {
