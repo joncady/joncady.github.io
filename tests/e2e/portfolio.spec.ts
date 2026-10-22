@@ -80,6 +80,29 @@ test("process-led case study, accurate source links, archive disclosures", async
 }) => {
     await page.goto("/#my-projects");
     await expect(page.locator("#transit-heading")).toContainText("arrivals.");
+    const demo = page.getByLabel("PROXmobil3 transit display demo");
+    await demo.scrollIntoViewIfNeeded();
+    await demo.evaluate((video: HTMLVideoElement) => video.load());
+    await expect
+        .poll(() =>
+            demo.evaluate((video: HTMLVideoElement) => video.readyState)
+        )
+        .toBeGreaterThanOrEqual(1);
+    await expect(demo).toHaveAttribute("controls", "");
+    await demo.evaluate((video: HTMLVideoElement) => {
+        video.muted = true;
+        return video.play();
+    });
+    await expect
+        .poll(() =>
+            demo.evaluate((video: HTMLVideoElement) => video.currentTime)
+        )
+        .toBeGreaterThan(0);
+    await demo.evaluate((video: HTMLVideoElement) => video.pause());
+    await expect(page.locator(".transit-demo")).toContainText(
+        "after the clip ends"
+    );
+
     await expect(
         page.locator(".featured-project:not(.kureo-project) .case-process")
     ).toContainText("SSH");

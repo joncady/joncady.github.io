@@ -1651,3 +1651,23 @@ details[open] > summary:after {
 .travel-photo-viewer video {
     background: #111916;
 }
+
+.transit-demo {
+    padding: 24px;
+}
+.transit-demo::before {
+    display: none;
+}
+.transit-demo video {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    background: #18221e;
+}
+.transit-demo figcaption {
+    margin-top: 18px;
+    max-width: 360px;
+    font-size: 0.95rem;
+}

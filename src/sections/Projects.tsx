@@ -175,19 +175,23 @@ export default function Projects() {
                 aria-labelledby="transit-heading"
             >
                 <div className="case-copy">
-                    <p className="eyebrow">Raspberry Pi Transit Display</p>
+                    <p className="eyebrow">Transit Times / Upcycled hardware</p>
                     <h3 id="transit-heading">
-                        Live transit
+                        A second life for
                         <br />
-                        arrivals.
+                        live arrivals.
                     </h3>
                     <p className="case-problem">
-                        I built a display to check train arrivals before leaving
-                        home.
+                        I started with a Raspberry Pi touchscreen to check train
+                        arrivals before leaving home. Now I’ve turned an
+                        upcycled PROXmobil3 transit card reader into an arrivals
+                        display and a card-controlled photo frame.
                     </p>
                     <p className="case-solution">
-                        The app uses React and Python to show OneBusAway
-                        arrivals on a Raspberry Pi touchscreen.
+                        The native Rust and Slint app shows live OneBusAway
+                        arrivals. Tapping an enrolled card opens its photo album
+                        from USB; the display returns to arrivals when the photo
+                        session ends. This is a working prototype.
                     </p>
                     <a
                         className="button-link"
@@ -198,39 +202,61 @@ export default function Projects() {
                         View source <span aria-hidden="true">↗</span>
                     </a>
                 </div>
-                <figure className="transit-figure">
-                    <div className="device-shell">
-                        <div className="device-camera" />
-                        <img
-                            src="/assets/transit.jpg"
-                            alt="Transit display showing upcoming trains and minutes until arrival"
-                            loading="lazy"
+                <figure className="transit-figure transit-demo">
+                    <video
+                        controls
+                        playsInline
+                        preload="metadata"
+                        width="540"
+                        height="960"
+                        aria-label="PROXmobil3 transit display demo"
+                        aria-describedby="transit-demo-caption"
+                    >
+                        <source
+                            src="/assets/transit-pm3-demo.mp4"
+                            type="video/mp4"
                         />
-                    </div>
-                    <figcaption>
-                        Live transit arrivals on a Raspberry Pi touchscreen.
+                        <a href="/assets/transit-pm3-demo.mp4">
+                            Watch the transit demo
+                        </a>
+                    </video>
+                    <figcaption id="transit-demo-caption">
+                        Nine-second silent demo: U District arrivals, then
+                        different cards selecting photo albums. The return to
+                        arrivals happens after the clip ends.
                     </figcaption>
                 </figure>
                 <div className="case-process">
-                    <p className="eyebrow">My process</p>
+                    <p className="eyebrow">
+                        What changed from the first version
+                    </p>
                     <ul>
                         <li>
-                            Connected OneBusAway arrivals to a Python service
-                            and React interface.
+                            Upcycled a PROXmobil3 transit card reader with an
+                            800 × 480 screen, moving beyond the original
+                            Raspberry Pi and 480 × 320 touchscreen.
                         </li>
                         <li>
-                            Wrote and tested the display code for checking train
-                            arrivals before leaving home.
+                            Built a native Rust and Slint app in place of the
+                            React/Python browser kiosk, with automatic arrival
+                            paging, caching and network-error backoff. Built and
+                            deployed to the terminal over SSH.
                         </li>
                         <li>
-                            Added scheduled wake times and idle polling
-                            controls, and debugged the Raspberry Pi over SSH.
+                            Added card-selected USB photo albums and an
+                            automatic return to live arrivals. A desktop sync
+                            tool prepares resized copies while preserving the
+                            original photos.
                         </li>
                         <li>
-                            Used AI for API integration, writing code and tests,
-                            and SSH debugging.
+                            Added a ready light and brief left-to-right feedback
+                            when an enrolled card is recognized. Cards select
+                            albums locally; the app does not process fares.
                         </li>
                     </ul>
+                    <p className="project-stack">
+                        Rust / Slint / OneBusAway / USB &amp; card reader
+                    </p>
                 </div>
             </article>
             <article className="supporting-project">
