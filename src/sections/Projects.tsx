@@ -207,6 +207,7 @@ export default function Projects() {
                         controls
                         playsInline
                         preload="metadata"
+                        poster="/assets/transit-pm3-poster.jpg"
                         width="540"
                         height="960"
                         aria-label="PROXmobil3 transit display demo"
