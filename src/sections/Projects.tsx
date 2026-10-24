@@ -260,6 +260,49 @@ export default function Projects() {
                     </p>
                 </div>
             </article>
+            <article
+                className="supporting-project"
+                aria-labelledby="okabebot-heading"
+            >
+                <div>
+                    <p className="eyebrow">OkabeBot / AI hardware companion</p>
+                    <h3 id="okabebot-heading">
+                        A voice with a physical presence.
+                    </h3>
+                    <p>
+                        I built a push-to-talk companion that connects Codex to
+                        real hardware. Hold a button, speak, and release: local
+                        speech recognition transcribes the request, and an
+                        animated pixel character answers aloud with expressions
+                        and mouth movement driven by the audio.
+                    </p>
+                    <p>
+                        A controller coordinates Raspberry Pi devices through
+                        SSH, with MCP tools for the display, camera, speaker and
+                        a SwitchBot button pusher. Configurable characters and
+                        voices make the companion personal; the current hardware
+                        setup uses a computer and two Pi Zero satellites.
+                    </p>
+                    <a
+                        className="text-link"
+                        href="https://github.com/joncady/OkabeBot"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Explore OkabeBot on GitHub{" "}
+                        <span aria-hidden="true">↗</span>
+                    </a>
+                    <p className="project-stack">
+                        Python / Codex / MCP / Raspberry Pi / Whisper
+                    </p>
+                </div>
+                <img
+                    src="/assets/okabebot.png"
+                    alt="OkabeBot pixel character with dark hair and a white lab coat on a teal background"
+                    loading="lazy"
+                    style={{ imageRendering: "pixelated" }}
+                />
+            </article>
             <article className="supporting-project">
                 <div>
                     <p className="eyebrow">Stream Dashboard</p>
