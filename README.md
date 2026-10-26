@@ -15,7 +15,7 @@ npm start -- --host 127.0.0.1
 
 Open a pull request into `source`. The **Portfolio checks and Pages** workflow validates lint, test types, the production build, and Chromium/mobile/WebKit browser tests. PRs upload a review build and never deploy.
 
-After review and green checks, merge into `source`. Its push workflow repeats the checks and deploys `dist` to GitHub Pages. Confirm the deploy job succeeds, then review `https://joncady.github.io/` and the Projects and Travel Log sections. A workflow dispatch on `source` can redeploy the current source revision. Do not use the legacy `npm run deploy` command: it targets the historical `master` branch and bypasses this Pages workflow.
+After review and green checks, merge into `source`. Its push workflow repeats the checks and deploys `dist` to GitHub Pages. Confirm the deploy job succeeds, then review `https://joncady.github.io/` and the Projects and Travel Log sections. A workflow dispatch on `source` can redeploy the current source revision. The legacy `gh-pages` dependency and `npm run deploy` scripts have been removed; use the Pages workflow for publication.
 
 To roll back, revert the merged change on `source` through a reviewed PR and allow the same workflow to rebuild and deploy.
 

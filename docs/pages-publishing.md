@@ -15,6 +15,6 @@ These steps change production publishing. Do them only when the reviewed source 
 
 The deployment job alone requests `pages: write` and `id-token: write`. Build and PR jobs use `contents: read`; checkout does not persist credentials. No personal access token or source-branch write access is needed.
 
-Do not use the old `npm run deploy` command after activation: it updates `master` rather than using the reviewed workflow. `master` remains available as the legacy output until a separate cleanup is approved.
+The legacy `gh-pages` dependency and `npm run deploy` scripts have been removed. Publish through the reviewed Pages workflow. `master` remains available as historical output.
 
 If activation is postponed, the existing `master` site continues serving. A source deployment job cannot complete until Pages and the environment permit Actions deployments from `source`.
