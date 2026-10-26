@@ -265,23 +265,34 @@ export default function Projects() {
                 aria-labelledby="okabebot-heading"
             >
                 <div>
-                    <p className="eyebrow">OkabeBot / AI hardware companion</p>
+                    <p className="eyebrow">OkabeBot / AI hardware lab</p>
                     <h3 id="okabebot-heading">
-                        A voice with a physical presence.
+                        A companion for your desk and your day.
                     </h3>
                     <p>
-                        I built a push-to-talk companion that connects Codex to
-                        real hardware. Hold a button, speak, and release: local
-                        speech recognition transcribes the request, and an
-                        animated pixel character answers aloud with expressions
-                        and mouth movement driven by the audio.
+                        I expanded a push-to-talk Codex companion into a
+                        configurable hardware and notification platform.
+                        Animated pixel characters speak, react to music and TV,
+                        and present updates on a Raspberry Pi display, with a
+                        tablet-friendly dashboard for conversations and an
+                        inbox.
                     </p>
                     <p>
-                        A controller coordinates Raspberry Pi devices through
-                        SSH, with MCP tools for the display, camera, speaker and
-                        a SwitchBot button pusher. Configurable characters and
-                        voices make the companion personal; the current hardware
-                        setup uses a computer and two Pi Zero satellites.
+                        Optional integrations bring together GitHub activity and
+                        deployments, calendar agendas and countdowns, Spotify
+                        playback, and Home Assistant notifications. Codex
+                        completion cards and focus timers share the same
+                        display; home integrations require account setup and
+                        validation.
+                    </p>
+                    <p>
+                        MCP tools connect the camera, speaker, display and
+                        SwitchBot. Local speech recognition, configurable voice
+                        engines, and local or SSH device connections support
+                        different setups. The current deployment pairs a
+                        computer with two Pi Zero satellites; an optional AWS
+                        relay queues signed GitHub events while the controller
+                        is offline.
                     </p>
                     <a
                         className="text-link"
@@ -293,15 +304,19 @@ export default function Projects() {
                         <span aria-hidden="true">↗</span>
                     </a>
                     <p className="project-stack">
-                        Python / Codex / MCP / Raspberry Pi / Whisper
+                        Python / Codex / MCP / Raspberry Pi / Whisper / AWS
                     </p>
                 </div>
-                <img
-                    src="/assets/okabebot.png"
-                    alt="OkabeBot pixel character with dark hair and a white lab coat on a teal background"
-                    loading="lazy"
-                    style={{ imageRendering: "pixelated" }}
-                />
+                <figure className="okabebot-figure">
+                    <img
+                        src="/assets/okabebot-collage.png"
+                        alt="Collage of OkabeBot integration previews for GitHub, calendar, home activity, music, TV and sports, and Codex completion"
+                        loading="lazy"
+                    />
+                    <figcaption>
+                        Illustrative integration previews with sample messages.
+                    </figcaption>
+                </figure>
             </article>
             <article className="supporting-project">
                 <div>
